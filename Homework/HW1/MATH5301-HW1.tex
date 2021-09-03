@@ -159,6 +159,7 @@ resulting in $2^n = 2^5 = 32$.
 However, due to the repeaterd element, $p$, this is not as simple but a similar
 combinatorics proccess can be used to account for this.\\
 
+\textbf{General Solution:}\\
 Let the following be defined:\\
 $n :=$ number of elements within $A$\\
 $m :=$ number of unique elements within $A$\\
@@ -171,7 +172,7 @@ within $A$, $n_i$.\\
 
 The calculation can split into the sum of all the possible subsets of lengths, $l$,
 from 0 to n.\\
-For $l=0$ the only possible subset is $\O$,
+For $l=0$ the only possible subset is $\emptyset$,
 so $$N_0 = \mqty(n \\ 0) = 1.$$
 
 Similarily, for $l=n$ the only possible subset of $A$ is $A$, 
@@ -181,35 +182,61 @@ For $l=1$ there exists $m$ unique sets consisting of the elements in $\{a_i\}$.
 Alternativly, this can be calculated as
 $$N_1 = \mqty(n\\1) - \sum_{i=1}^m (n_i - 1)$$.
 
-For $l=2$ (and all $l>1$) the computation becomes more complicated.
-One solution is to define the ordered pairs 
-$\{(b_i,n_i-1)\}: b_i = a_i \forall i : n_i > 1$. 
-The new sequence, $\{b_i\}$ can then be used to add the nessicary 
-extra repeated element subsets. 
-Additionally, let the number of elements within sequence $\{b_i\}$ 
-be defined as $m_2$. 
-The collection of subsets with $l=2$ would be all possible combinations of
-$a_i$, $\qty(N_{l=2}^{(all)} = \mqty(n\\2))$, minus the number of repeated
-subsets constructed with ${b_i,a_j} \forall i \in \{1,2,\cdots,m_2\}, 
-j \in \{1,2,\cdots,m_2\}$, $\qty(N_{l=2}^{(duplicates)} = m_2 * m)$. Therefore,
-$$N_2 = \mqty(m\\2) - m_2.$$
+For $l=2$ (and all $l>1$) the computation becomes more complicated.\\
+The collection of subsets with repeated elements for $l=2$ would be all possible 
+combinations of the elements of $A$ with $l=2$ elements, $\qty(N_{l=2}^{(all)} = \mqty(n\\2))$.\\
 
-Next, this proccess can be repeated for $2 < l < n$, such that a new set of
-ordered pairs is defined, $\{c_i, n + (l-1)\} : c_i = a_i \forall n > (l-1)$,
-and then the number of subsets with $l$ elements is calculated as
-the sum of all possible combinations of the elements of $A$ of length $l$, 
-$\qty(N_{l}^{(all)} = \mqty(n\\2))$, minus the number of repeated subsets
-constructed with ${c_i,\cdots,b_j,a_k} \forall i \in \{1,2,\cdots,m_l\},
-\cdots, j \in \{1,2,\cdots,m_2\}, k \in \{1,2,\cdots,m\}$, 
-$\qty(N_l)^{(duplicates)} = m_l * \cdots * m_2 * m$. Therefore,
-$$N_l = \mqty(n\\l) - m_l * \cdots * m_2 * m$$.
+The number of duplicated elements can be done by constructing the ordered pairs 
+$\{(b_i,n_i-1)\}: b_i = a_i \forall i : n_i > 1$. $B$ can then be defined as the collection 
+of $n_i - 1$ copies of $b_i$. \footnote{How do you do this with quantifiers?}\\
 
-The total number of possible subsets can then be calculated as the sum
-$$N = \sum_{l=1}^{n} N_l = \sum_{l=1}^n \mqty(n\\l) - \prod_{1}^{l} m_l$$
+The number of elements in $B$, $n^{(l=2)}$ can then be used to determine the number of duplicated 
+subsets included in $N_{l=2}^{(all)}$, $N_{l=2}^{(duplicates)} = n^{(l=2)} * N_{l=1}$. Therefore,
+$$N_{l=2} = N_{l=2}^{(all)} - N_{l=2}^{(duplicates)} 
+= \mqty(n\\2) - n^{(l=2)} * N_{l=1} 
+= \mqty(n\\2) - n^{(l=2)} * \qty(\mqty(n\\1) - \sum_{i=1}^m (n_i - 1))$$
+
+This proccess can be repeated for $l > 2$ until the newly constructed set (labeled $B$ for $l=2$) is empty,
+in which case $N_{l} = \mqty(n\\l)$.\\
+
+For the given finite case of $A = \{a,p,p,l,e\}$ the result is calculated as:
+\begin{align*}
+	N_0 &= 1\\
+	N_1 &= 4\\
+	N_2 &= 13\\
+	N_3 &= 6\\
+	N_4 &= 4\\
+	N_5 &= 1\\
+	\intertext{Therefore,}
+	N &= 29
+\end{align*}
+% One solution is to define the ordered pairs 
+% $\{(b_i,n_i-1)\}: b_i = a_i \forall i : n_i > 1$. 
+% The new sequence, $\{b_i\}$ can then be used to add the nessicary 
+% extra repeated element subsets. 
+% Additionally, let the number of elements within sequence $\{b_i\}$ 
+% be defined as $m_2$. 
+% The collection of subsets with $l=2$ would be all possible combinations of
+% $a_i$, $\qty(N_{l=2}^{(all)} = \mqty(n\\2))$, minus the number of repeated
+% subsets constructed with ${b_i,a_j} \forall i \in \{1,2,\cdots,m_2\}, 
+% j \in \{1,2,\cdots,m_2\}$, $\qty(N_{l=2}^{(duplicates)} = m_2 * m)$. Therefore,
+% $$N_2 = \mqty(m\\2) - m_2.$$
+
+% Next, this proccess can be repeated for $2 < l < n$, such that a new set of
+% ordered pairs is defined, $\{c_i, n + (l-1)\} : c_i = a_i \forall n > (l-1)$,
+% and then the number of subsets with $l$ elements is calculated as
+% the sum of all possible combinations of the elements of $A$ of length $l$, 
+% $\qty(N_{l}^{(all)} = \mqty(n\\2))$, minus the number of repeated subsets
+% constructed with ${c_i,\cdots,b_j,a_k} \forall i \in \{1,2,\cdots,m_l\},
+% \cdots, j \in \{1,2,\cdots,m_2\}, k \in \{1,2,\cdots,m\}$, 
+% $\qty(N_l)^{(duplicates)} = m_l * \cdots * m_2 * m$. Therefore,
+% $$N_l = \mqty(n\\l) - m_l * \cdots * m_2 * m.$$
+
+% The total number of possible subsets can then be calculated as the sum
+% $$N = \sum_{l=1}^{n} N_l = \sum_{l=1}^n \mqty(n\\l) - \prod_{1}^{l} m_l$$
 
 % Note: I am not overly confident of how well this scales when it grows
 % larger then I actually tested it at...
-
 
 
 

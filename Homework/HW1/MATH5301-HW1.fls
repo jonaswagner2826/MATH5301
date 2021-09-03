@@ -330,6 +330,8 @@ INPUT ./fig/pblm5_op2all_soln.png
 INPUT fig/pblm5_op2all_soln.png
 INPUT ./fig/pblm5_op2all_soln.png
 INPUT ./fig/pblm5_op2all_soln.png
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/cm/cmbx6.tfm
 INPUT MATH5301-HW1.aux
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
@@ -339,5 +341,7 @@ INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
