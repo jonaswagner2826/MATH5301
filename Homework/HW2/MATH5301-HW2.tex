@@ -41,6 +41,7 @@
 
 \maketitle
 
+% Problem 1
 \section{}
 For a function $f : A \rightarrow B$, show the follwoing for any $X \subset A, Y, Z \supset B$
 
@@ -64,6 +65,7 @@ For a function $f : A \rightarrow B$, show the follwoing for any $X \subset A, Y
 
 
 \newpage
+% Problem 2
 \section{}
 Show that:
 
@@ -136,6 +138,7 @@ Therefore,
 
 
 \newpage
+% Problem 3
 \section{}
 \textbf{Problem:}
 Which of these are equivalence relations?\\
@@ -253,6 +256,54 @@ Let $X = \Z \cross \N$,
 $x = (x_1, x_2)$ and $y = (y_1, y_2)$
 are in $\Rel$ if $x_1 y_2 = x_2 y_1$.
 
+i.e.
+$$a_1, b_1 \in \Z, a_2, b_2 \in \N,$$
+$$a_1 b_2 = a_2 b_1 \implies (a_1, a_2) \Rel (b_1, b_2)$$
+
+\subsubsection{Reflective:}
+\begin{align*}
+	a_1 b_2 = a_2 b_1 &\implies (a_1, a_2) \Rel (b_1, b_2)\\
+	x_1 x_2 = x_2 x_1 &\implies (x_1, x_2) \Rel (x_1, x_2)
+\end{align*}
+
+\subsubsection{Symetric:}
+\begin{align*}
+	x \Rel y
+		&\implies y \Rel x\\
+	(x_1 y_2 = x_2 y_1 \implies (x_1, x_2) \Rel (y_1, y_2))
+		&\implies (y_1 x_2 = y_2 x_1 \implies (y_1, y_2) \Rel (x_1, x_2))
+\end{align*}
+
+\subsubsection{Transative:}
+\begin{align*}
+	x \Rel y \land y \Rel z
+		&\implies x \Rel z\\
+	(x_1 y_2 = x_2 y_1 \implies (x_1, x_2) \Rel (y_1, y_2))
+	\land (y_1 z_2 = y_2 z_1 \implies (y_1, y_2) \Rel (z_1, z_2))
+	&\implies (x_1 z_2 = x_2 z_1 \implies (x_1, x_2) \Rel (z_1, z_2))\\
+	(x_1 y_2 = x_2 y_1) \land (y_1 z_2 = y_2 z_1)
+	&\implies (x_1 z_2 = x_2 z_1)\\
+\end{align*}
+Which is clearly transitive, so $(a_1,a_2) \Rel (b_1,b_2)$ is transitive, and therefore 
+an equivalence relation.
+
+\newpage
+% Problem 4
+\section{}
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+% Problem 5
+\section{}
 
 
 
@@ -269,17 +320,30 @@ are in $\Rel$ if $x_1 y_2 = x_2 y_1$.
 
 
 \newpage
+% Problem 6
 \section{}
+\textbf{Problem:}
+Is the following statement correct?\\
 
+\textbf{Theorem 1.}
+\textit{If the relation $\R$ on $A$ is symetric and transistive, then it is reflexive.}\\
+\textit{Proof:}
+For any $a \in A$ let $b \in A$ is such that $a \Rel b$. Then by symmetry $b \Rel a$. 
+Then by symmetry $a \Rel a$.\\
 
+\textbf{Solution:}
+No. Specifically, the final statement of the proof states to use symmetry to conclude that 
+it is reflexive, but it actually requires the transivity property to make that conclusion.\\
 
+The following is a proposed corrected statement:\\
 
-
-
-
-
-
-
+\textbf{Theorem 1.}
+\textit{If the relation $\Rel$ is symetric and transistive on $A$, then $Rel$ is also reflexive on $A$.}\\
+\textit{Proof:}
+Let $a \in A$ and $b \in A$ be selected so that $a \Rel b$
+Since $\Rel$ is symetric: $$a \Rel b \implies b \Rel a$$
+Since $\Rel$ is transitive: $$(a \Rel b) \land (b \Rel a) \implies a \Rel a$$
+Therefore, $\Rel$ is also reflexive.
 
 
 
