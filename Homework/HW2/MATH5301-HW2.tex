@@ -7,14 +7,25 @@
 \setlength\parindent{0pt}
 
 \usepackage{physics}
-% \usepackage{amsmath}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
 
 \usepackage{listings}
 
 \usepackage{enumitem}
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand*{\thesection}{Problem \arabic{section}}
-\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsection}{\arabic{section}\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
 
 %opening
 
@@ -38,7 +49,7 @@ For a function $f : A \rightarrow B$, show the follwoing for any $X \subset A, Y
 
 
 
-\subsection{$f(f^{-1}(Y)) \supset Y$}
+\subsection{$f(f^{-1}(Y)) \subset Y$}
 
 
 \subsection{$f^{-1}(Y \cup Z) = f^{-1}(Y) \cup f^{-1}(Z)$}
@@ -61,13 +72,58 @@ Show that:
 	= \bigcup\limits_{\lambda \in \Lambda} (A_\lambda \cap A)$
 }
 
+Let $\Lambda := \{1, 2, \cdots, n\}$,
+
+\begin{align*}
+	A \cap \bigcup\limits_{\lambda \in \Lambda}  A_\lambda
+	&= A \cap \qty(A_1 \cup A_2 \cup \cdots \cup A_n)\\
+	&= (A \cap A_1) \cup (A \cap A_2) \cup \cdots \cup (A \cap A_n)\\
+	% A \cap \bigcup\limits_{\lambda \in \Lambda}  A_\lambda
+	&= \bigcup\limits_{\lambda \in \Lambda} (A_\lambda \cap A)
+\end{align*}
+
+Therefore,
+\begin{displaymath}
+	\boxed{A \cap \bigcup\limits_{\lambda \in \Lambda}  A_\lambda
+	= \bigcup\limits_{\lambda \in \Lambda} (A_\lambda \cap A)}
+\end{displaymath}
 
 
 \subsection{
 	$\qty(\bigcap\limits_{\lambda\in\Lambda} A_{\lambda}) \cup
 	 \qty(\bigcap\limits_{\lambda\in\Lambda} B_{\lambda})
-	 = \bigcap\limits_{\lambda\in\Lambda} (A_\lambda \cup B_\lambda)$
+	 \subseteq \bigcap\limits_{\lambda\in\Lambda} (A_\lambda \cup B_\lambda)$
 }
+
+Let $\Lambda_A := \{1, 2, \cdots, n\}$ and $\Lambda_B := \{1, 2, \cdots, m\}$,
+
+\begin{align*}
+	\bigcap\limits_{\lambda\in\Lambda} (A_\lambda \cup B_\lambda)
+	&= (A_1 \cup B_1) \cap (A_1 \cup B_2) \cap 
+	\cdots \cap (A_1 \cup B_m) \cap (A_2 \cup B_1) \cap
+	\cdots \cap (A_n \cup B_m)\\
+	% &= \qty((A_1 \cap A_2) \cup (A_1 \cap B_2) \cup (B_1 \cap A_2) \cup (B_1 \cap B_2)) \cap
+	% (A_1)
+	&= \qty(A_1 \cup \qty(B_1 \cap B_2 \cap \cdots \cap B_m)) \cap \cdots
+	\cap \qty(A_n \cup \qty(B_1 \cap B_2 \cap \cdots \cap B_m))\\
+	&= (A_1 \cap A_2) \cup (A_1 \cap A_3) \cup \cdots (A_2 \cap A_3) \cdots 
+	\cup (A_{n-1} \cap A_n)\\
+	&\qquad \cup (A_1 \cap B_1) \cup \cdots \cup (A_1 \cap B_m) \cup \cdots \cup (A_n \cap B_m)\\
+	&\qquad \cup (B_1 \cap B_2) \cup \cdots	\cup (B_1 \cap B_m) \cup \cdots \cup (B_{m-1} \cap B_{m})\\
+	&= \qty(\bigcap\limits_{\lambda\in\Lambda} A_{\lambda}) \cup 
+	\qty(\bigcap\limits_{\lambda\in\Lambda} B_{\lambda})
+	\cup (A_1 \cap B_1) \cup \cdots \cup (A_1 \cap B_m) \cup \cdots \cup (A_n \cap B_m)\\
+\end{align*}
+Therefore,
+\begin{align*}
+	\boxed{
+	\qty(\bigcap\limits_{\lambda\in\Lambda} A_{\lambda}) \cup
+	\qty(\bigcap\limits_{\lambda\in\Lambda} B_{\lambda})
+	\subseteq \qty(\bigcap\limits_{\lambda\in\Lambda} A_{\lambda}) \cup 
+	\qty(\bigcap\limits_{\lambda\in\Lambda} B_{\lambda})
+	\cup (A_1 \cap B_1) \cup \cdots \cup (A_1 \cap B_m) \cup \cdots \cup (A_n \cap B_m)
+	}
+\end{align*}
 
 
 
@@ -81,12 +137,145 @@ Show that:
 
 \newpage
 \section{}
-Which of these are equivalence relations?
+\textbf{Problem:}
+Which of these are equivalence relations?\\
+
+% \textbf{Note:}
+% Equivalence relations must satisfy the following:
+% \subsubsection{Reflective:}
+% $$x \Rel x$$
+% \subsubsection{Symetric:}
+% $$x \Rel y \implies y \Rel x$$
+% \subsubsection{Transitive:}
+% $$x \Rel y \land y \Rel z \implies x \Rel z$$
+
+\textbf{Solution:}
+a, c, \& d\\
+(The following explain why)
+
 
 \subsection{}
-for $a, b \in$,
-let $a \mathcal{R} b$
-if $a - b \in $
+for $a, b \in \R$,
+let $a \Rel b$
+if $a - b \in \Q$
+
+\subsubsection{Reflective:}
+\begin{align*}
+	x \Rel x 
+		&= x - x = 0 \in \Q
+\end{align*}
+
+\subsubsection{Symetric:}
+\begin{align*}
+	x \Rel y 
+		&\implies y \Rel x\\
+	x \Rel y = x - y \in \Q
+		&\implies y - x \in \Q
+	\intertext{Since $x-y = -(y-x)$, $(x-y)$ and $(y-x)$ will both be either rational
+	or not rational, this is true.}
+\end{align*}
+
+\subsubsection{Transitive:}
+\begin{align*}
+	x \Rel y \land y \Rel z 
+		&\implies x \Rel z\\
+		\qty(x - y \in \Q) \land \qty(y - z \in \Q)
+		&\implies \qty(x - z \in \Q)\\
+	\qty(\frac{x_a}{x_b} - \frac{y_a}{y_b} \in \Q) \land \qty(\frac{y_a}{y_b} - \frac{z_a}{z_b} \in \Q)
+		&\implies \qty(\frac{x_a}{x_b} - \frac{z_a}{z_b} \in \Q)
+\end{align*}
+This also means that:
+\begin{align*}
+	(x_a y_b - x_b y_a \in \N) \land (x_b y_b \neq 0 \in N)
+		&\land (y_a z_b - y_b z_a \in \N) \land (y_b z_b \neq 0 \in N)\\
+		&\implies (x_a z_b - x_b z_a \in \N) \land (x_b z_b \neq 0 \in N)
+\end{align*}
+Since this statments indicates that $x_b, y_b, z_b \neq 0$
+and that $x_a y_b - x_b y_a, y_a z_b - y_b z_b \in \N$,
+the following will always be true as well: $x_a z_b - x_b z_a$.
+Therefore, the relation is transitive.
+
+
+\subsection{}
+for $a, b \in \R$,
+let $a \Rel b$
+if $a - b \notin \Q$
+
+\subsubsection{Reflective:}
+The relationship is NOT reflective:
+\begin{align*}
+	a \Rel b &= a - b \notin \Q\\
+	x \Rel x 
+		&= x - x = 0 \in \Q
+\end{align*}
+
+\newpage
+\subsection{}
+for $a, b \in \R$,
+let $a \Rel b$
+if $a - b$ is a square root of a rational number.\\
+i.e.
+$$a \Rel b = (a-b)^2 \in \Q$$
+
+\subsubsection{Reflective:}
+\begin{align*}
+	a \Rel b &= (a-b)^2 \in \Q\\
+	x \Rel x &= (x-x)^2 = 0^2 = 0 \in \Q
+\end{align*}
+
+\subsubsection{Symetric:}
+\begin{align*}
+	x \Rel y
+		&\implies y \Rel x\\
+	(x - y)^2 \in \Q
+		&\implies (y-x)^2 \in \Q\\
+	(x-y)^2 = (y-x)^2
+		&\therefore \ x \Rel y \implies y \Rel x
+\end{align*}
+
+\subsubsection{Transative:}
+\begin{align*}
+	x \Rel y \land y \Rel z
+		&\implies x \Rel z\\
+	\qty((x - y)^2 \in \Q) \land \qty((y - z)^2 \in \Q)
+		&\implies \qty((x-z)^2 \in \Q)\\
+	\qty(x^2 - 2xy + y^2 \in \Q) \land \qty(y^2 - 2yz + z^2 \in \Q)
+		&\implies \qty(x^2 - 2xz + z^2\in \Q)\\
+	(x^2 \in \Q) \land (y^2 \in \Q) \land (z^2 \in \Q) \land (-2xy \in \Q) \land (-2yz \in \Q)
+		&\implies (x^2 \in \Q) \land (z^2 \in \Q) \land (-2xz \in \Q)\\
+	(xy \in \Q) \land (yz \in \Q)
+		&\implies (xz \in \Q)
+\end{align*}
+Which is clearly transitive, so $a \Rel b = (a-b)^2 \in \Q$ is transitive.
+
+\subsection{}
+Let $X = \Z \cross \N$,
+$x = (x_1, x_2)$ and $y = (y_1, y_2)$
+are in $\Rel$ if $x_1 y_2 = x_2 y_1$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{}
+
+
+
+
+
+
 
 
 
