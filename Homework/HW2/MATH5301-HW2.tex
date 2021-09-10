@@ -43,21 +43,70 @@
 
 % Problem 1
 \section{}
-For a function $f : A \rightarrow B$, show the follwoing for any $X \subset A, Y, Z \supset B$
+For a function $f : A \rightarrow B$, show the follwoing for any $X \subset A, Y, Z \subset B$
 
 \subsection{$X \subset f^{-1}(f(X))$}
 
+\begin{align*}
+	f(X) &= \{y \in B : \exists x \in X : y = f(x)\}\\
+	f^{-1}(Y) &= \{x \in A : \exists y \in Y : y = f(x)\}\\
+	f(f^{-1}(X)) &= \{\tilde{x} \in \tilde{X} : \exists x \in A : \tilde{x} = f(f^{-1}(x))\}\\
+	&= \{\tilde{x} \in \tilde{X} : \exists y \in Y : y = f(\tilde{x}) :
+		\exists x \in X : y = f(x)\} \implies\\
+	&\implies \tilde{X} \subset X\\
+	&\therefore X \subset f^{-1}(f(X))
+\end{align*}
+
+
+
+% Let, $$Y = f(X) \subset B$$
+% The preimage of $Y$ is then $$\tilde{X} = f^{-1}(Y) \subset A$$
+% Additionally, from the knowledge of image then pre-image properties functions,
+% $$\tilde{X} \subset X$$
+% Therefore, $$ X \subset \tilde{X} = f^{-1}(f(X))$$
 
 \subsection{$f(f^{-1}(Y)) \subset Y$}
+% Let, $$X = f^{-1}(Y) \subset A$$
+% The maping of $X$ is then $$\tilde{Y} = f(X) \subset B$$
+% Additionally, from knowledge pre-image and maping properties functions,
+% $$\tilde{Y} \subset Y$$
+% Therefore, via the transitive property, $$f(f^{-1}(Y)) \subset Y$$
+
+\begin{align*}
+	f^{-1}(Y) &= \{x \in A : \exists y \in Y : y = f(x)\}\\
+	f(X) &= \{y \in B : \exists x \in X : y = f(x)\}\\
+	f^{-1}(f(Y)) &= \{\tilde{x} \in \tilde{X} : \exists x \in A : \tilde{x} = f^{-1}(f(x))\}\\
+	&= \{\tilde{x} \in \tilde{X} : \exists y \in Y, \exists x \in X : (y = f(\tilde{x})) 
+		\land (y = f(x)\} \implies\\
+	&\implies \tilde{X} \subset X\\
+	&\therefore X \subset f^{-1}(f(X))
+\end{align*}
 
 
+\newpage
 \subsection{$f^{-1}(Y \cup Z) = f^{-1}(Y) \cup f^{-1}(Z)$}
-
-
-
+\begin{align*}
+	f^{-1}(Y) &= \{x \in A : \exists y \in Y : y = f(x)\}\\
+	f^{-1}(Z) &= \{x \in A : \exists z \in Z : z = f(x)\}\\
+	f^{-1}(Y \cup Z) &= \{x \in A : (\exists y \in Y y = f(x))
+		\lor (\exists z \in Z : z = f(x))\}\\
+	&= \{x \in A : (\exists y \in Y y = f(x))\} 
+		\cup \{x \in A :\lor (\exists z \in Z : z = f(x))\}\\
+	&= f^{-1}(Y) \cup f^{-1}(Z)\\
+	&\therefore f^{-1}(Y \cup Z) = f^{-1}(Y) \cup f^{-1}(Z)
+\end{align*}
 
 \subsection{$f^{-1}(Y \cap Z) = f^{-1}(Y) \cap f^{-1}(Z)$}
-
+\begin{align*}
+	f^{-1}(Y) &= \{x \in A : \exists y \in Y : y = f(x)\}\\
+	f^{-1}(Z) &= \{x \in A : \exists z \in Z : z = f(x)\}\\
+	f^{-1}(Y \cap Z) &= \{x \in A : (\exists y \in Y y = f(x))
+		\land (\exists z \in Z : z = f(x))\}\\
+	&= \{x \in A : (\exists y \in Y y = f(x))\} 
+		\cap \{x \in A :\lor (\exists z \in Z : z = f(x))\}\\
+	&= f^{-1}(Y) \cap f^{-1}(Z)\\
+	&\therefore f^{-1}(Y \cap Z) = f^{-1}(Y) \cap f^{-1}(Z)
+\end{align*}
 
 
 
@@ -124,16 +173,6 @@ Therefore,
 	\cup (A_1 \cap B_1) \cup \cdots \cup (A_1 \cap B_m) \cup \cdots \cup (A_n \cap B_m)
 	}
 \end{align*}
-
-
-
-
-
-
-
-
-
-
 
 \newpage
 % Problem 3
@@ -330,14 +369,42 @@ Therefore, the relation $(x,y) \succeq (a,b)$ is an order relation.
 
 \subsection{Can you make it the total order?}
 
-% check this again.......
+\subsubsection{Totality:}
+\begin{align*}
+	\forall (x,y),(a,b) \in \{1,2,3\} \cross \{1,2,3\}
+		&\implies ((x,y) \succeq (a,b)) \lor ((a,b) \succeq (x,y))\\
+	\forall x,a \in \{1,2,3\}, \forall y,b \in \{1,2,3\}
+		&\implies ((x \geq a) \land (y \geq b)) \lor ((a \geq x) \land (y \geq b))
+\end{align*}
 
+% However, it is not a universal total order. A counter example is:
+% \begin{align*}
+% 	(x,y) &= (1,3)\\
+% 	(a,b) &= (3,1)\\
+% 	(x,y) \succeq (a,b) &= ((x \geq a) \land (y \geq b)) \lor ((a \geq x) \land (b \geq y))\\
+% 	&= ((1 \geq 3) \land (3 \geq 1)) \lor ((3 \geq 1) \land (1 \geq 3))
+% \end{align*}
+% which is false, so a it is not a complete total order.
 
 \subsection{How many different total orderings can be constructed?}
+Multiple total orderings of relation on subsets can satisfy this.
+A network constructed from the following relations would demonstrate the multiple paths.
+\begin{align*}
+	(3,3) &\succeq (x,y) \forall (x,y) \in \{1,2,3\}\cross\{1,2,3\}\\
+	(3,2) &\succeq (x,y) \forall (x,y) \in \{1,2,3\}\cross\{1,2\}\\
+	(3,1) &\succeq (x,y) \forall (x,y) \in \{1,2,3\}\cross\{1\}\\
+	(2,3) &\succeq (x,y) \forall (x,y) \in \{1,2\}\cross\{1,2,3\}\\
+	(2,2) &\succeq (x,y) \forall (x,y) \in \{1,2\}\cross\{1,2\}\\
+	(2,1) &\succeq (x,y) \forall (x,y) \in \{1,2\}\cross\{1\}\\
+	(1,3) &\succeq (x,y) \forall (x,y) \in \{(1,1),(1,2),(1,3)\}\\
+	(1,2) &\succeq (x,y) \forall (x,y) \in \{(1,1),(1,2)\}\\
+	(1,1) &\succeq (1,1)
+\end{align*}
 
-% check this again...
-
-
+If you only count the total orders of length 2 
+(the number of actual network edges with self-edges) this would be 36.
+If drawns as a tree, these 36 pairs would be created as directed edges and the 
+total number of unique tree paths can also be counted using various algorithms.
 
 \newpage
 % Problem 5
@@ -354,7 +421,6 @@ Provide and example of $f : \Z \to \N$ such that
 	\end{cases}
 \end{displaymath}
 
-
 \subsection{$f$ is injective, but not surjective}
 \begin{displaymath}
 	y = f(x) =
@@ -364,9 +430,7 @@ Provide and example of $f : \Z \to \N$ such that
 	\end{cases}
 \end{displaymath}
 
-
 \subsection{$f$ is surjective and injective (bijective)}
-
 
 \begin{displaymath}
 	y = f(x) =
@@ -376,22 +440,11 @@ Provide and example of $f : \Z \to \N$ such that
 	\end{cases}
 \end{displaymath}
 
-
 \subsection{$f$ is niether surjective nor injective}
 
 \begin{displaymath}
 	y = f(x) = 0
 \end{displaymath}
-
-
-
-
-
-
-
-
-
-
 
 
 \newpage
