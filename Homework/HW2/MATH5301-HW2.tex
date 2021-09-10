@@ -48,8 +48,6 @@ For a function $f : A \rightarrow B$, show the follwoing for any $X \subset A, Y
 \subsection{$X \subset f^{-1}(f(X))$}
 
 
-
-
 \subsection{$f(f^{-1}(Y)) \subset Y$}
 
 
@@ -290,21 +288,54 @@ an equivalence relation.
 \newpage
 % Problem 4
 \section{}
-For the relation $(x,y) \succeq (a,b)$ if $(x \geq a) \and ( y \geq b)$ on the set 
-of ordered pairs of $\{1,2,3\} \cross \{1,2,3\}$
+For the relation $(x,y) \succeq (a,b)$ if $(x \geq a)$ and $(y \geq b)$ on the set 
+of ordered pairs of $\{1,2,3\} \cross \{1,2,3\}$.
+i.e. $x,a \in \{1,2,3\}$ and $y,b \in \{1,2,3\}$,
+$$(x \geq a) \land (y \geq b) \implies (x,y) \succeq (a,b)$$
 
 \subsection{Show that the above relation is an order relation.}
+An ordered relation requires (i) reflexitivity, (ii) anti-symmetry, and (iii) transivity.
 
+\subsubsection{Reflective:}
+\begin{align*}
+	(x \geq a) \land (y \geq b) 
+		&\implies (x,y) \succeq (a,b)\\
+	(x \geq x) \land (y \geq y) 
+		&\implies (x,y) \succeq (x,y)
+\end{align*}
 
+\subsubsection{Anti-Symmetry:}
+\begin{align*}
+	((x,y) \succeq (a,b)) \land ((a,b) \succeq (x,y))
+		&\implies (x,y) = (a,b)\\
+	((x \geq a) \land (y \geq b)) \land ((a \geq x) \land (b \geq y))
+		&\implies (x,y) = (a,b)\\
+	((x \geq a) \land (a \geq x)) \land ((b \geq y) \land (y \geq b))
+		&\implies (x,y) = (a,b)
+\end{align*}
+
+\subsubsection{Transivity}
+\begin{align*}
+	(x,y) \Rel (a,b) \land (a,b) \Rel (\alpha,\beta) 
+		&\implies (x,y) \Rel (\alpha,\beta)\\
+	((x \geq a) \land (y \geq b)) \land ((a \geq \alpha) \land (b \geq \beta))
+		&\implies (x \geq \alpha) \land (y \geq \beta)\\
+	((x \geq a) \land (a \geq \alpha)) \land ((y \geq b) \land (b \geq \beta))
+		&\implies (x \geq \alpha) \land (y \geq \beta)\\
+	(x \geq a \geq \alpha) \land (y \geq b \geq \beta)
+		&\implies (x \geq \alpha) \land (y \geq \beta)\\
+\end{align*}
+
+Therefore, the relation $(x,y) \succeq (a,b)$ is an order relation.
 
 \subsection{Can you make it the total order?}
 
-
+% check this again.......
 
 
 \subsection{How many different total orderings can be constructed?}
 
-
+% check this again...
 
 
 
