@@ -199,7 +199,7 @@ Prove that the following sets are countable.
 \subsection{Set $\Z_+$ of all non-negative integer numbers}
 Define $f_0 : \N \to \Z_+$, 
 \begin{displaymath}
-	f_0(x) = x - 1
+	f_0(x) := x - 1
 \end{displaymath}
 Claim $f_0 : \N \toS \Z_+$ (surjective).
 This is true becouse $\forall x \in \N \ \exists f_0(x) \in \Z_+$.\\
@@ -212,7 +212,7 @@ $$f_0 : \N \toS \Z_+ \implies \abs{\Z_+} \leq \abs{\N}$$
 \subsection{Set $2\N$ of all even numbers}
 Define $f : \N to 2\N$,
 \begin{displaymath}
-	f(x) = 2x
+	f(x) := 2x
 \end{displaymath}
 Claim $f : \N \toS 2\N$ (surjective).
 This is true becouse $\forall x \in \N \exists f(x) \in 2\N$.\\
@@ -224,7 +224,7 @@ $$f : \N \toS 2\N \implies \abs{2\N} \leq \abs{\N}$$
 \subsection{Set $\Z^2$ of all ordered pairs of integer numbers}
 Define $g : \N \to \Z^2$,
 \begin{displaymath}
-	g(x) =
+	g(x) :=
 	\begin{cases}
 		(0,0)	& x = 1\\
 		(1,0)	& x = 2\\
@@ -251,7 +251,7 @@ $$g : \N \toS \Z^2 \implies \abs{\Z^2} \leq \abs{\N}$$
 \subsection{Set $\Q$ of all rational numbers}
 Define $h : \N \to \Q$,
 \begin{displaymath}
-	h(x) = 
+	h(x) := 
 	\begin{cases}
 		0	& x = 1\\
 		1	& x = 2\\
@@ -281,10 +281,11 @@ clearly evident in the spiraling mapping discribed by $h$ mapping to all $\Q$.\\
 Since $h$ is surjective, $Q$ is countable. (i.e)
 $$g : \N \toS \Q \implies \abs{Q} \leq \abs{\N}$$
 
+\newpage
 \subsection{Set $\Q^2$ of all ordered pairs of rational numbers}
 Define $m : \N \to \Q^2$,
 \begin{displaymath}
-	m(x) = 
+	m(x) :=
 	\begin{cases}
 		(0,0)	&x=1\\
 		(0,1)	&x=2\\
@@ -299,6 +300,21 @@ Define $m : \N \to \Q^2$,
 		\quad \vdots &\quad \vdots\\
 		(2,2)	&\quad \vdots\\
 		(0,\frac{3}{2}) &\quad \vdots\\
+		\quad \vdots	&\quad \vdots\\
+		(\frac{3}{2},\frac{3}{2}) &\quad \vdots\\
+		(0,\frac{1}{2}) &\quad \vdots\\
+		\quad \vdots	&\quad \vdots\\
+		(\frac{1}{2},\frac{1}{2}) &\quad \vdots\\
+		(0,\frac{-1}{2}) &\quad \vdots\\
+		\quad \vdots	&\quad \vdots\\
+		(\frac{-1}{2},\frac{-1}{2}) &\quad \vdots\\
+		(0,\frac{-3}{2}) &\quad \vdots\\
+		\quad \vdots	&\quad \vdots\\
+		(\frac{-3}{2},\frac{-3}{2}) &\quad \vdots\\
+		(0,3)	&\quad \vdots\\
+		\quad \vdots &\quad \vdots\\
+		(3,3)	&\quad \vdots\\
+		(0, \frac{8}{3})	&\quad \vdots\\
 		\quad \vdots	&\quad \vdots
 	\end{cases}
 \end{displaymath}
@@ -310,7 +326,7 @@ This is true becouse $\forall x \in \N \exists m(x) \in \Q^2$ as is
 clearly evident in the spiraling mapping discribed by $m$ mapping to all $\Q^2$.\\
 
 Since $m$ is surjective, $Q^2$ is countable. (i.e)
-$$g : \N \toS \Q^2 \implies \abs{Q^2} \leq \abs{\N}$$
+$$g : \N \toS \Q^2 \implies \abs{\Q^2} \leq \abs{\N}$$
 
 
 \newpage
@@ -320,21 +336,125 @@ Prove that the following sets are countable.
 
 \subsection{Set $\mathbf{P}_5(\Z)$ of all polynomials of degree 4 with integer coefficients}
 
+Set $\mathbf{P}_5(\Z)$ can be defined as:
+\begin{displaymath}
+	\mathbf{P}_5(\Z) := \{ax^4 + bx^3 + cx^2 + dx + e : a,b,c,e,d \in \Z\}
+\end{displaymath}
 
+A direct mapping $f_0 : \Z^5 \to \mathbf{P}_5(\Z)$ can be created by either redefining 
+or mapping into:
+\begin{displaymath}
+	\mathbf{P}_5(\Z^5) := \{ax^4 + bx^3 + cx^2 + dx + e : (a,b,c,e,d) = \in \Z^5\}
+\end{displaymath}
+Clearly $\abs{\mathbf{P}_5(\Z)} = \abs{\mathbf{P}_5(\Z^5)} = \abs{\Z^5}$ so if now if 
+$\Z^5$ can be shown to be countable, then $\mathbf{P}_5(\Z)$ would also be countable.\\
+
+Define $f_1 : \N \to \Z^5$,
+\begin{displaymath}
+	f_1 := 
+	\begin{cases}
+		(0,0,0,0,0)	&x=1\\
+		(0,0,0,0,1)	&x=2\\
+		(0,0,0,1,0)	&x=3\\
+		(0,0,0,1,1)	&x=4\\
+		\quad \vdots &\quad \vdots\\
+		(1,1,1,1,1) &x=33\\
+		(0,0,0,0,-1)&x=34\\
+		(0,0,0,1,-1)&x=35\\
+		(0,0,0,-1,0)&x=35\\
+		(0,0,0,-1,1)&x=36\\
+		(0,0,0,-1,-1)&x=37\\
+		(0,0,-1,0,0)&x=38\\
+		\quad \vdots &\quad \vdots\\
+		(-1,-1,-1,-1,-1) &\quad \vdots\\
+		(0,0,0,0,2) &\quad \vdots\\
+		\quad \vdots &\quad \vdots
+	\end{cases}
+\end{displaymath}
+Claim $f_1 : \N \toS \Z^5$ (surjective).
+Clearly,
+\begin{displaymath}
+	\forall x \in \N \exists f_1(x) \in \Z^5
+\end{displaymath}
+Therefore, $f_1$ is surjective which implies $\abs*{\Z^5} \leq \abs*{\N}$.\\
+
+Since $f_1$ is surjective and $f_0$ is bijective (and therefore surjective) the 
+set $\mathbf{P}_5(\Z)$ is countable:
+\begin{displaymath}
+	(f_1 : \N \toS \Z^5) \land (f_0 : \Z^5 \toB \mathbf{P}_5(\Z))
+	\implies \abs*{\mathbf{P}_5(\Z)} = \abs*{\Z^5} \leq \abs*{\N} = \aleph_0
+\end{displaymath}
+
+\newpage
 \subsection{Any collection of non-intersecting discs on a plane}
+Let,
+\begin{displaymath}
+	A := \qty{(x,y,r) \in \R^3 : \forall (x_i,y_i,r_i) \in A : 
+			(x - x_i)^2 + (y - y_i)^2 \geq \qty(r + r_i)^2}
+\end{displaymath}
+
+Clearly, $A \subseteq \qty{(x,y,r) \in \R^3}$, therefore 
+$\abs*{A} \leq \abs*{\R^3} = \abs*{\R}= \aleph_1$.
+This itself does not actually say anything about if it is countable.\\
+
+Alternativly, the restction of $r_0$ being arbritrarily selected would redefine the set as
+\begin{displaymath}
+	A := \qty{(x,y) \in \R^2 : \forall (x_i,y_i) \in A : 
+			(x - x_i)^2 + (y - y_i)^2 \geq \qty(2r_0)^2}
+\end{displaymath}
+Although this could also be looked at as just 
+$A \subseteq \qty{(x,y) \in \R^2} \implies \abs*{A} \leq \abs*{\R^2} = \abs*{R} = \aleph_1$
+this could also be seen as the subset of the optimaly organized set $A^*$,
+\begin{displaymath}
+	A^* := \qty{(x,y) \in 2 r_0 \N^2}
+\end{displaymath}
+where $2 r_0 \N^2$ is defined as
+\begin{displaymath}
+	2 r_0 \N^2 := \qty{(2 r_0 x, 2 r_0 y) : (x,y) \in \N^2}
+\end{displaymath}
+Clearly, $\abs*{A^*} = \abs{2 r_0 \N^2} = \abs{\N^2} = \abs{\N} = \aleph_0$.\\
+
+This can all be used then to claim (and subsequently prove) that $A$ is countable.
+\begin{align*}
+	A \subseteq A^* &\implies \abs*{A} \leq \abs*{A^*}\\
+	(\abs*{A} \leq \abs*{A^*}) \land (\abs*{A^*} = \abs{2 r_0 \N^2} = \abs*{\N^2} = \abs*{\N} = \aleph_0) 
+		&\implies \abs*{A} \leq \abs*{N} \aleph_0	
+\end{align*}
 
 
-
+% \newpage
 \subsection{Any collection of non-intersecting T-shapes on a plane}
 \textbf{Note:} T-shape consists of two perpendicular line segments such that 
 one of the segments is attached by one of its endpoints to the center of the other segment. 
-The lengths of these segments can be arbitrary. The orientation of the T-shape can be arbitrary.
+The lengths of these segments can be arbitrary. The orientation of the T-shape can be arbitrary.\\
+
+Let,
+\begin{displaymath}
+	A := \qty{((x_1,y_1),(x_2,y_2),(x_3,y_4)) \in (\R^2)^3 :}
+\end{displaymath}
+
+
+% do more here....
+
+
+
+
+
+
+
 
 
 
 
 \subsection{Set $\mathbb{P}$ of all prime numbers}
-
+By definition, all prime numbers are natural numbers, thus
+\begin{displaymath}
+	\mathbb{P} \subseteq \N
+\end{displaymath}
+This then implies that $\abs*{\mathbb{P}} \leq \abs*{\N}$, therefore $\mathbb{P}$ is countable.
+\begin{displaymath}
+	\mathbb{P} \subseteq \N \implies \abs*{\mathbb{P}} \leq \abs*{\N}
+\end{displaymath}
 
 
 \subsection{Set $\mathbb{A}$ of all algebraic numbers}
@@ -348,18 +468,25 @@ some polynomials with integer coefficients.
 
 
 
+
 \newpage
 % Problem 5
 \section{}
-Prove that for any infinite set $A$ there exists $B \subset A$, so that $\abs{B}=\abs{\N}$.
+Prove that for any infinite set $A$ there exists $B \subseteq A$, so that $\abs{B}=\abs{\N}$.\\
 
+By definition an infinite set, $\abs*{A} \geq \abs{\N} = \aleph_0$.
+A very, very simple proof of the fact $\exists B \subseteq A : \abs{B}=\abs{\N} = \aleph_0$ 
+is as follows:
 
+Define $f : \N \toB B$ (bijective) to directly map $\N$ to an element of subset $B$. 
+Since $f$ is bijective, $\abs{B}=\abs{\N} = \aleph_0$.\\
+Next, define $g : B \toI A$ (injective). Becouse $A$ is an infinite set, 
+and injective function $g$ can in fact map the infinite set $B$ into $A$, 
+which then implies $B \subseteq A$.
 
-
-
-
-
-
+\begin{displaymath}
+	(f : \N \toB B) \land (g : B \toI A) \implies \abs*{A} \geq \abs*{B} = \abs*{\N} = \aleph_0
+\end{displaymath}
 
 
 \newpage
