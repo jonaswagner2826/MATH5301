@@ -403,32 +403,81 @@ Alternativly, the restction of $r_0$ being arbritrarily selected would redefine 
 			(x - x_i)^2 + (y - y_i)^2 \geq \qty(2r_0)^2}
 \end{displaymath}
 Although this could also be looked at as just 
-$A \subseteq \qty{(x,y) \in \R^2} \implies \abs*{A} \leq \abs*{\R^2} = \abs*{R} = \aleph_1$
-this could also be seen as the subset of the optimaly organized set $A^*$,
+$A \subseteq \qty{(x,y) \in \R^2} \implies \abs*{A} \leq \abs*{\R^2} = \aleph_1$
+this could also be seen as the subset of the optimaly organized set $A_0^*$,
 \begin{displaymath}
-	A^* := \qty{(x,y) \in 2 r_0 \N^2}
+	A_0^* := \qty{(x,y,r_0) : (x,y) \in 2 r_0 \N^2}
 \end{displaymath}
 where $2 r_0 \N^2$ is defined as
 \begin{displaymath}
 	2 r_0 \N^2 := \qty{(2 r_0 x, 2 r_0 y) : (x,y) \in \N^2}
 \end{displaymath}
-Clearly, $\abs*{A^*} = \abs{2 r_0 \N^2} = \abs{\N^2} = \abs{\N} = \aleph_0$.\\
+Clearly, $\abs*{A_0^*} \leq \abs{2 r_0 \N^2}$. 
+Using a simple 1-1 mapping between $2 r_0 \N^2$ and $\N$, $2 r_0 \N^2$ is countable. 
+Additionally, this implies that $A_0^*$ is also countable.
+\begin{align*}
+	(f : \N \toS 2 r_0 \N^2) \land (g : 2 r_0 \N^2 \toB A_0^*) 
+		&\implies \abs*{A_0^*} \leq \abs{2\N^2} = \abs{\N} = \aleph_0
+\end{align*}
 
 This can all be used then to claim (and subsequently prove) that $A$ is countable.
 \begin{align*}
-	A \subseteq A^* &\implies \abs*{A} \leq \abs*{A^*}\\
-	(\abs*{A} \leq \abs*{A^*}) \land (\abs*{A^*} = \abs{2 r_0 \N^2} = \abs*{\N^2} = \abs*{\N} = \aleph_0) 
-		&\implies \abs*{A} \leq \abs*{N} \aleph_0	
+	A \subseteq A_0^* &\implies \abs*{A} \leq \abs*{A_0^*}\\
+	(\abs*{A} \leq \abs*{A_0^*}) \land (\abs*{A_0^*} \leq 2 \abs{2 r_0 \N^2} 
+		= \abs*{\N} = \aleph_0) 
+		&\implies \abs*{A} \leq \aleph_0
 \end{align*}
 
+\newpage
+This result can then be expanded to include an additional set of non-intersecting discs 
+optimaly placed in the unconstrained space. 
+This next set of dics $A_1^*$ can be defined as
+\begin{displaymath}
+	A_1^* := \qty{(x + r_0, y + r_0, r_1) : (x,y) \in 2 r_0 \N^2}
+\end{displaymath}
+with a selected $r_1$ such that the two sets of discs do not intersect.\\
+Such $r_1$ can be calculated so that $(2r_0)^2 + (2r_0)^2 \leq (2r_0 + 2 r_1)$:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{fig/pblm4b_1.png}
+\end{figure}
+thus $r_1 \leq -1 + \sqrt{1 + r_0}$.\\
+This is then proven as countable by the same logic as $A_0^*$.\\
+Additionally, this process can be repeated for more collections of disks of decreasing size 
+until $r_i$ is infinitey small.\\
+At first glance the union of all these sets may not actually be proven to be coundable, 
+but each additional set will no longer consist of all potential optimal pairs so it 
+may be possible to limit this to $\aleph_0$
 
-% \newpage
+
+
+\newpage
 \subsection{Any collection of non-intersecting T-shapes on a plane}
 \textbf{Note:} T-shape consists of two perpendicular line segments such that 
 one of the segments is attached by one of its endpoints to the center of the other segment. 
 The lengths of these segments can be arbitrary. The orientation of the T-shape can be arbitrary.\\
 
-Let,
+Define set $A$,
+\begin{align*}
+	A := &\Bigg{\{}
+		((x_1,y_1),(x_2,y_2),(x_3,y_3)) \in (\R^2)^3: \\
+		&\quad\forall \qty((x_1^{(i)},y_1^{(i)}),(x_2^{(i)},y_2^{(i)}),(x_3^{(i)},y_3^{(i)})) \in (\R^2)^3\\ 
+		&\quad ((x_1,y_1)\Rel(x_2,y_2) \cap ((x_1^{(i)},y_1^{(i)})\Rel)(x_2^{(i)},y_2^{(i)}) = \emptyset)\\
+		&\quad \land \qty((\cfrac{x_1+x_2}{2},\cfrac{y_1+y_2}{c})\Rel(x_3,y_3)) 
+			\cap \qty(\cfrac{x_1^{(i)}+x_2^{(i)}}{2},\cfrac{y_1^{(i)}+y_2^{(i)}}{c}) = \emptyset)
+	\Bigg{\}}
+\end{align*}
+with $\Rel$ defined as
+\begin{displaymath}
+	\Rel := \qty{
+		(x,y) \in \R \cross \R, \ t \in \R : 
+		(x = (1-t) x_a + t x_b) \land (y = (1-t) y_a + t y_b)
+		\land (0 \leq t \leq 1)
+	}
+\end{displaymath}
+
+
+Let arbritrary parameters $l_1, l_2$ be used to define the set $A$,
 \begin{displaymath}
 	A := \qty{((x_1,y_1),(x_2,y_2),(x_3,y_4)) \in (\R^2)^3 :}
 \end{displaymath}
