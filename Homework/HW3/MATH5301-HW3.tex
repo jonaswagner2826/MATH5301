@@ -27,6 +27,10 @@
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
 
 %opening
 
@@ -45,26 +49,79 @@
 % Problem 1
 \section{}
 Let $X$ denote the universal set. Two subsets $A$ and $B$ are said to have 
-the same cardinality if there is a bijection $f : A \rightarrow B$.
+the same cardinality if there is a bijection $f : A \to B$.
 Notation: $\abs*{A} = \abs*{B}$.
 
 \subsection{
 	Prove that $\abs{A} = \abs{B}$ is an equivalence relation on the power set of $X$
 }
 
+The relation $\Rel = ``\abs{A} = \abs{B}''$
+\footnote{using $\Rel$ for simplicyity/reusability} 
+is defined as: 
+$$\Rel = ``\abs{A} = \abs{B}'' = \{(A,B) : \exists (f : A \xrightarrow{\textsf{\tiny B}} B)\}$$
+
+Equivilence can be demonstrated by proven by demonstrating: 
+(i) Reflexivity, (ii) Symetry, and (iii) Transivity
 
 
+\subsubsection{Reflective:}
+\begin{align*}
+	A \Rel A
+		&= \{(A,A) : \exists (f : A \toB A)\}
+\end{align*}
+Since $f : A \toB A = {a \in A}$ is true $\forall A \in 2^X$, $\R$ is Reflective.
 
- 
+\subsubsection{Symetric:}
+\begin{align*}
+	A \Rel B 
+		&\implies B \Rel A\\
+	\{(A,B) : \exists (f : A \xrightarrow{\textsf{\tiny B}} B)\}
+		&\implies \{(B,A) : \exists (f : B \xrightarrow{\textsf{\tiny B}} A)\}
+\end{align*}
+Since $f : A \toB B \implies g : B \toB A = f^{-1}$ is true $\forall A,B \in 2^X$, 
+$\R$ is Symetric.\\
+(Essentially if $f$ is bijective one way, 
+$f^{-1}$ is bijective for the other way)
 
+\subsubsection{Transative:}
+\begin{align*}
+	(A \Rel B) 
+		\land (B \Rel C) 
+		&\implies A \Rel C\\
+	(\{(A,B) : \exists (f : A \xrightarrow{\textsf{\tiny B}} B)\})
+		\land \{(B,C) : \exists (g : B \xrightarrow{\textsf{\tiny B}} C)\}
+		&\implies \{(A,C) : \exists (h : A \xrightarrow{\textsf{\tiny B}} C)\}
+\end{align*}
+Since $(f : A \toB B) \land (g : B \toB C) 
+\implies (h : A \toB C = A \xrightarrow{f} B \xrightarrow{g} C)$ 
+is true $\forall A,B,C \in 2^X$, $\Rel$ is Transative.\\
 
+Therefore $\Rel = ``\abs{A} = \abs{B}''$ is an equivalence relation over $2^X$.
+
+\newpage
 \subsection{
 	Is it true that if $\abs{A_1}=\abs{B_1}$ and $\abs{A_2}=\abs{B_2}$ 
 	then $\abs{A_1 \cup A_2} = \abs{B_1 \cup B_2}$?
 }
+\begin{align*}
+	(\abs{A_1} = \abs{B_1}) \land (\abs{A_2} = \abs{B_2})
+		&\implies \abs{A_1 \cup A_2} = \abs{B_1 \cup B_2}\\
+	(A_1 \Rel B_1) \land (A_2 \Rel B_2)
+		&\implies (A_1 \cup A_2) \Rel (B_1 \cup B_2)\\
+	\{(A_1,B_1) : \exists (f_1 : A_1 \xrightarrow{\textsf{\tiny B}} B_1)\}
+		\land \{(A_2,B_2) : \exists (f_2 : A_2 \xrightarrow{\textsf{\tiny B}} B_2)\}
+		&\implies \{((A_1 \cup A_2), (B_1 \cup B_2)) 
+			: \exists (f : (A_1 \cup A_2) \xrightarrow{\textsf{\tiny B}} (B_1 \cup B_2))\}
+\end{align*}
 
-
-
+This itself is false, as in the case when 
+\begin{align*}
+	(A_1 \cap A_2 \neq \emptyset) \land (B_1 \cap B_2 = \emptyset)
+	\implies (f : (A_1 \cup A_2) \toI (B_1 \cup B_2))
+	\land (f^{-1} : (B_1 \cup B_2) \toS (B_1 \cup B_2))
+\end{align*}
+But, $f$ is not surjective and $f^{-1}$ is not injective, so $f$ cannot be bijective.
 
 \newpage
 % Problem 2
@@ -74,7 +131,6 @@ For the sets $A$ and $B$, such that $\abs{A} \leq \abs{B}$ and $\abs{B} \leq \ab
 define $A_\infty$ as the set of all elements of $A$ having infinite order,
 $A_0$ as the set of all elements of $A$ having even order,
 and $A_1$ the set of all elements of $A$ having odd order. Similarly for $B$.
-
 
 Let
 $$A,B : (\abs*{A} \leq \abs*{B}) \land (\abs*{B} \leq \abs*{B})$$
