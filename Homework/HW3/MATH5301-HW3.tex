@@ -173,22 +173,6 @@ therefore, $f$ is a direct mapping from $A_1$ to $B_0$
 \subsection{Show that this mapping is also surjective.}
 Since, from the previous argument, $f$ is bijective so it is also surjective.
 
-%should definetly look at this again....
-
-
-%
-%
-% 
-% 
-% 
-% 
-% 
-% 
-% 
-
-
-
-
 
 \newpage
 % Problem 3
@@ -334,6 +318,7 @@ $$g : \N \toS \Q^2 \implies \abs{\Q^2} \leq \abs{\N}$$
 \section{}
 Prove that the following sets are countable.
 
+% 4a
 \subsection{Set $\mathbf{P}_5(\Z)$ of all polynomials of degree 4 with integer coefficients}
 
 Set $\mathbf{P}_5(\Z)$ can be defined as:
@@ -385,6 +370,7 @@ set $\mathbf{P}_5(\Z)$ is countable:
 	\implies \abs*{\mathbf{P}_5(\Z)} = \abs*{\Z^5} \leq \abs*{\N} = \aleph_0
 \end{displaymath}
 
+% 4b
 \newpage
 \subsection{Any collection of non-intersecting discs on a plane}
 Let,
@@ -449,8 +435,7 @@ At first glance the union of all these sets may not actually be proven to be cou
 but each additional set will no longer consist of all potential optimal pairs so it 
 may be possible to limit this to $\aleph_0$
 
-
-
+% 4c
 \newpage
 \subsection{Any collection of non-intersecting T-shapes on a plane}
 \textbf{Note:} T-shape consists of two perpendicular line segments such that 
@@ -461,40 +446,57 @@ Define set $A$,
 \begin{align*}
 	A := &\Bigg{\{}
 		((x_1,y_1),(x_2,y_2),(x_3,y_3)) \in (\R^2)^3: \\
-		&\quad\forall \qty((x_1^{(i)},y_1^{(i)}),(x_2^{(i)},y_2^{(i)}),(x_3^{(i)},y_3^{(i)})) \in (\R^2)^3\\ 
-		&\quad ((x_1,y_1)\Rel(x_2,y_2) \cap ((x_1^{(i)},y_1^{(i)})\Rel)(x_2^{(i)},y_2^{(i)}) = \emptyset)\\
+		&\quad\forall \qty((x_1^{(i)},y_1^{(i)}),(x_2^{(i)},y_2^{(i)}),(x_3^{(i)},y_3^{(i)})) \in (\R^2)^3 : \\ 
+		&\quad ((x_1,y_1)\Rel_1(x_2,y_2) \cap ((x_1^{(i)},y_1^{(i)})\Rel_1(x_2^{(i)},y_2^{(i)}) = \emptyset)\\
 		&\quad \land \qty((\cfrac{x_1+x_2}{2},\cfrac{y_1+y_2}{c})\Rel(x_3,y_3)) 
 			\cap \qty(\cfrac{x_1^{(i)}+x_2^{(i)}}{2},\cfrac{y_1^{(i)}+y_2^{(i)}}{c}) = \emptyset)
 	\Bigg{\}}
 \end{align*}
-with $\Rel$ defined as
+with $\Rel_1$ defined as
+\begin{align*}
+	\Rel_1 := &\Bigg{\{}
+		\qty(((x_1,y_1),(x_2,y_2),(x_3,y_3)), ((x_1,y_1),(x_2,y_2),(x_3,y_3)))
+		\in (\R^2)^3 \cross (\R^2)^3, \forall t \in \R, 0 \leq 1 : \\
+			&\quad \qty((x_1,y_1) \Rel_0 (x_2,y_2)) 
+			\land \qty(\qty(\cfrac{x_1 + x_2}{2}, \cfrac{y_1 + y_2}{2}) \Rel_0 (x_3,y_3))
+	\Bigg{\}}
+\end{align*}
+and $\Rel_0$ defined as
 \begin{displaymath}
-	\Rel := \qty{
-		(x,y) \in \R \cross \R, \ t \in \R : 
+	\Rel_0 := \qty{
+		(x,y) \in x \cross y, \ t \in \R : 
 		(x = (1-t) x_a + t x_b) \land (y = (1-t) y_a + t y_b)
 		\land (0 \leq t \leq 1)
 	}
 \end{displaymath}
 
-
-Let arbritrary parameters $l_1, l_2$ be used to define the set $A$,
+From this definition, the sum of an infinite collection of non-intersecting T-shapes on a plane
+can be bounded by $\aleph_1$:
 \begin{displaymath}
-	A := \qty{((x_1,y_1),(x_2,y_2),(x_3,y_4)) \in (\R^2)^3 :}
+	\qty(A \subset (\R^2)^3) \land \qty(\exists f: \R \toB (\R^2)^3) 
+		\implies \abs*{A} \leq \abs*{(\R^2)^3} = \abs*{\R} = \aleph_1
 \end{displaymath}
+This doesn't imply countability, but it is an important bound for every possible 
+combinination of $T-shapes$.\\
 
-
-% do more here....
-
-
-
-
-
-
-
-
-
-
-
+When restricting to an individual set of arbritray parameters $l_1, l_2$ and orientation $\theta$ 
+set $A^*$ can be defined as:
+\begin{align*}
+	A^* := &\bigg{\{}
+		((x_1,y_1),(x_2,y_2),(x_3,y_4)) \in A : \\
+		% &\quad\forall \qty((x_1^{(i)},y_1^{(i)}),(x_2^{(i)},y_2^{(i)}),(x_3^{(i)},y_3^{(i)})) \in (\R^2)^3 : \\ 
+		% &\quad ((x_1,y_1)\Rel_1(x_2,y_2) \cap ((x_1^{(i)},y_1^{(i)})\Rel_1(x_2^{(i)},y_2^{(i)}) = \emptyset)\\
+		% &\quad \land \qty(\qty(\cfrac{x_1+x_2}{2},\cfrac{y_1+y_2}{c})\Rel(x_3,y_3)) 
+		% 	\cap \qty(\qty(\cfrac{x_1^{(i)}+x_2^{(i)}}{2},\cfrac{y_1^{(i)}+
+		% 		y_2^{(i)}}{c})\Rel(x_3^{(i)},y_3^{(i)})) = \emptyset)\\
+		&\quad \land \qty((x_2 - x_1) = l_1 * \cos(\theta))
+			\land \qty((x_2^{(i)} - x_1^{(i)}) = l_2 * \cos(\theta))\\
+		&\quad \land \qty((y_2 - y_1) = l_1 * \sin(\theta))
+			\land \qty((y_2^{(i)} - y_1^{(i)}) = l_2 * \sin(\theta))
+	\bigg{\}}
+\end{align*}
+This can then be bounded follwoing a similar procedure as shown in the previous proof.
+% 4d
 \subsection{Set $\mathbb{P}$ of all prime numbers}
 By definition, all prime numbers are natural numbers, thus
 \begin{displaymath}
@@ -505,18 +507,24 @@ This then implies that $\abs*{\mathbb{P}} \leq \abs*{\N}$, therefore $\mathbb{P}
 	\mathbb{P} \subseteq \N \implies \abs*{\mathbb{P}} \leq \abs*{\N}
 \end{displaymath}
 
-
+% 4e
 \subsection{Set $\mathbb{A}$ of all algebraic numbers}
 \textbf{Note:} Algebraic numbers are numbers which are roots of 
-some polynomials with integer coefficients.
+some polynomials with integer coefficients.\\
 
-
-
-
-
-
-
-
+Define $\mathbb{A}$ as,
+\begin{displaymath}
+	\mathbb{A} := \qty{x \in \real : \forall i \in \N \exists p \in \mathbf{P}_i(\Z) : 
+	p(x) = 0}
+\end{displaymath}
+Since $\forall i \in \N : \abs{\mathbf{P}_i(\Z)} \leq \abs{\N} = \aleph_0$,
+and $\exists f: \mathbf{P}_i(\Z) \toS \mathbb{A}$.
+$\mathbb{A}$ is countable.
+\begin{displaymath}
+	\qty(\forall i \in \N : \abs{\mathbf{P}_i(\Z)} \leq \abs{\N} = \aleph_0)
+	\land (\exists f: \mathbf{P}_i(\Z) \toS \mathbb{A})
+	\implies \abs{\mathbb{A}} \leq \abs{\mathbf{P}_i(\Z)} \leq \abs{\N} = \aleph_0
+\end{displaymath}
 
 \newpage
 % Problem 5

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.1)  17 SEP 2021 16:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.1)  17 SEP 2021 23:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -253,47 +253,47 @@ Overfull \hbox (64.66147pt too wide) detected at line 118
  []
 
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 203--208
+Underfull \hbox (badness 10000) in paragraph at lines 187--192
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--220
+Underfull \hbox (badness 10000) in paragraph at lines 200--204
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--246
+Underfull \hbox (badness 10000) in paragraph at lines 226--230
 
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 276--280
+Underfull \hbox (badness 10000) in paragraph at lines 260--264
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 320--323
+Underfull \hbox (badness 10000) in paragraph at lines 304--307
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 324--327
+Underfull \hbox (badness 10000) in paragraph at lines 308--311
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 348--351
+Underfull \hbox (badness 10000) in paragraph at lines 333--336
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 378--380
+Underfull \hbox (badness 10000) in paragraph at lines 363--365
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 396--399
+Underfull \hbox (badness 10000) in paragraph at lines 382--385
 
  []
 
@@ -301,30 +301,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 396--399
 <fig/pblm4b_1.png, id=46, 681.04437pt x 666.99188pt>
 File: fig/pblm4b_1.png Graphic file (type png)
 <use fig/pblm4b_1.png>
-Package pdftex.def Info: fig/pblm4b_1.png  used on input line 442.
+Package pdftex.def Info: fig/pblm4b_1.png  used on input line 428.
 (pdftex.def)             Requested size: 328.82707pt x 322.04547pt.
  [9 <./fig/pblm4b_1.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 456--459
+Underfull \hbox (badness 10000) in paragraph at lines 441--444
 
  []
 
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 524--525
+
+Underfull \hbox (badness 10000) in paragraph at lines 478--481
 
  []
 
-[11]
-<fig/pblm6.png, id=59, 787.94376pt x 116.435pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 512--514
+
+ []
+
+[10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 532--533
+
+ []
+
+[12]
+<fig/pblm6.png, id=62, 787.94376pt x 116.435pt>
 File: fig/pblm6.png Graphic file (type png)
 <use fig/pblm6.png>
-Package pdftex.def Info: fig/pblm6.png  used on input line 547.
+Package pdftex.def Info: fig/pblm6.png  used on input line 555.
 (pdftex.def)             Requested size: 469.75502pt x 69.41559pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 570--573
+Underfull \hbox (badness 10000) in paragraph at lines 578--581
 
  []
 
-[12 <./fig/pblm6.png>] [13] (./MATH5301-HW3.aux) ) 
+[13 <./fig/pblm6.png>] [14] (./MATH5301-HW3.aux) ) 
 Here is how much of TeX's memory you used:
  5259 strings out of 478599
  71342 string characters out of 5858102
@@ -334,10 +344,10 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  71i,18n,81p,432b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
 <c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on MATH5301-HW3.pdf (13 pages, 439206 bytes).
+Output written on MATH5301-HW3.pdf (14 pages, 443398 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 98 compressed objects within 1 object stream
+ 165 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
