@@ -189,14 +189,16 @@ prove the following statements: $(n \in \N)$
 
 % Part a
 \subsection{Bernoulli inequality: $\forall n\in\N, \ \forall x > -1$,
-$$(1+x)^n \geq 1 + nx$$
+    $(1+x)^n \geq 1 + nx$
 }
 
 \begin{theorem}
-    $\forall n\in\N, \ \forall x > -1$, $$(1+x)^n \geq 1 + nx$$
+    $\forall n\in\N, \ \forall x > -1$, 
+        $$(1+x)^n \geq 1 + nx$$
 \end{theorem}
 
 \begin{proof}
+    Proof by induction:\\
     For $n=1$,
     \begin{align*}
         (1+x)^n &\geq 1 + nx\\
@@ -205,48 +207,222 @@ $$(1+x)^n \geq 1 + nx$$
     \end{align*}
     For $n > 1$,
     \begin{align*}
-        (1+x)^n \geq 1 + nx 
-            &\implies (1+x)^{n+1} \geq 1 + (n+1)x\\
-            &\implies (1+x)^n (1+x) \geq 1 + (n+1)x\\
+        (1+x)^n &\geq 1 + n x\\
+        (1+x)^n (1+x) &\geq (1+nx) (1+x)\\
+        (1+x)^{n+1} &\geq (1 + x + nx + nx^2)\\
+            &\geq 1 + (n+1)x + nx^2\\
     \end{align*}
+    Since $n \geq 2 \implies nx^2 > 0$
+    \begin{align*}    
+        1 + (n+1)x + nx^2 &\geq 1 + (n+1)x\\
+    \end{align*}
+    From (O2):
+        $$(1+x)^{n+1} \geq 1 + (n+1)x$$
+    Therefore $\forall n > 1$,
+        $$(1+x)^n \geq 1 + nx \implies (1+x)^{n+1} \geq 1 + (n+1)x$$
+    Therefore $\forall n\in\N, \ \forall x > -1$,
+        $$(1+x)^n \geq 1 + nx$$
 \end{proof}
 
-
-
+\newpage
 % Part b
-\subsection{For $n \in \N$,
-    $$\frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} = 2 - \cfrac{n+2}{2^n}$$
+\subsection{For $n \in \N$, 
+    $\frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} = 2 - \frac{n+2}{2^n}$
 }
+\begin{theorem}
+    For $n \in \N$, 
+        $$\frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} = 2 - \cfrac{n+2}{2^n}$$
+\end{theorem}
+\begin{proof}
+    Proof by induction:
+    For $n = 1$,
+    \begin{align*}
+        \frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} 
+            &= 2 - \cfrac{n+2}{2^n}\\
+        \frac{1}{2} = 2 - \cfrac{1+2}{2^1} 
+            &= 2 - \frac{3}{2}\\
+        \frac{1}{2} &= \cfrac{1}{2}\\
+    \end{align*}
+    For $n > 1$,
+    $$\frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} = 2 - \cfrac{n+2}{2^n}
+    \implies \frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^{n+1}} = 2 - \cfrac{n+2}{2^{n+1}}$$
+    \begin{align*}
+        \frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} 
+            &= 2 - \cfrac{n+2}{2^n}\\
+        \frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} + \frac{n+1}{2^{n+1}}
+            &= 2 - \cfrac{n+2}{2^n} + \cfrac{n+1}{2^{n+1}}\\
+            &= 2 - \cfrac{n+2}{2^n}\cfrac{2}{2} + \cfrac{n+1}{2^{n+1}}\\
+            &= 2 - \cfrac{2(n+2)}{2^{n+1}} + \cfrac{n+1}{2^{n+1}}\\
+            &= 2 + \cfrac{n+1 - 2(n+2) }{2^{n+1}}\\
+            &= 2 + \cfrac{n+1 - 2n - 2}{2^{n+1}}\\
+            &= 2 + \cfrac{-n - 1}{2^{n+1}}\\
+            &= 2 + \cfrac{-(n+1) -2}{2^{n+1}}\\
+            &= 2 - \cfrac{(n+1) +2}{2^{n+1}}\\
+    \end{align*}
+    Therefore $\forall n > 1$,
+    $$\frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n}
+        = 2 - \cfrac{n+2}{2^n}
+        \implies \frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} + \frac{n+1}{2^{n+1}}
+        = 2 - \cfrac{(n+1) +2}{2^{n+1}}$$
+    Therefore For $n \in \N$,
+    $$\frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} = 2 - \frac{n+2}{2^n}$$
+\end{proof}
 
-
-
-
+\newpage
 % Part c
-\subsection{For $n,q \in \N$,
-    $$(1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n}) = \cfrac{1-q^{2^{n+1}}}{1-q}$$
+\subsection{For $q \in \R, n \in \N$,
+    $(1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n}) = \frac{1-q^{2^{n+1}}}{1-q}$
 }
+\begin{theorem}
+    For $q \in \R, n \in \N$,
+    $$(1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n}) = \cfrac{1-q^{2^{n+1}}}{1-q}$$
+\end{theorem}
+\begin{proof}
+    Proof by induction:\\
+    For $n=1$,
+    \begin{align*}
+        (1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n})
+            &= \cfrac{1-q^{2^{n+1}}}{1-q}\\
+        (1+q)(1+q^{2^1}) 
+            &= \cfrac{1-q^{2^{1+1}}}{1-q}\\
+        (1+q^{2} + q + q^{3}) 
+            &= \cfrac{1-q^{4}}{1-q}\\
+        (1 + q + q^{2} + q^{3}) (1-q)
+            &= \cfrac{1-q^{4}}{1-q}(1-q)\\
+        1 + q + q^{2} + q^{3} - q - q^2 - q^3 -q^4
+            &= 1-q^{4}\\
+        1 - q^4
+            &= 1-q^{4}\\
+    \end{align*}
+    For $n>1$
+    \begin{align*}
+        (1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n}) &= \cfrac{1-q^{2^{n+1}}}{1-q}\\
+        (1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n})(1+q^{2^{n+1}})
+            &= \cfrac{1-q^{2^{n+1}}}{1-q}(1+q^{2^{n+1}})\\
+            &= \cfrac{\qty(1-q^{2^{n+1}})\qty(1+q^{2^{n+1}})}{1-q}\\
+            &= \cfrac{1-q^{2^{n+1}} + q^{2^{n+1}} + \qty(-q^{2^{n+1}})\qty(q^{2^{n+1}})}{1-q}\\
+            &= \cfrac{1 -q^{2^{n+1} + 2^{n+1}})}{1-q}\\
+            &= \cfrac{1 -q^{2\qty(2^{n+1})}}{1-q}\\
+        (1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n})(1+q^{2^{n+1}})
+            &= \cfrac{1 -q^{2^{n+2}}}{1-q}\\
+    \end{align*}
+    Therefore $\forall n>1$,
+    $$(1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n}) = \cfrac{1-q^{2^{n+1}}}{1-q}
+    \implies (1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n})(1+q^{2^{n+1}}) = \cfrac{1 -q^{2^{n+2}}}{1-q}
+    $$
+    Therefore $\forall n \in \N$,
+    $$(1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n}) = \cfrac{1-q^{2^{n+1}}}{1-q}$$
+\end{proof}
 
-
-
-
+\newpage
 % Part d
 \subsection{For $n \in \N$,
-    $$1^3 + 3^3 + \cdots + (2n + 1)^3 = (n+1)^2 (2n^2 + 4n + 1)$$
+    $1^3 + 3^3 + \cdots + (2n + 1)^3 = (n+1)^2 (2n^2 + 4n + 1)$
 }
+\begin{theorem}
+    For $n \in \N$,
+    $$1^3 + 3^3 + \cdots + (2n + 1)^3 = (n+1)^2 (2n^2 + 4n + 1)$$
+\end{theorem}
+\begin{proof}
+    Proof by induction:\\
+    For $n = 1$,
+    \begin{align*}
+        1^3 + 3^3 + \cdots + (2n + 1)^3 &= (n+1)^2 (2n^2 + 4n + 1)\\
+        1^3 + (2(1) + 1)^3 &= ((1)+1)^2 (2(1)^2 + 4(1) + 1)\\
+        1^3 + 3^3 &= (2)^2 (2(1) + 4 + 1)\\
+        1 + 27 &= (4) (2 + 4 + 1)\\
+        28 &= (4)(7)\\
+        28 &= (4)(7)\\
+        28 &= 28
+    \end{align*}
+    For $n > 1$,
+    \begin{align*}
+        1^3 + 3^3 + \cdots + (2n + 1)^3 &= (n+1)^2 (2n^2 + 4n + 1)\\
+        1^3 + 3^3 + \cdots + (2n + 1)^3 + (2(n+1)+1)^3
+            &= (n+1)^2 (2n^2 + 4n + 1) + (2(n+1)+1)^3\\
+            &= (n+1)^2 (2n^2 + 4n + 1) + (2n + 3)^3
+    \end{align*}
+    \begin{align*}
+        &= (n+1)(n+1) (2n^2 + 4n + 1) + (2n + 3)(2n + 3)(2n + 3)\\
+        &= (n^2 + 2n + 1) (2n^2 + 4n + 1) + 27 + 54 n + 36 n^2 + 8 n^3\\
+        &= 2n^4 + 8n^3 + 11n^2 + 6n + 1 + 8n^3 + 36 n^2 + 54n + 27\\
+        &= 2n^4 + 16n^3 + 47n^2 + 60n + 28\\
+        &= (n+2)^2(2n^2 + 8n + 7)\\
+        &= ((n+1)+1)^2 (2(n+1)^2 - 4n - 2 + 4(n+1) + 4n - 4 + 7)\\
+        &= ((n+1)+1)^2 (2(n+1)^2 + 4(n+1) + 1)\\
+    \end{align*}
+    Therefore $\forall n > 1$,
+    $$
+    1^3 + 3^3 + \cdots + (2n + 1)^3 = (n+1)^2 (2n^2 + 4n + 1)\implies
+    $$
+    $$\implies 1^3 + 3^3 + \cdots + (2n + 1)^3 + (2(n+1)+1)^3
+    = ((n+1)+1)^2 (2(n+1)^2 + 4(n+1) + 1)
+    $$
+    Therefore $\forall n \in \N$,
+    $$1^3 + 3^3 + \cdots + (2n + 1)^3 = (n+1)^2 (2n^2 + 4n + 1)$$
+\end{proof}
 
-
-
-
-
-
-
+\newpage
 % Part e
 \subsection{For $n,k \in \N$,
-    $$\sum{k=0}{n} \qty(-1)^k \cfrac{n!}{k!(n-k)!} = 0, 
-    \sum{k=0}{n} \cfrac{n!}{k!(n-k)!} = 2^n$$
+    $\sum_{k=0}^{n} \qty(-1)^k \cfrac{n!}{k!(n-k)!} = 0, 
+    \sum_{k=0}^{n} \cfrac{n!}{k!(n-k)!} = 2^n$
 }
+\begin{definition}
+    The factorial of a number, $n!$, is defined as
+    $$n! := (1)(2)(3)\cdots(n-1)(n)$$
+\end{definition}
+\begin{definition}
+    The combination of two numbers, $\mqty(n\\k)$, is defined as
+    $$\mqty(n\\k) := \cfrac{n!}{k!(n-k)!}$$
+\end{definition}
+\subsubsection{$\sum_{k=0}^{n} \qty(-1)^k \cfrac{n!}{k!(n-k)!} = 0$}
+\begin{theorem}
+    For $n,k \in \N$,
+    $$\sum_{k=0}^{n} \qty(-1)^k \mqty(n\\k) = 0$$
+\end{theorem}
+\begin{proof}
+    For $n=1$,
+    \begin{align*}
+        \sum_{k=0}^{n} \qty(-1)^k \mqty(n\\k) &= 0\\
+        \sum_{k=0}^{1} \qty(-1)^k \mqty(1\\k) 
+            &= (-1)^0 \mqty(1\\0) + (-1)^1 \mqty(1\\1)\\
+            &= (1)(1) + (-1) (1)\\
+            &=0
+    \end{align*}
+    Therefore,
+    \begin{align*}
+        \sum_{k=0}^{1} \qty(-1)^k \mqty(1\\k) &= 0
+    \end{align*}
+    For $n>1$,
+    \begin{align*}
+        \sum_{k=0}^{n} \qty(-1)^k \mqty(n\\k) &= 0\\
+        \sum_{k=0}^{n} \qty(-1)^k \frac{n!}{k!(n-k)!} &= 0\\
+        \qty(-1)^0 \frac{n!}{0!(n-0)!} + \qty(-1)^1 \frac{n!}{1!(n-1)!} + \cdots +
+            \qty(-1)^n \frac{n!}{n!(n-n)!} &= 0\\
+        (1)\frac{n!}{0!n!} + (-1) \frac{n!}{1!(n-1)!} + (1)\frac{n!}{(2!(n-2)!} + \cdots +
+            \qty(-1)^{n-2} \frac{n!}{(n-2)!2!} + \qty(-1)^{n-1} \frac{n!}{(n-1)!1!} + 
+            \qty(-1)^n \frac{n!}{n!0!}\\
+        (1)\frac{n!}{n!} + (-1) \frac{n!}{(n-1)!} + (1)\frac{n!}{(n-2)!2} + \cdots +
+        \qty(-1)^{n-2} \frac{n!}{(n-2)!2} + \qty(-1)^{n-1} \frac{n!}{(n-1)!} 
+        + \qty(-1)^n \frac{n!}{n!}&=0\\
+    \end{align*}
+    multiply by $\frac{(n+1)}{(n+1)}$ and add another add/subtract set...
+\end{proof}
 
-
+\newpage
+\subsubsection{$\sum_{k=0}^{n} \cfrac{n!}{k!(n-k)!} = 2^n$}
+\begin{theorem}
+    For $n,k \in \N$,
+    $$\sum_{k=0}^{n} \mqty(n\\k) = 2^n$$
+\end{theorem}
+\begin{proof}
+    By induction:\\
+    For $n=1$,
+    \begin{align*}
+        test
+    \end{align*}
+\end{proof}
 
 
 
