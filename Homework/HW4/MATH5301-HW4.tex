@@ -1,0 +1,391 @@
+\documentclass[]{article}
+
+\usepackage{graphicx}
+
+\usepackage[margin=1in]{geometry}
+
+\setlength\parindent{0pt}
+
+\usepackage{physics}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+
+\usepackage{listings}
+
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand*{\thesection}{Problem \arabic{section}}
+\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
+\newcommand{\divisible}{ \ \vdots \ }
+
+
+% Theorem Definition
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+
+
+%opening
+
+\title{MATH 5301 Elementary Analysis - Homework 4}
+
+\author{Jonas Wagner}
+
+\date{2021, September 24}
+
+\begin{document}
+
+\maketitle
+
+% Problem 1
+\section{}
+Use the axioms of the ordered field, prove the following:
+% Part a
+\subsection{$(a > c) \land (b > d) \implies a + b > c + d$}
+\begin{align*}
+    (a > c) \land (b > d) &\implies (a + b) > (c + d)
+\end{align*}
+From (O3):
+\begin{align*}
+    (a > c) &\implies ((a + b) \geq (b + c)) \land ((a + d) \geq (c + d))\\
+    (b > d) &\implies ((a + b) \geq (a + d)) \land ((b + c) \geq (c + d))\\
+\end{align*}
+From (02):
+\begin{align*}
+    ((a + b) \geq (b + c)) \land ((b + c) \geq (c + d))
+        &\implies (a + b) > (c + d)
+\end{align*}
+
+% Part b
+\subsection{$(a > c > 0) \land (b > d > 0) \implies ab > cd > 0$}
+\begin{align*}
+    (a > c > 0) \land (b > d > 0) &\implies ab > cd > 0
+\end{align*}
+From (O4):
+\begin{align*}
+    (a > c > 0) \land (b > 0) &\implies ab > bc > 0\\
+    % (a > c > 0) \land (d > 0) &\implies ad > cd > 0\\
+    % (b > d > 0) \land (a > 0) &\implies ab > ad > 0\\
+    (b > d > 0) \land (c > 0) &\implies bc > cd > 0
+\end{align*}
+From (O2):
+\begin{align*}
+    (ab > bc > 0) \land (bc > cd > 0) &\implies ab > cd > 0
+\end{align*}
+
+\newpage
+% Part c
+\subsection{$a > b > 0 \implies \frac{1}{a} < \frac{1}{b}$}
+\begin{align*}
+    a > b > 0 &\implies \frac{1}{b} < \frac{1}{b}
+\end{align*}
+From 
+\begin{align*}
+    a > 0 & \implies a^{-1} > 0\\
+    b > 0 & \implies b^{-1} > 0
+\end{align*}
+From (O4):
+\begin{align*}
+    (a > b > 0) \land (a^{-1} > 0) &\implies a a^{-1} = 1 > b a^{-1} = \frac{b}{a}> 0\\
+    (a > b > 0) \land (b^{-1} > 0) &\implies a b^{-1} = \frac{a}{b} > b b^{-1} = 1 > 0\\
+    (\frac{a}{b} > 1 > 0) \land (a^{-1} > 0)
+        &\implies \frac{a}{b} a^{-1} = \frac{1}{b} > (1)(a^{-1}) = \frac{1}{a} > 0
+\end{align*}
+Therefore, $$\frac{1}{a} < \frac{1}{b}$$
+
+\newpage
+% Part d
+\subsection{
+    Let,
+    $$\abs*{x} = 
+        \begin{cases}
+            x, & x \geq 0\\
+            -x,& X < 0
+        \end{cases}
+    $$
+    prove,
+    $$\forall a, b \implies \abs*{a - b} \geq \abs*{\abs*{a} - \abs*{b}}$$
+}
+
+\begin{align*}
+    \forall a, b \implies \abs*{a - b} \geq \abs*{\abs*{a} - \abs*{b}}
+\end{align*}
+When $a>b>0$ (or $b>a>0$),
+\begin{align*}
+    \abs*{a - b}&= a - b\\
+    \abs*{a}    &= a\\
+    \abs*{b}    &= b\\
+    \abs*{\abs*{a} - \abs*{b}} &= a - b\\
+    \abs*{a - b} = a-b &= \abs*{\abs*{a} - \abs*{b}}
+\end{align*}
+The same is true for $0<a<b$ and $0 < b < a$ by similar arguments.\\
+For $a > 0 > b$,
+\begin{align*}
+    \abs*{a}    &= a\\
+    \abs*{b}    &= -b\\
+    \abs*{a - b}&= \abs*{a} + \abs*{b}\\
+    \abs*{a} - \abs*{b} &= a - (-b) = a + b\\
+    \abs*{\abs*{a} - \abs*{b}} &= 
+        \begin{cases}
+            \abs*{a} - \abs*{b}   & \abs*{a} > \abs*{b}\\
+            \abs*{b} - \abs*{a}   & \abs*{a} < \abs*{b}
+        \end{cases}
+    \intertext{From (03):}
+    \abs*{a - b} = \abs*{a} + \abs*{b} &\geq \abs*{a} - \abs*{b}\\
+    \abs*{a - b} = \abs*{a} + \abs*{b} &\geq \abs*{b} - \abs*{a}\\
+    \therefore \ \abs*{a - b} &\geq \abs*{\abs*{a} - \abs*{b}}
+\end{align*}
+Therefore $\forall a, b$,
+\begin{align*}
+     \abs*{a - b} \geq \abs*{\abs*{a} - \abs*{b}}
+\end{align*}
+
+
+% Problem 2
+\newpage
+\section{}
+Determine which of the axioms satisfied by the set of real numbers 
+are not satisfied by the following set:
+
+% Part a
+\subsection{Set $\Q$ of all rational numbers.}
+Set $\Q$ of rational numbers can be an ordered field, 
+$\langle \Q, +, 0, \cdots, 1\rangle$, but lacks (C) completness:
+$$\forall A \subset \Q \not{\exists} c \in \Q : c = \sup A$$
+
+% Part b
+\subsection{Set $\Q(\sqrt{2})$ of all numbers of form $a + b\sqrt{2}$, where $a,b\in\Q$}
+Set $\Q := \qty{a + b \sqrt{2} : a, b \in \Q}$ can be an ordered field, 
+$\langle \Q(\sqrt{2}), +, 0, \cdots, 1\rangle$, but lacks completness (C):
+$$\forall A \subset \Q(\sqrt{2}) \not{\exists} c \in \Q : c = \sup A$$
+
+% Part c
+\subsection{Set $\C$ of all pairs of real numbers $(a,b)$ 
+    with addition ${(a,b) + (c,d) = (a+c,b+d)}$, 
+    multiplication $(a,b)\cdot(c,d) = (ac-bd,ad+bc)$, 
+    and ordered relation $(a,b)<(c,d)\iff(b \leq d)\land((b=d \lor a<c))$.
+}
+Set $\C := \qty{(a,b) : a,b \in \R}$ can satisfie the field conditions, 
+$\langle \C, +, 0, \cdots, 1\rangle$,
+but it is not ordered becouse it does not satisfy (O1).
+
+% Problem 3
+\newpage
+\section{}
+Using the method of mathematical induction, 
+prove the following statments: $(n \in \N)$
+
+% Part a
+\subsection{Bernoulli inequality: $\forall n\in\N, \ \forall x > -1$,
+$$(1+x)^n \geq 1 + nx$$
+}
+
+\begin{theorem}
+    $\forall n\in\N, \ \forall x > -1$, $$(1+x)^n \geq 1 + nx$$
+\end{theorem}
+
+\begin{proof}
+    For $n=1$,
+    \begin{align*}
+        (1+x)^n &\geq 1 + nx\\
+        (1+x)^1 &\geq 1 + (1)x\\
+        1+x &\geq 1 + x
+    \end{align*}
+    For $n > 1$,
+    \begin{align*}
+        (1+x)^n \geq 1 + nx 
+            &\implies (1+x)^{n+1} \geq 1 + (n+1)x\\
+            &\implies (1+x)^n (1+x) \geq 1 + (n+1)x\\
+    \end{align*}
+\end{proof}
+
+
+
+% Part b
+\subsection{For $n \in \N$,
+    $$\frac{1}{2} + \frac{2}{2^2} + \cdots + \frac{n}{2^n} = 2 - \cfrac{n+2}{2^n}$$
+}
+
+
+
+
+% Part c
+\subsection{For $n,q \in \N$,
+    $$(1+q)(1+q^2)(1+q^4)\cdots(1+q^{2^n}) = \cfrac{1-q^{2^{n+1}}}{1-q}$$
+}
+
+
+
+
+% Part d
+\subsection{For $n \in \N$,
+    $$1^3 + 3^3 + \cdots + (2n + 1)^3 = (n+1)^2 (2n^2 + 4n + 1)$$
+}
+
+
+
+
+
+
+
+% Part e
+\subsection{For $n,k \in \N$,
+    $$\sum{k=0}{n} \qty(-1)^k \cfrac{n!}{k!(n-k)!} = 0, 
+    \sum{k=0}{n} \cfrac{n!}{k!(n-k)!} = 2^n$$
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 4
+\newpage
+\section{}
+Show that $\forall n \in \N, n \geq 2$,
+
+% Part a
+\subsection{
+    $$\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \cdots + \frac{1}{\sqrt{n}} > \sqrt{n}$$
+}
+
+
+
+
+% Part b
+\subsection{
+    $$\cfrac{1}{n+1} + \cfrac{1}{n+2} + \cdots + \frac{1}{3n+1} > 1$$
+}
+
+
+
+
+
+% Part c
+\subsection{
+    $$\qty(\cfrac{n+1}{2})^n > n!$$
+}
+
+
+
+
+
+% Part d
+\subsection{
+    $$2^{2^n} - 6 \divisible 10$$
+}
+
+
+
+
+
+
+% Problem 5
+\newpage
+\section{}
+
+% Part a
+\subsection{Show that $\sqrt{2} \notin \Q$}
+\begin{definition}
+    $\sqrt{2} := x > 0 : x^2 = 2$
+\end{definition}
+\begin{theorem}
+    $\sqrt{2} \notin \Q$
+\end{theorem}
+\begin{proof}
+    Assume $\sqrt{2} \in \Q$,
+    $$\sqrt{2} \in \Q \implies \exists m,n \in \N : \frac{m}{n} = \sqrt{2}$$
+    Also assume that $m,n$ are coprime. (i.e) $\gcd(m,n)=1$\\
+    Let $m = \sqrt{2} n$,
+    \begin{align*}
+        m = \sqrt{2} n \implies m^2 = 2 n^2 \implies m^2 \divisible 2 \implies m \divisible 2\\
+        m \divisible 2 \implies \exists k \in \N : m = 2k \implies m^2 = (2k)^2 = 4 k^2\\
+        4k^2 = 2 n^2 \implies 2k^2 = n^2 \implies n^2 \divisible 2 \implies n \divisible 2
+    \end{align*}
+    This is false becouse with $\gcd(m,n)=1$, $m$ and $n$ cannot both be even.
+\end{proof}
+
+% Part b
+\subsection{Show that 
+    $\forall a,b \in \Q, a < b \implies \exists x \in \R \backslash \Q : a < x < b$
+}
+\begin{theorem}
+    $\forall a,b \in \Q, a < b \implies \exists x \in \R \backslash \Q : a < x < b$
+\end{theorem}
+\begin{proof}
+    idk
+\end{proof}
+
+
+
+
+
+% Part c
+\subsection{Show that
+    $\forall a,b \in \R \backslash \Q, a < b \implies \exists x \in Q : a < x < b$
+}
+\begin{theorem}
+    $\forall a,b \in \R \backslash \Q, a < b \implies \exists x \in Q : a < x < b$
+\end{theorem}
+\begin{proof}
+    idk
+\end{proof}
+
+
+
+
+
+
+\newpage
+% Problem 6
+\section{}
+
+% Part a
+\subsection{}
+look at original doc....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
