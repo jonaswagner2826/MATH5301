@@ -152,7 +152,6 @@ Therefore $\forall a, b$,
      \abs*{a - b} \geq \abs*{\abs*{a} - \abs*{b}}
 \end{align*}
 
-
 % Problem 2
 \newpage
 \section{}
@@ -394,20 +393,24 @@ prove the following statements: $(n \in \N)$
     \begin{align*}
         \sum_{k=0}^{1} \qty(-1)^k \mqty(1\\k) &= 0
     \end{align*}
-    For $n>1$,
+    For $n>2$,
     \begin{align*}
         \sum_{k=0}^{n} \qty(-1)^k \mqty(n\\k) &= 0\\
         \sum_{k=0}^{n} \qty(-1)^k \frac{n!}{k!(n-k)!} &= 0\\
         \qty(-1)^0 \frac{n!}{0!(n-0)!} + \qty(-1)^1 \frac{n!}{1!(n-1)!} + \cdots +
             \qty(-1)^n \frac{n!}{n!(n-n)!} &= 0\\
-        (1)\frac{n!}{0!n!} + (-1) \frac{n!}{1!(n-1)!} + (1)\frac{n!}{(2!(n-2)!} + \cdots +
+        (1)\frac{n!}{0!n!} + (-1) \frac{n!}{1!(n-1)!} + \cdots +
             \qty(-1)^{n-2} \frac{n!}{(n-2)!2!} + \qty(-1)^{n-1} \frac{n!}{(n-1)!1!} + 
-            \qty(-1)^n \frac{n!}{n!0!}\\
-        (1)\frac{n!}{n!} + (-1) \frac{n!}{(n-1)!} + (1)\frac{n!}{(n-2)!2} + \cdots +
-        \qty(-1)^{n-2} \frac{n!}{(n-2)!2} + \qty(-1)^{n-1} \frac{n!}{(n-1)!} 
-        + \qty(-1)^n \frac{n!}{n!}&=0\\
+            \qty(-1)^n \frac{n!}{n!0!}&=0\\
+        (1)\frac{n!}{n!} + (-1) \frac{n!}{(n-1)!} + \cdots +
+            \qty(-1)^{n-2} \frac{n!}{(n-2)!2} + \qty(-1)^{n-1} \frac{n!}{(n-1)!} 
+            + \qty(-1)^n \frac{n!}{n!}&=0\\
+        (1)\frac{n!}{n!} + (-1) \frac{n!}{(n-1)!} + \cdots + 
+            \qty(-1)^{n-1} \frac{n!}{(n-1)!} + \qty(-1)^{n} \frac{n!}{n!} +
+            \qty(-1)^{n+1} \frac{n+1!}{n+1!}&= \qty(-1)^{n+1} \frac{n+1!}{n+1!}\\
     \end{align*}
-    multiply by $\frac{(n+1)}{(n+1)}$ and add another add/subtract set...
+    Therefore $\forall n \in \N, n \geq 2$,
+    $$\sum_{k=0}^{n} \qty(-1)^k \mqty(n\\k) = 0$$
 \end{proof}
 
 \newpage
@@ -418,22 +421,30 @@ prove the following statements: $(n \in \N)$
 \end{theorem}
 \begin{proof}
     By induction:\\
-    For $n=1$,
+    For $n=2$,
     \begin{align*}
-        test
+        \sum_{k=0}^{n} \mqty(n\\k) &= 2^n\\
+        \sum_{k=0}^{2} \mqty(2\\k) &= 2^2\\
+        \mqty(2\\0) + \mqty(2\\1) + \mqty(2\\2) &= 4\\
+        1 + 2 + 1 &= 4\\
+        4 &= 4
+    \end{align*}
+    For $n >2$,
+    \begin{align*}
+        \sum_{k=0}^{n} \mqty(n\\k) &= 2^n\\
+        \sum_{k=0}^{n} \frac{n!}{k!(n-k)!} &= 2^n\\
+        \frac{n!}{0!(n-0)!} + \frac{n!}{1!(n-1)!} + \cdots + \frac{n!}{n!(n-n)!} &= 2^n\\
+        \frac{n!}{0!n!} + \frac{n!}{1!(n-1)!} + \cdots + \frac{n!}{(n-2)!2!} 
+            + \frac{n!}{(n-1)!1!} + \frac{n!}{n!0!}&=2^n\\
+        \qty(\frac{n!}{0!n!} + \frac{n!}{1!(n-1)!} + \cdots + \frac{n!}{(n-2)!2!} 
+            + \frac{n!}{(n-1)!1!} + \frac{n!}{n!0!}) \frac{2(n+1)}{n+1}&=2^n2\\
+        \frac{(n+1)!}{0!n!(n+1)} + \frac{(n+1)!}{1!(n-1)!(n+1)} + \cdots + \frac{(n+1)!}{(n-2)!2!(n+1)} 
+            + \frac{(n+1)!}{(n-1)!1!} + \frac{(n+1)!}{n!0!}&=2^{n+1}\\
+        \frac{(n+1)!}{0!n!(n+1)} + \frac{(n+1)!}{1!(n-1)!(n+1)} + \cdots + \frac{(n+1)!}{(n-2)!2!(n+1)} 
+            + \frac{(n+1)!}{(n-1)!1!} + \frac{(n+1)!}{n!0!}&=2^{n+1}\\
+        \sum_{k=0}^{n+1} \mqty(n\\k) &= 2^{n+1}
     \end{align*}
 \end{proof}
-
-
-
-
-
-
-
-
-
-
-
 
 % Problem 4
 \newpage
@@ -478,6 +489,7 @@ Show that $\forall n \in \N, n \geq 2$,
     \end{align*}
 \end{proof}
 
+\newpage
 % Part b
 \subsection{
     $\cfrac{1}{n+1} + \cfrac{1}{n+2} + \cdots + \frac{1}{3n+1} > 1$
@@ -509,33 +521,76 @@ Show that $\forall n \in \N, n \geq 2$,
         \frac{1}{n+1} + \sum_{k=(n+1) + 1}^{3(n+1)+1} \frac{1}{k}
             &> 1 + \sum_{k = 3n+2}^{3(n+1) + 1} \frac{1}{k}\\
     \end{align*}
-    Since 
-
-    $\frac{1}{n+1} > \sum_{k = 3n+2}^{3(n+1) + 1} \frac{1}{k}$,
-    
-
+    Since $\frac{1}{n+1} > \sum_{k = 3n+2}^{3(n+1) + 1} \frac{1}{k}$, 
+    by (O3) this implies that 
+    $$\sum_{k=(n+1) + 1}^{3(n+1)+1} \frac{1}{k} > 1$$
+    Therefore for $n \geq 2$,
+    $$ \cfrac{1}{n+1} + \cfrac{1}{n+2} + \cdots + \frac{1}{3n+1} > 1$$
 \end{proof}
 
-
-
+\newpage
 % Part c
 \subsection{
-    $$\qty(\cfrac{n+1}{2})^n > n!$$
+    $\qty(\cfrac{n+1}{2})^n > n!$
 }
+\begin{theorem} For $n \in \N, n \geq 2$,
+    $$\qty(\cfrac{n+1}{2})^n > n!$$
+\end{theorem}
+\begin{proof}
+    For $n=2$,
+    \begin{align*}
+        \qty(\cfrac{n+1}{2})^n &> n!\\
+        \qty(\cfrac{2+1}{2})^2 &> 2!\\
+        \qty(\frac{3}{2})^2 &> (2)(1)\\
+        \frac{9}{4} &> 2\\
+        9 &> 8
+    \end{align*}
+    For $n>2$,
+    \begin{align*}
+        \qty(\cfrac{n+1}{2})^n &> n!\\
+        \qty(\cfrac{n+1}{2})^n (n+1) &> n! (n+1)\\
+        \qty(\cfrac{n+1}{2})^n (n+1) &> (n+1)!\\
+        \cfrac{(n+1)^{n+1}}{2^n} &> (n+1)!\\
+        \cfrac{\frac{1}{2}((n+1)+1)^{n+1}}{2^n} &> (n+1)!\\
+        \cfrac{((n+1)+1)^{n+1}}{2^{n+1}} &> (n+1)!\\
+        \qty(\cfrac{(n+1)+1}{2})^{n+1} &> (n+1)!\\
+    \end{align*}
+    Therefore for $n\geq 2$,
+    $$\qty(\cfrac{n+1}{2})^n > n!$$
+\end{proof}
 
-
-
-
-
+\newpage
 % Part d
 \subsection{
-    $$2^{2^n} - 6 \divisible 10$$
+    $(2^{2^n} - 6) \divisible 10$
 }
-
-
-
-
-
+\begin{theorem}
+    For $n \in \N, n \geq 2$,
+    $$(2^{2^n} - 6) \divisible 10$$
+\end{theorem}
+\begin{proof}
+    By induction,\\
+    For $n=2$,
+    \begin{align*}
+        (2^{2^n} - 6) \divisible 10\\
+        (2^{2^(2)} - 6) \divisible 10\\
+        2^4 - 6 \divisible 10\\
+        16 - 6 \divisible 10\\
+        10 \divisible 10
+    \end{align*}
+    For $n>2$,
+    \begin{align*}
+        (2^{2^n} - 6) \divisible 10&\\
+        (2^{2^n} - 6) \mod 10 &= 0\\
+        2^{2^n} \mod 10 &= 6\\
+        (2^{2^n})^2 \mod 10 &= 6^2 = 36\\
+        (2^{2^n 2}) \mod 10 &= 6\\
+        (2^{2^{n+1}} - 6) \mod 10 &= 0\\
+        (2^{2^{n+1}} - 6) \divisible 10&\\
+    \end{align*}
+    Therefore $\forall n \in \N, n \geq 2$,
+    $$(2^{2^n} - 6) \divisible 10$$
+\end{proof}
 
 % Problem 5
 \newpage
@@ -591,33 +646,57 @@ Show that $\forall n \in \N, n \geq 2$,
 \newpage
 % Problem 6
 \section{}
-
+Prove that for any $n$:
 % Part a
 \subsection{}
-look at original doc....
+\begin{theorem}\label{thm:n_lines}
+    For any configurations of $n$ straight lines on a plane, one could 
+    color the plane in two colors so that every two parts with the same boundary 
+    would have different colors.
+\end{theorem}
+\begin{proof}
+    Proof by induction:\\
+    For $n=1$,
+    When one line splits up a plane there are two sections that 
+    can be painted into seperate colors. Therefore Theorem \ref{thm:n_lines} is true.
+    For $n>1$,
+    When $n$ lines split up a plane and each section is painted a different color, 
+    the when an additional line is added, all sections that it goes throug will be 
+    slit in two and then the sections can still be pained alternativly.
+    Therefore Theroem \ref{thm:n_lines}$(n)$ $\implies$ Theorem \ref{thm:n_lines} $(n+1)$.
+    Therefore, $\forall n \in \N$, Theorem \ref{thm:n_lines} is true.
+\end{proof}
 
+% Part b
+\subsection{}
+\begin{theorem}
+    For any set of $n$ squares, one can partitian them into a finite amount of pieces 
+    and which will constitute one square.
+\end{theorem}
+\begin{proof}
+    First, when $n=1$, the square is already a square.\\
+    For every $n$ squares capable of becoming a square, 
+    a new square (of size $x^2$) can then be partitioned into a square and two 
+    rectangles making an $L$ around the $n$ square to be the $n+1$ square.
+\end{proof}
 
+% Part c
+\subsection{What's wrong with this theorem?}
+\textbf{Theorem 1.} All the numbers are equal. In other words, 
+the statement $P_n$ is true for all $n\in \N$, where $P_n$ is 
+``if $\{a_1,a_2,\dots,a_n\}$ is a collection of $n$ numbers, 
+then $a_1 = a_2 = \cdots = a_n$''.\\
 
+\textit{Proof.} $P_1$ is true. Let $\{a_1,a_2,\dots,a_{n+1}\}$ be a collection of 
+$n+1$ numbers. Consider the collection $\{a_1,a_2,\dots,a_n\}$. Thanks to $P_n$ 
+it follows that $a_1 = \cdots = a_n$ denote this number by $b$. 
+Now, consider the collection $\{a_2,a_4,\dots,a_{n+1}\}$.
+It contains $n$ numbers, annd hence by $P_n$ we get $a_2 = \cdots = a_n = a_{n+1}$.
+But $a_2 = \cdots = a_n = b$, therefore $a_{n+1} = a_n = b$. 
+So $a_1 = \cdots = a_{n+1} = b$ and $P_{n+1}$ follows.\\
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+A lot of issues exist, but one obvious one is that $P_n$ saying a collection 
+is equal to $b$ does not also indicate a different collection is $b$. 
+The ``numbers'' also doesn't indicate what numbers $a_i$ are selected from.
 
 \end{document}
