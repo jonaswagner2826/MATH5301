@@ -309,42 +309,138 @@ Let $S = \R^2$. Are the following sets open or closed within the metrics below?
 \end{align*}
 
 % Part a
-\subsection{Euclidean Metric: $d((x,y)) = \sqrt{(x)^2 + (y)^2} = \norm{(x,y)}_2$}
+\subsection{Euclidean Metric: 
+$d((x_1,y_1),(x_2,y_2)) = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2} = \norm{(x_1,y_1)-(x_2,y_2)}_2$
+}
 \subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
+Open
 \subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
+Closed
 \subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
+Neither
 \subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
+Open??? *test it later...
 \subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+Open??? *test it later...
 
-
-
-\subsection{Manhattan Metric: $d((x,y)) = \abs{x} + \abs{y} = \norm{(x,y)}_1$}
+\subsection{Manhattan Metric: 
+$$d((x_1,y_1),(x_2,y_2)) = \abs{x_1-y_2} + \abs{y_1-y_2} = \norm{(x_1,y_1)-(x_2,y_2)}_1$$
+}
 \subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
+Open
 \subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
+Closed
 \subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
+Neither
 \subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
+Open
 \subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+Open??? *test it later...
 
+
+\subsection{Highway Metric:}
+\begin{definition}
+    The highway metric is defined as 
+    \begin{displaymath}
+        d_h((x_1,y_1),(x_2,y_2)) := 
+        \begin{cases}
+            \abs{y_1 - y_2}, &x_1 = x_2\\
+            \abs{y_1} + \abs{y_2} + \abs{x_1 - x_2}, &x_1 \neq x_2
+        \end{cases}
+    \end{displaymath}
+\end{definition}
 
 \subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
+Neither?? check again...
 \subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
+Neither?? check again...
 \subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
+Neither?? check again...
 \subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
+Open
 \subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+Neither?? check again...
 
 
-\subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
-\subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
-\subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
-\subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
-\subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+
+\newpage
+% Problem 5
+\section{}
+Let $(S,d)$ be a metric space.
+% Part a
+\subsection{Show that for all $A \subset B \subset S$ 
+one has $\int(A)\subseteq \int(B)$ and $\overline{A}\subseteq\overline{B}$. 
+Also provide an example of non-strictness.}
 
 
-\subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
-\subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
-\subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
-\subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
-\subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+
+
+
+% Part b
+\subsection{Is the following true:
+$\int(A\cup B) = \int(A) \cup \int(B)$?}
+
+
+
+
+
+% Part c
+\subsection{Is the following true:
+$\overline{A\cap B} = \overline{A} \cap \overline{B}$?}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+% Problem 6
+\section{}
+Give a topological proof of the infinitude of the set of prime numbers. (H. Furstenberg, 1955)\\
+Denote $N_{a,b} := \{a + nb : b \in \Z\} \subset \Z$. Define the topology on $\Z$ as follows: 
+The set $U$ will be called open if for any $a \in U$ there exists $b \in \Z$ so that 
+$N_{a,b} \in U$. Note that every open set is infinite.
+
+% Part a
+\subsection{Show that it is indeed a topology.}
+(i.e): any union of open sets is open and any finite intersection of open sets is open.
+
+
+
+% Part b
+\subsection{Show that $N_{a,b}$ is closed.}
+
+
+
+% Part c
+\subsection{Show that $\Z \backslash \{-1,1\}$ is open}
+
+
+
+
+% Part d
+\subsection{Prove that the set $\P$ of prime numbers cannot be finite.}
+Hint: $\Z \backslash \{-1,1\} = \bigcup_{p \in \P} N_{0,p}$
+
+
+
+
 
 
 \end{document}
