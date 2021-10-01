@@ -271,14 +271,37 @@ For $(\R^2 = (x,y),d=\sqrt{x^2 + y^2})$,
 \newpage
 % Part b
 \subsection{Find the infinite collection of open sets 
-$\{A_n\}$ so that $\bigcap_n A_n = \overline{B_1(0)}$}
+$\{A_n\}$ so that}% $\bigcap_{n} A_n = \overline{B_1(0)}$} 
 
-$$\{A_n : \bigcap_n A_n = \overline{B_1(0)}\}$$
+$$\qty{A_n : \bigcap_n A_n = \overline{B_1(0)}}$$
 This means that the intersection of all sets in $\{A_n\}$ 
-is the boundary of the unit ball set.
+is the closure of the unit ball set.
+
+\begin{definition}
+    The \underline{interier} of set $A$ in $(S,d)$ is the union of all open sets 
+    contained within $A$. (i.e.)
+    $$\text{int}(A) = \qty{x \in A : \exists_{\epsilon>0} B_\epsilon(x) \subset A}$$
+\end{definition}
+
+\begin{definition}
+    The \underline{closure} of set $A$ in $(S,d)$ is the intersection of all closed sets 
+    containing $A$, (i.e) 
+    $$\overline{A} = \qty{x \in S : 
+        \forall_{\epsilon> 0} B_\epsilon(x) \cap A \neq \emptyset}$$
+\end{definition}
+Note: 
+The interior and closures are complementary sets. (i.e.) $\overline{A} = (\text{int}(A))^c$
 
 
+$B_1(0)$ is defined as 
+$$B_1(0) := \qty{(x,y) \in \R^2 : d((0,0),(x,y)) < 1} = \qty{(x,y) : \sqrt{x^2 + y^2} < 1}$$
 
+The closure of $B_1(0)$, $\overline{B_1(0)}$ is defined by 
+$$\overline{B_1(0)} := \qty{x \in \R^2 : 
+    \forall_{\epsilon> 0} B_\epsilon(x) \cap B_1(0) \neq \emptyset}$$
+
+
+??? how to do?..........
 
 
 
@@ -310,7 +333,7 @@ Let $S = \R^2$. Are the following sets open or closed within the metrics below?
 
 % Part a
 \subsection{Euclidean Metric: 
-$d((x_1,y_1),(x_2,y_2)) = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2} = \norm{(x_1,y_1)-(x_2,y_2)}_2$
+$d((x_1,y_1),(x_2,y_2)) = \sqrt{(x_1-x_2)^2 + (y_1-y_2)^2}$% = \norm{(x_1,y_1)-(x_2,y_2)}_2$
 }
 \subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
 Open
@@ -324,7 +347,7 @@ Open??? *test it later...
 Open??? *test it later...
 
 \subsection{Manhattan Metric: 
-$$d((x_1,y_1),(x_2,y_2)) = \abs{x_1-y_2} + \abs{y_1-y_2} = \norm{(x_1,y_1)-(x_2,y_2)}_1$$
+$$d((x_1,y_1),(x_2,y_2)) = \abs{x_1-y_2} + \abs{y_1-y_2}$$% = \norm{(x_1,y_1)-(x_2,y_2)}_1$$
 }
 \subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
 Open
@@ -369,8 +392,44 @@ Neither?? check again...
 Let $(S,d)$ be a metric space.
 % Part a
 \subsection{Show that for all $A \subset B \subset S$ 
-one has $\int(A)\subseteq \int(B)$ and $\overline{A}\subseteq\overline{B}$. 
+one has $\text{int}(A)\subseteq \text{int}(B)$ and $\overline{A}\subseteq\overline{B}$. 
 Also provide an example of non-strictness.}
+
+\begin{theorem}
+    For the metric space $(S,d)$, and $\forall A \subset B \subset S$ the following are true: 
+    \subsubsection{$\text{int}(A) \subseteq \text{int}(B)$}
+    \begin{proof}
+        \begin{align*}
+            \text{int}(A) = \qty{x \in A : \exists_{\epsilon>0} B_\epsilon(x) \subset A}\\
+            \text{int}(B) = \qty{x \in B : \exists_{\epsilon>0} B_\epsilon(x) \subset B}
+        \end{align*}
+        
+        Since $(\text{int}(A) \subset A) \land (\text{int}(B) \subset B) \land (A \subset B)$,
+        $\text{int}(A)\subset B$.
+
+        %then.... something
+
+        % need a better proof...
+
+    \end{proof}
+    \subsubsection{$\overline{A} \subseteq \overline{B}$}
+    \begin{proof}
+        \begin{align*}
+            \overline{A} = \qty{x \in S : \forall_{\epsilon> 0} B_\epsilon(x) \cap A \neq \emptyset}\\
+            \overline{B} = \qty{x \in S : \forall_{\epsilon> 0} B_\epsilon(x) \cap B \neq \emptyset}
+        \end{align*}
+
+        Since $(\overline{A} \subset A) \land (\overline{A} \subset B) \land (A \subset B)$,
+        $\overline{A}\subset B$.
+
+        %then.... something
+
+        % need a better proof...
+
+    \end{proof}
+\end{theorem}
+
+
 
 
 
@@ -378,7 +437,7 @@ Also provide an example of non-strictness.}
 
 % Part b
 \subsection{Is the following true:
-$\int(A\cup B) = \int(A) \cup \int(B)$?}
+$\text{int}(A\cup B) = \text{int}(A) \cup \text{int}(B)$?}
 
 
 
