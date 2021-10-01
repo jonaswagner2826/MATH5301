@@ -1,0 +1,350 @@
+\documentclass[]{article}
+
+\usepackage{graphicx}
+
+\usepackage[margin=1in]{geometry}
+
+\setlength\parindent{0pt}
+
+\usepackage{physics}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+
+\usepackage{listings}
+
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand*{\thesection}{Problem \arabic{section}}
+\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
+\newcommand{\divisible}{ \ \vdots \ }
+
+
+% Theorem Definition
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
+
+
+%opening
+
+\title{MATH 5301 Elementary Analysis - Homework 4}
+
+\author{Jonas Wagner}
+
+\date{2021, September 24}
+
+\begin{document}
+
+\maketitle
+
+% Problem 1
+\section{}
+Let $(S_1,d_1)$ and $(S_2,d_2)$ be two metric spaces. 
+Show that each of the following determines the metric on $S_1 \cross S_2$.\\
+Let $x_j \in S_1, y_j \in S_2$:
+% Part a
+\subsection{$d((x_1,y_1),(x_2,y_2)) = \max\qty{d_1(x_1,x_2),d_2(y_1,y_2)}$}
+
+\begin{theorem}
+    The metric $$d((x_1,y_1),(x_2,y_2)) = \max\qty{d_1(x_1,x_2),d_2(y_1,y_2)}$$ 
+    is a metric on $S_1 \cross S_2$.
+\end{theorem}
+\begin{proof}
+    A metric $d: S_1 \cross S_2 \to \R$ must satisfy (i) non-negativity, 
+    (ii) Symmetry, and (iii) Triangle Inequality.
+    \subsubsection{Non-negativy $$d((x_1,y_1), (x_2,y_2)) \geq 0$$}
+        Since $d_1(x_1,x_2) \geq 0$ and $d_2(y_1,y_2) \geq 0$,
+        $$d((x_1,y_1), (x_2,y_2)) = \max\qty{d_1(x_1,x_2),d_2(y_1,y_2)} \geq 0$$
+    \subsubsection{Symmetry $$d((x_1,y_1),(x_2,y_2))=d((x_1,y_1),(x_2,y_2))$$}
+    \begin{align*}
+        d((x_1,y_1), (x_2,y_2)) = \max\qty{d_1(x_1,x_2),d_2(y_1,y_2)} 
+        &= \max\qty{d_2(y_1,y_2),d_1(x_1,x_2)} = d((x_2,y_2),(x_1,x_2)
+    \end{align*}
+    \subsubsection{Triangle Inequality 
+    $$d((x_1,y_1),(x_3,y_3)) \leq d((x_1,y_1),(x_2,y_2)) + d((x_2,y_2),(x_3,y_3))$$
+    }
+    \begin{align*}
+        d((x_1,y_1),(x_3,y_3)) &= \max\qty{d_1(x_1,x_3), d_2(y_1,y_3)}\\
+        d((x_1,y_1),(x_2,y_2)) &= \max\qty{d_1(x_1,x_2), d_2(y_1,y_2)}\\
+        d((x_2,y_2),(x_3,y_3)) &= \max\qty{d_1(x_2,x_3), d_2(y_2,y_3)}\\
+        \max\qty{d_1(x_1,x_3), d_2(y_1,y_3)} 
+            &\leq \max\qty{d_1(x_1,x_2), d_2(y_1,y_2)}
+            + \max\qty{d_1(x_2,x_3), d_2(y_2,y_3)}\\
+        d((x_1,y_1),(x_3,y_3)) &\leq d((x_1,y_1),(x_2,y_2)) + d((x_2,y_2),(x_3,y_3))
+    \end{align*}
+\end{proof}
+
+\newpage
+% Part b
+\subsection{$d((x_1,y_1),(x_2,y_2)) = d_1(x_1,x_2)  + d_2(y_1,y_2)$}
+
+\begin{theorem}
+    The metric $$d((x_1,y_1),(x_2,y_2)) = d_1(x_1,x_2)  + d_2(y_1,y_2)$$
+    is a metric on $S_1 \cross S_2$.
+\end{theorem}
+\begin{proof}
+    A metric $d: S_1 \cross S_2 \to \R$ must satisfy (i) non-negativity, 
+    (ii) Symmetry, and (iii) Triangle Inequality.
+    \subsubsection{Non-negativy $$d((x_1,y_1), (x_2,y_2)) \geq 0$$}
+        Since $d_1(x_1,x_2) \geq 0$ and $d_2(y_1,y_2) \geq 0$,
+        $$d((x_1,y_1), (x_2,y_2)) = d_1(x_1,x_2)  + d_2(y_1,y_2) \geq 0$$
+    \subsubsection{Symmetry $$d((x_1,y_1),(x_2,y_2))=d((x_1,y_1),(x_2,y_2))$$}
+    \begin{align*}
+        d((x_1,y_1), (x_2,y_2)) = d_1(x_1,x_2)  + d_2(y_1,y_2) 
+        &= d_1(x_2,x_1)  + d_2(y_2,y_1) = d((x_2,y_2),(x_1,x_2)
+    \end{align*}
+    \subsubsection{Triangle Inequality 
+    $$d((x_1,y_1),(x_3,y_3)) \leq d((x_1,y_1),(x_2,y_2)) + d((x_2,y_2),(x_3,y_3))$$
+    }
+    \begin{align*}
+        d((x_1,y_1),(x_3,y_3)) &= d_1(x_1,x_3)  + d_2(y_1,y_3)\\
+        d((x_1,y_1),(x_2,y_2)) &= d_1(x_1,x_2)  + d_2(y_1,y_2)\\
+        d((x_2,y_2),(x_3,y_3)) &= d_1(x_2,x_3)  + d_2(y_2,y_3)\\
+        d_1(x_1,x_3)  + d_2(y_1,y_3)
+            &\leq d_1(x_1,x_2)  + d_2(y_1,y_2)
+            + d_1(x_2,x_3)  + d_2(y_2,y_3)\\
+        d((x_1,y_1),(x_3,y_3)) &\leq d((x_1,y_1),(x_2,y_2)) + d((x_2,y_2),(x_3,y_3))
+    \end{align*}
+\end{proof}
+
+\newpage
+% Part c
+\subsection{$d((x_1,y_1),(x_2,y_2)) = \sqrt{(d_1(x_1,x_2))^2+(d_2(y_1,y_2))^2}$}
+
+\begin{theorem}
+    The metric $$d((x_1,y_1),(x_2,y_2)) = \sqrt{(d_1(x_1,x_2))^2+(d_2(y_1,y_2))^2}$$
+    is a metric on $S_1 \cross S_2$.
+\end{theorem}
+\begin{proof}
+    A metric $d: S_1 \cross S_2 \to \R$ must satisfy (i) non-negativity, 
+    (ii) Symmetry, and (iii) Triangle Inequality.
+    \subsubsection{Non-negativy $$d((x_1,y_1), (x_2,y_2)) \geq 0$$}
+        Since $d_1(x_1,x_2) \geq 0$ and $d_2(y_1,y_2) \geq 0$,
+        $$d((x_1,y_1), (x_2,y_2)) = \sqrt{(d_1(x_1,x_2))^2+(d_2(y_1,y_2))^2} \geq 0$$
+    \subsubsection{Symmetry $$d((x_1,y_1),(x_2,y_2))=d((x_1,y_1),(x_2,y_2))$$}
+    \begin{align*}
+        d((x_1,y_1), (x_2,y_2)) = \sqrt{(d_1(x_1,x_2))^2+(d_2(y_1,y_2))^2}
+        &= \sqrt{(d_1(x_2,x_1))^2+(d_2(y_2,y_1))^2} = d((x_2,y_2),(x_1,x_2)
+    \end{align*}
+    \subsubsection{Triangle Inequality 
+    $$d((x_1,y_1),(x_3,y_3)) \leq \sqrt{(d_1(x_1,x_3))^2+(d_2(y_1,y_3))^2}$$
+    }
+    \begin{align*}
+        d((x_1,y_1),(x_3,y_3)) &= \sqrt{(d_1(x_1,x_3))^2+(d_2(y_1,y_3))^2}\\
+        d((x_1,y_1),(x_2,y_2)) &= \sqrt{(d_1(x_1,x_2))^2+(d_2(y_1,y_2))^2}\\
+        d((x_2,y_2),(x_3,y_3)) &= \sqrt{(d_1(x_2,x_3))^2+(d_2(y_2,y_3))^2}\\
+        \sqrt{(d_1(x_1,x_3))^2+(d_2(y_1,y_3))^2}
+            &\leq \sqrt{(d_1(x_1,x_2))^2+(d_2(y_1,y_2))^2}
+            + \sqrt{(d_1(x_2,x_3))^2+(d_2(y_2,y_3))^2}\\
+        d((x_1,y_1),(x_3,y_3)) &\leq d((x_1,y_1),(x_2,y_2)) + d((x_2,y_2),(x_3,y_3))
+    \end{align*}
+\end{proof}
+
+
+\newpage
+% Problem 2
+\section{}
+% Part a
+\subsection{A set $A$ in the metric space $(S, d)$ is called bounded, if
+    $\exists_{R>0} \land \exists x \in S : A \subset B_R(x)$.
+    Prove that if $A$ is unbounded then there exists a sequence 
+    $\{x_n\} \subset A$ such that $\forall_{m,n\in\N} \implies d(x_n,x_m) > 1$.
+}
+\begin{assumption}
+    $m \neq n$, $m > n$
+\end{assumption}
+\begin{definition}
+    The open ball set $B_r(x)$ over metric space $(S,d)$ is defined as
+    $$B_r(x) := \qty{y \in S : d(x,y) < r}$$
+\end{definition}
+\begin{definition}
+    A set $A$ in the metric space $(S, d)$ is called \underline{bounded}, if
+    $$\exists_{R>0} \land \exists_{x \in S} : A \subset B_R(x)$$
+\end{definition}
+\begin{definition}
+    A set $A$ in the metric space $(S, d)$ is called \underline{unbounded}, 
+    if it is not bounded, (i.e.)
+    $$\forall_{R>0} \land \forall_{x \in S} : A \not \subset  B_R(x)$$
+\end{definition}
+\begin{theorem}
+    If $A \in (S,d)$ is unbounded, then 
+    $$\exists \{x_n\} \subset A : \forall_{m,n\in\N} \implies d(x_n,x_m) > 1$$
+\end{theorem}
+\begin{proof}
+    $A \in (S,d)$ being unbounded means that 
+    $$\forall_{R>0} \land \forall x \in S : A \not\subset  B_R(x)$$
+    Since $\forall_{R>0} \land \forall_{x \in S} : A \not \subset  B_R(x)$ 
+    and $B_R(x) := \qty{y \in S : d(x,y) < R}$, 
+    $$\forall_{x \in A} \exists_{y \in A} : d(x,y) \geq R$$
+    Since it is true for any $R > 0$ a sequence $\{x_n\}$ can be constructed 
+    with subsequent $x_{n+1}$ so that $d(x_n,x_{n+1})>R=1$.
+\end{proof}
+
+% \newpage
+% Part b
+\subsection{Show that in the normed space $(V,\abs{\cdot})$ the open unit ball 
+    $B_r = \qty{x \in V : \abs{x} < 1}$ is a convex set. (i.e)
+    $\forall_{x,y\in B_r}, \forall_{t\in \qty[0,1]} \implies t x + (1-t) y \in B_r$
+}
+\begin{definition}
+    The \underline{open unit ball} is defined as: 
+    $$B_r := \qty{x \in V : \abs{x} < 1}$$
+\end{definition}
+\begin{definition}
+    The set $A$ is convex if and only if 
+    $$\forall_{x,y\in A}, \forall_{t\in \qty[0,1]} \implies t x + (1-t) y \in A$$
+\end{definition}
+\begin{theorem}
+    The open unit ball set $B_r$ is convex in $(V,\abs{\cdot})$.
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        \forall_{x,y\in B_r}, \forall_{t\in \qty[0,1]}
+            &\implies t x + (1-t) y \in B_r\\
+        \forall_{x,y\in V} : (\abs{x} < 1) \land (\abs{y} < 1), \forall_{t\in \qty[0,1]}
+            &\implies t x + (1-t) y \in V : \abs{t x + (1-t) y}
+        \intertext{Since
+        $\forall_{x,y \in V}, \forall_{t \in \qty[0,1]} \implies t x + (1-t) y \in V$
+        }
+        \qty(\abs{x} < 1 \land \abs{y} < 1 \implies \abs{t x + (1-t) y} < 1)
+            &\iff t x + (1-t) y \in B_r
+    \end{align*}
+    Clearly,
+    $$\forall_{x,y\in V} \abs{x},\abs{y}<1, \forall_{t\in[0,1]} t x + (1-t) y < 1$$
+    Therefore, the open unit ball set $B_r$ is convex in $(V,\abs{\cdot})$.
+\end{proof}
+
+\newpage
+% Problem 3
+\section{}
+For $(\R^2 = (x,y),d=\sqrt{x^2 + y^2})$,
+% Part a
+\subsection{Show that $D = \qty{(x,y) : x^2 + y^2 \leq 1}$ is a closed set.}
+\begin{definition}
+    The set $A \subset V$ is called \underline{open} if 
+    $$\forall_{x\in A} \exists_{\epsilon>0} : B_\epsilon(x)\subset A$$
+\end{definition}
+\begin{definition}
+    The set $A \subset V$ is called \underline{closed} if $A^c$ is open.
+\end{definition}
+\begin{theorem}
+    The set $D = \qty{(x,y) : x^2 + y^2 \leq 1}$ is closed.
+\end{theorem}
+\begin{proof}
+    By definition, $D$ is closed iff $D^c$ is open.\\
+    $D^c$ is defined by
+    $$D^c = \qty{(x,y) : x^2 + y^2 > 1}$$
+    By definition, $D^c$ is open if
+    $$\forall_{(x,y) \in D^c} \exists_{\epsilon>0}: B_\epsilon ((x,y)) \subset D^c$$
+    This means that every element in $D^c$ must have an associated open ball set centered 
+    at that element with a positive radius that is fully contained by $D^c$.\\
+    Let $(x_b,y_b) \in B_\epsilon ((x,y))$ for $\epsilon>0$.
+    This means
+    $$d((x,y),(x_b,y_b)) = \sqrt{x_b^2 + y_b^2} < \epsilon$$
+    By definition,
+    $$(x,y) \in D^c \implies x^2 + y^2 > 1$$
+    and therefore,
+    $$\sqrt{x^2 + y^2} = d((0,0),(x,y)) > 1$$
+
+    From the triangle inequality, we have
+    \begin{align*}
+        d((x_b,y_b),(0,0)) &\leq d((0,0),(x,y)) + d((x,y),(x_b,y_b))\\
+        d((x,y),(x_b,y_b)) &\geq d((x_b,y_b),(0,0)) - d((0,0),(x,y))\\
+        d((x,y),(x_b,y_b)) = \epsilon &> d((x_b,y_b),(0,0)) - 1 > 0
+    \end{align*}
+    Therefore $D^c$ is open and therefore $D$ is closed.
+\end{proof}
+
+\newpage
+% Part b
+\subsection{Find the infinite collection of open sets 
+$\{A_n\}$ so that $\bigcap_n A_n = \overline{B_1(0)}$}
+
+$$\{A_n : \bigcap_n A_n = \overline{B_1(0)}\}$$
+This means that the intersection of all sets in $\{A_n\}$ 
+is the boundary of the unit ball set.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+% Problem 4
+\section{}
+Let $S = \R^2$. Are the following sets open or closed within the metrics below?
+\begin{align*}
+    A &= \qty{(x,y) : x^2 + y^2 < 1}\\
+    B &= \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}\\
+    C &= \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}\\
+    D &= \qty{(x,y) : \abs{x} + \abs{y} < 2}\\
+    E &= \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}
+\end{align*}
+
+% Part a
+\subsection{Euclidean Metric: $d((x,y)) = \sqrt{(x)^2 + (y)^2} = \norm{(x,y)}_2$}
+\subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
+\subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
+\subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
+\subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
+\subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+
+
+
+\subsection{Manhattan Metric: $d((x,y)) = \abs{x} + \abs{y} = \norm{(x,y)}_1$}
+\subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
+\subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
+\subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
+\subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
+\subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+
+
+\subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
+\subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
+\subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
+\subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
+\subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+
+
+\subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
+\subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
+\subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
+\subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
+\subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+
+
+\subsubsection{$A = \qty{(x,y) : x^2 + y^2 < 1}$}
+\subsubsection{$B = \qty{(x,y) : x = 0 \land -1 \leq y \leq 1}$}
+\subsubsection{$C = \qty{(x,y) : 1 < x < 2 \land -1 \leq y \leq 1}$}
+\subsubsection{$D = \qty{(x,y) : \abs{x} + \abs{y} < 2}$}
+\subsubsection{$E = \qty{(x,y) : x^2 - y^2 < 1 \land \abs{x} + \abs{y} < 4}$}
+
+
+\end{document}
