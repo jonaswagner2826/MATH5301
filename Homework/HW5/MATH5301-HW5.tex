@@ -296,28 +296,24 @@ The interior and closures are complementary sets. (i.e.) $\overline{A} = (\text{
 $B_1(0)$ is defined as 
 $$B_1(0) := \qty{(x,y) \in \R^2 : d((0,0),(x,y)) < 1} = \qty{(x,y) : \sqrt{x^2 + y^2} < 1}$$
 
-The closure of $B_1(0)$, $\overline{B_1(0)}$ is defined by 
-$$\overline{B_1(0)} := \qty{x \in \R^2 : 
-    \forall_{\epsilon> 0} B_\epsilon(x) \cap B_1(0) \neq \emptyset}$$
+The closure of $B_1(0)$, $\overline{B_1(0)}$ is defined by
+\begin{align*}
+    \overline{B_1(0)} &:= \qty{(x,y) \in \R^2 : 
+        \forall_{\epsilon > 0} B_\epsilon((x,y)) \cap B_1(0) \neq \emptyset}\\
+    &= \qty{(x,y) \in \R^2 : \forall_{\epsilon> 0} 
+        \exists_{(x_b,y_b) \in \R^2} (d((x,y),(x_b,y_b)) < \epsilon) \land (d((0,0),(x,y)) < 1)}
+\end{align*}
 
-
-??? how to do?..........
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Therefore,
+\begin{align*}
+    {A_n} &:= \qty{A_n \subset \R^2: \forall_{(x,y) \in \R^2} \forall_{\epsilon> 0} 
+        B_\epsilon((x,y)) \cap B_1(0) \neq \emptyset \implies (x,y) \in A}\\
+    &= \qty{A \subset \R^2: \qty(\forall_{(x,y) \in \R^2} 
+        \exists_{(x_b,y_b) \in \R^2} d((x,y),(x_b,y_b)) < \epsilon \implies d((0,0),(x,y)) < 1)}\\
+    &= \qty{A \subset \R^2: \qty(\forall_{(x,y) \in \R^2} 
+        \exists_{(x_b,y_b) \in \R^2} \sqrt{(x-x_b)^2 + (y-y_b)^2} < \epsilon 
+        \implies \sqrt{x^2 + y^2} < 1)}\\
+\end{align*}
 
 \newpage
 % Problem 4
@@ -400,73 +396,130 @@ Also provide an example of non-strictness.}
     \subsubsection{$\text{int}(A) \subseteq \text{int}(B)$}
     \begin{proof}
         \begin{align*}
-            \text{int}(A) = \qty{x \in A : \exists_{\epsilon>0} B_\epsilon(x) \subset A}\\
-            \text{int}(B) = \qty{x \in B : \exists_{\epsilon>0} B_\epsilon(x) \subset B}
+            \text{int}(A) &= \qty{x \in A : \exists_{\epsilon>0} B_\epsilon(x) \subset A}\\
+            &= \qty{x \in A : 
+                \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+                \land x_b \in A}\\
+            \text{int}(B) &= \qty{x \in B : \exists_{\epsilon>0} B_\epsilon(x) \subset B}\\
+            &= \qty{x \in B : 
+                \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+                \land x_b \in B}\\
         \end{align*}
         
         Since $(\text{int}(A) \subset A) \land (\text{int}(B) \subset B) \land (A \subset B)$,
-        $\text{int}(A)\subset B$.
+        \begin{gather*}
+            \qty{x \in A\subset B : 
+                \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+                \land x_b \in A \subset B}\\
+            \forall x \in \qty{x \in A : 
+                \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+                    \land x_b \in A} 
+                \implies x \in \qty{x \in B : 
+                    \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+                        \land x_b \in B}
+        \end{gather*}
+        Therefore,
+        $$\text{int}(A) \subseteq \text{int}(B)$$\\
+        This cannot be a strict inequality becouse 
 
-        %then.... something
-
-        % need a better proof...
+do the thing...
 
     \end{proof}
     \subsubsection{$\overline{A} \subseteq \overline{B}$}
     \begin{proof}
         \begin{align*}
-            \overline{A} = \qty{x \in S : \forall_{\epsilon> 0} B_\epsilon(x) \cap A \neq \emptyset}\\
-            \overline{B} = \qty{x \in S : \forall_{\epsilon> 0} B_\epsilon(x) \cap B \neq \emptyset}
+            \overline{A} &= \qty{x \in S : 
+                \forall_{\epsilon> 0} B_\epsilon(x) \cap A \neq \emptyset}\\
+            &= \qty{x \in S : 
+                \forall_{\epsilon> 0} \exists_{x_b \in S} : d(x,x_b) < \epsilon 
+                \land x_b \in A}\\
+            \overline{B} &= \qty{x \in S : 
+                \forall_{\epsilon> 0} B_\epsilon(x) \cap B \neq \emptyset}\\
+            &= \qty{x \in S : 
+                \forall_{\epsilon> 0} \exists_{x_b \in S} : d(x,x_b) < \epsilon 
+                \land x_b \in B}\\
         \end{align*}
 
         Since $(\overline{A} \subset A) \land (\overline{A} \subset B) \land (A \subset B)$,
-        $\overline{A}\subset B$.
+        \begin{gather*}
+            \qty{x \in S : 
+                \forall_{\epsilon> 0} \exists_{x_b \in S} : d(x,x_b) < \epsilon 
+                \land x_b \in A \subset B}\\
+            \forall x \in \qty{x \in S : 
+                \forall_{\epsilon> 0} \exists_{x_b \in S} : d(x,x_b) < \epsilon 
+                    \land x_b \in A}
+                \implies x \in \qty{x \in S : 
+                    \forall_{\epsilon> 0} \exists_{x_b \in S} : d(x,x_b) < \epsilon 
+                        \land x_b \in B}
+        \end{gather*}
+        Therefore,
+        $$\overline{A} \subseteq \overline{B}$$
+        This cannot be a strict inequality becouse 
 
-        %then.... something
+do the thing...
 
-        % need a better proof...
+
 
     \end{proof}
 \end{theorem}
 
-
-
-
-
-
-
+\newpage
 % Part b
 \subsection{Is the following true:
 $\text{int}(A\cup B) = \text{int}(A) \cup \text{int}(B)$?}
 
-
-
-
+\begin{align*}
+    \text{int}(A \cup B) &= 
+        \qty{x \in A : \exists_{\epsilon>0} B_\epsilon(x) \subset A \cup B}\\
+    &= \qty{x \in A \cup B : 
+        \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+        \land (x_b \in A \lor x_b \in B)}\\
+    &= \qty{x \in A \cup B : 
+            \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+            \land x_b \in A}\\
+        &\ \cup \qty{x \in A \cup B : 
+            \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+            \land x_b \in B}\\
+    &= \qty{x \in A: \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+            \land x_b \in A}\\
+        &\ \cup \qty{x \in A: 
+            \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+            \land x_b \in B}\\
+        &\ \cup \qty{x \in B : 
+            \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+            \land x_b \in A}\\
+        &\ \cup \qty{x \in B : 
+            \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+            \land x_b \in B}\\
+    &= \text{int}(A) \cup \text{int}(B)
+        &\ \cup \qty{x \in A: 
+            \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+            \land x_b \in B}\\
+        &\ \cup \qty{x \in B : 
+            \exists_{\epsilon>0} \forall_{x_b \in S} d(x,x_b)<\epsilon 
+            \land x_b \in B}
+\end{align*}
+Therefore, $\text{int}(A\cup B) \subseteq \text{int}(A) \cup \text{int}(B)$ 
+and $\text{int}(A\cup B) = \text{int}(A) \cup \text{int}(B)$ is not true.
 
 % Part c
 \subsection{Is the following true:
 $\overline{A\cap B} = \overline{A} \cap \overline{B}$?}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{align*}
+    \overline{A \cap B} &= \qty{x \in S : 
+                \forall_{\epsilon> 0} B_\epsilon(x) \cap (A \cap B) 
+                \neq \emptyset}\\
+    &= \qty{x \in S :  \forall_{\epsilon> 0} \exists_{x_b \in S} : 
+        d(x,x_b) < \epsilon \land x_b \in A \cap B}\\
+    &= \qty{x \in S : \forall_{\epsilon> 0} \exists_{x_b \in S} : 
+        d(x,x_b) < \epsilon \land x_b \in A \land x_b \in B}\\
+    &= \qty{x \in S : \forall_{\epsilon> 0} \exists_{x_b \in S} : 
+            d(x,x_b) < \epsilon \land x_b \in A}\\
+        &\ \cap \qty{x \in S : \forall_{\epsilon> 0} \exists_{x_b \in S} : 
+            d(x,x_b) < \epsilon \land x_b \in B}
+    &= \overline{A} \cap \overline{B}
+\end{align*}
+Therefore, $\overline{A\cap B} = \overline{A} \cap \overline{B}$ is true.
 
 \newpage
 % Problem 6
@@ -476,10 +529,19 @@ Denote $N_{a,b} := \{a + nb : b \in \Z\} \subset \Z$. Define the topology on $\Z
 The set $U$ will be called open if for any $a \in U$ there exists $b \in \Z$ so that 
 $N_{a,b} \in U$. Note that every open set is infinite.
 
+\begin{definition}
+    $$N_{a,b} := \{a + nb : b \in \Z\} \subset \Z$$
+\end{definition}
+\begin{definition}
+    The topology on $\Z$ is defined as
+    $$\qty{U \subset \Z : \forall_{a\in U} \exists_{b\in \Z}: N_{a,b} \in U}$$
+\end{definition}
+
 % Part a
 \subsection{Show that it is indeed a topology.}
 (i.e): any union of open sets is open and any finite intersection of open sets is open.
-
+\subsubsection{$\emptyset$ and $\Z$ are open sets.}
+\subsubsection{}
 
 
 % Part b

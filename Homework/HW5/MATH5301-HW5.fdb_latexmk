@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1633082731 "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Homework/HW5/MATH5301-HW5.tex" "MATH5301-HW5.pdf" "MATH5301-HW5" 1633082733
-  "MATH5301-HW5.aux" 1633082732 8686 fd27e49ff90b107bcc44093f232f10a5 "pdflatex"
-  "MATH5301-HW5.tex" 1633082730 16550 f0f883b629381336f4453eeb54b07326 ""
-  "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Homework/HW5/MATH5301-HW5.tex" 1633082730 16550 f0f883b629381336f4453eeb54b07326 ""
+["pdflatex"] 1633145755 "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Homework/HW5/MATH5301-HW5.tex" "MATH5301-HW5.pdf" "MATH5301-HW5" 1633145783
+  "MATH5301-HW5.aux" 1633145757 8995 deeb297eda3559d8a1a22955b1281278 "pdflatex"
+  "MATH5301-HW5.tex" 1633145752 21663 89c2be7bf0182d60d24a227fefa87401 ""
+  "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Homework/HW5/MATH5301-HW5.tex" 1633145752 21663 89c2be7bf0182d60d24a227fefa87401 ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1630540355 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm" 1630538426 1120 1e8878807317373affa7f7bba4cf2f6a ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1630538426 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -50,6 +50,7 @@
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1630538426 35752 024fb6c41858982481f6968b5fc26508 ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1630538426 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1630538426 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
+  "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1630538426 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1630538426 32762 7fee39e011c23b3589931effd97b9702 ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1630538426 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1630538426 32569 5e5ddc8df908dea60932f3c484a54c0d ""
@@ -95,6 +96,6 @@
   "c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1630544666 2797773 0a4f2f027c3c660d286f461b7d600241 ""
   "c:/texlive/2021/texmf.cnf" 1630544502 713 e69b156964470283e0530f5060668171 ""
   (generated)
-  "MATH5301-HW5.aux"
   "MATH5301-HW5.pdf"
+  "MATH5301-HW5.aux"
   "MATH5301-HW5.log"
