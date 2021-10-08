@@ -349,12 +349,92 @@ This is not good... need to fix it....:
 \section{}
 Infinitely many wizards $W_1, W_2,\dots$ stay in the line.
 Each wizard wears a hat of one the three colors: Red, Yellow or Green. 
-Every wizard $W_n$ can see the hats of all the next wizards in line (i.e. Wn+1, Wn+2, etc.) 
+Every wizard $W_n$ can see the hats of all the next wizards in line, $W_{n+1}, W_{n+2}, \dots$,
 Starting  with  the  wizard $W_1$ every one has to guess the color of his own hat. 
 If the wizard guesses correctly, he can go free. Otherwise he got dematerialized. 
 Wizards  discussed  their  strategy  before  this  event. 
 Show that if the wizards were smart enough, then only finitely many of them will disappear.
 
+\subsection*{Assumptions}
+\begin{assumption}\label{asmp:selfless}
+    It is assumed that the Wizards are not only all smart, but also selfless to attempt to 
+    save the most number of wizards instead of just themselves.
+\end{assumption}
+\begin{assumption}
+    Although it is not stated in the problem, it is assumed that the Wizards 
+    are unable to directly communicate the color of the hats to someone else, 
+    but it is also assumed that an infinite memory of past guesses exists.
+\end{assumption}
+
+\subsection*{Sequence Definitions}
+\begin{definition}
+    Let the sequence $\qty{W_n}$ be defined as
+    $$\qty{W_n} := \qty{W_n \st W_n \in \{1,2,3\}}$$
+    with index $n$ related to each of the wizards in order and 
+    $1,2,3$ represent `Red', `Yellow', and `Green' respectively.
+\end{definition}
+\begin{definition}
+    Let the updating sequence $\qty{G_n}$ be defined as the guess that each Wizard makes.
+\end{definition}
+\begin{definition}
+    An updating sequence $\qty{Q_n}$ is defined as a queue of causal memory that each wizard 
+    maintains according to the same set of rules.
+\end{definition}
+\subsection*{Decision Procedure}
+The procedure described is one of many potential decision criterion that can be used to 
+make guesses and minimize the number of incorrect hat color guesses. The basic idea 
+is that following the initialization of the procedure, each Wizard will maintain their own 
+queue based on what previous Wizards guessed and what they perceive from the following 
+Wizards hat colors. This queue will be long enough that when a wizard is reached it should 
+know what color their own hat is along with future hat colors. They then make a decision based 
+on the queue and the wizard following the end of the queue as to what hat to guess in order 
+to either share information to the future Wizards or to save themselves. The procedure is 
+designed so that repeated colors are used to expand the length of the queue and allow 
+for wizards to use the information to save themselves without creating a deficit.
+By Assumption \ref{asmp:selfless}, the decision will always be according to the procedure 
+that will do the best for everyone and not just save themselves.
+
+\newpage
+The following pseudo-code outlines the decision procedure that all the wizards will use. 
+Let $N=\infty$, time index $n$, queue length $k$, and arbitrarily set minimum queue length $K = 20$.
+\begin{lstlisting}
+% Initialization
+for i = 5:N % min start is 5
+    if W(i+1) == W(i) % First set of same color hat
+        k = i;
+        break
+    end
+end
+% Initialize Queue
+for n = 1:k
+    G(n) = W(n + k);
+    Q(n + k) = G(n);
+end
+% Standard Decision Procedure
+while n < N
+    if Q(n) == Q(n+1)
+        G(n) = Q(n);
+    else if k > K && G(n) ~= W(n+k)
+        G(n) = Q(n);
+    else
+        G(n) = W(n + k)
+        Q(n + k) = G(n);
+    end
+    while W(n + k) == W(n + k + 1)
+        Q(n + k + 1) = W(n + k + 1);
+        k = k + 1;
+    end
+    n = n + 1;
+end
+\end{lstlisting}
+% look at that else if statement again... and make sure it'll still work
+
+
+\subsection*{Effectiveness of Procedure}
+A proof of Effectiveness is probably easily demonstrated through mathematical induction. 
+Essentially, the finite loss of Wizards can be demonstrated using the size of $k$ 
+being bounded from below and increasing regardless of the color of the next hat.
+% Demonstrate with actual things...
 
 
 
