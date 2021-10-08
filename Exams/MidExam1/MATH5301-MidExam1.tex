@@ -30,6 +30,7 @@
 \newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
 
 \newcommand{\divisible}{ \ \vdots \ }
+\newcommand{\st}{ \ \vline \ }
 
 
 % Theorem Definition
@@ -64,6 +65,295 @@ they rotate by 180 degrees. Show that this process will not last forever.
 
 
 
+
+
+
+
+
+
+
+
+
+% Problem 2
+\newpage
+\section{}
+Let $\R^\infty$ be the set of all sequences of real numbers
+$$\R^\infty = \qty{a_1,a_2,\cdots \ | \ a_j \in \R}$$
+Define the relation $\Rel$ on $\R^\infty$ as follows:
+$a\Rel b$ if for some $j \in \N : a_j > b_j$ and for all $k < j \implies a_k = b_k$.
+
+
+Does it mean this?
+$$\exists_{j \in \N} : \qty((a_j > b_j) \land (\forall_{k<j} \implies a_k = b_k))$$
+or this?
+$$\qty(\exists_{j \in \N} : (a_j > b_j \land \forall_{k<j})) \implies a_k = b_k$$
+
+Prove that such a relation is an order relation on $R^\infty$. Is it a total order?
+
+
+
+$$\exists_{j\in\N} : \qty(\forall_{k < j} \ a_k = b_k) \land (a_j > b_j)$$
+
+
+
+
+
+
+
+% Problem 3
+\newpage
+\section{}
+Alice wrote some finite sequence of zeros and ones on the paper (e.g. 010010). 
+Bob is allowed to replace any pair ``10'' by ``00···01'' with any (but finite) 
+amount of zeros in front of 1. Bob can repeat this procedure as many times as 
+he wants (if he will find ``10'' in the resulting sequence). 
+Prove that Bob can perform such operation only finitely many times.
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 4
+\newpage
+\section{}
+Present two essentially different total orderings of the field 
+$\Q(\sqrt{2}) := \qty{a + b \sqrt{2} \st a,b \in \Q}$.
+\subsection*{Problem Formulation}
+\begin{definition}
+    The field $\mathbb{F} = \langle\Q(\sqrt{2}),+,0,\cdot,1\rangle$ is defined with the set
+    $$\Q(\sqrt{2}) := \qty{a + b \sqrt{2} \st a,b \in \Q}$$
+    and the operators
+    \begin{align*}
+        + : \Q(\sqrt{2}) \cross \Q(\sqrt{2}) \to \Q(\sqrt{2}) 
+            &:= (a_1,a_2) + (b_1,b_2) = (a_1 + b_1, a_2 + b_2)\\
+        \cdot : \Q(\sqrt{2}) \cross \Q(\sqrt{2}) \to \Q(\sqrt{2}) 
+            &:= (a_1,a_2) \cdot (b_1,b_2) = (a_1 b_1 + 2 a_2 b_2, a_1 b_2 + a_2 b_1)
+    \end{align*}
+    It is also assumed that the standard field properties all apply.
+\end{definition}
+
+
+This is not good... need to fix it....:
+
+% % Part 1
+% \subsection{Ordering 1: $\Rel_1$}
+% \begin{definition}
+%     An relation $a \Rel_1 b$ %$(a,b) \Rel_1 (b_1,b_2)$ can be defined as
+%     $$\Rel \subset \Q(\sqrt{2}) \cross \Q(\sqrt{2}) 
+%         := \qty{(a,b) \st a \cdot a \leq b \cdot b}$$
+% \end{definition}
+% \begin{theorem}
+%     The relation $a \Rel_1 b$ is an ordered relation over $\mathbb{F}$
+%     \begin{proof}
+%         Over $\mathbb{F}$ the ordered relation $(a_1,a_2) \Rel_1 (b_1,b_2)$ can be defined by 
+%         $$(a, b) \Rel_1 (b_1,b_2) 
+%             := \qty{((a_1,a_2),(b_1,b_2)) \st (a_1 \cdot a_1 + 2 \cdot a_2 \cdot a_2) 
+%                 \leq (b_1 \cdot b_1 + 2 \cdot b_2 \cdot b_2)}
+%         $$
+%         $(a_1, a_2) \Rel_1 (b_1,b_2)$ satisfies the 3 ordered properties:
+%         \subsubsection{Reflective: $x \Rel_1 x$}
+%         \begin{align*}
+%             (a_1 \cdot a_1 + 2 \cdot a_2 \cdot a_2) 
+%                 \leq (b_1 \cdot b_1 + 2 \cdot b_2 \cdot b_2)
+%                 &\implies a \Rel_1 b\\
+%             (x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2) 
+%                 \leq (x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                 &\implies x \Rel_1 x\\
+%             x_1^2 + 2 x_2^2 \leq x_1^2 + 2 x_2^2 &\implies x \Rel_1 x
+%         \end{align*}
+        
+%         \subsubsection{Anti-Symmetry: $x \Rel_1 y \land y \Rel_1 x \implies x = y$}
+%         \begin{align*}
+%             x \Rel_1 y \land y \Rel_1 x &\implies x = y\\
+%             (x_1,x_2) \Rel_1 (y_1,y_2) \land (y_1,y_2) \Rel_1 (x_1,x_2) 
+%                 &\implies (x_1,x_2)=(y_1,y_2)\\
+%             \qty((x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                     \leq (y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2))
+%             &\land\\
+%                 \land \qty((y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)
+%                     \leq (x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2))
+%                 &\implies (x_1,x_2) = (y_1,y_2)\\
+%             \qty(x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_2^2)
+%                 \land \qty(y_1^2 + 2 y_2^2 \leq x_1^2 + 2 x_2^2)
+%                 &\implies (x_1,x_2) = (y_1,y_2)\\
+%             % (x \cdot x \leq y \cdot y) \land (y \cdot y \leq x \cdot x)
+%             %     &\implies x = y
+%         \end{align*}
+        
+%         \subsubsection{Transivity: $x \Rel_1 y \land y \Rel_1 z \implies x \Rel_1 z$}
+%         \begin{align*}
+%             x \Rel_1 y \land y \Rel_1 z 
+%                 &\implies x \Rel_1 z\\
+%             (x_1,x_2) \Rel_1 (y_1,y_2) \land (y_1,y_2) \Rel_1 (z_1,z_2)
+%                 &\implies (x_1,x_2) \Rel_1 (z_1,z_2)\\
+%             \qty((x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                     \leq (y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)) 
+%                 \land&\\
+%                 \land \qty((y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)
+%                     \leq (z_1 \cdot z_1 + 2 \cdot z_2 \cdot z_2)) 
+%                 &\implies \qty((x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                     \leq (z_1 \cdot z_1 + 2 \cdot z_2 \cdot z_2))\\
+%             \qty(x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_2^2)
+%                     \land \qty(y_1^2 + 2 y_2^2 \leq z_1^2 + 2 z_2^2)
+%                 &\implies \qty(x_1^2 + 2 x_2^2 \leq z_1^2 + 2 z_2^2)\\
+%             x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_1^2 \leq z_1^2 + 2 z_2^2
+%                 &\implies x \Rel_1 z
+%         \end{align*}
+%     \end{proof}
+% \end{theorem}
+% \begin{theorem}
+%     The ordered relation $x \Rel_1 y$ forms a total order over $\mathbb{F}$.
+%     \begin{proof}
+%         $x \Rel_1 y$ satisfies the totality condition:
+%         \subsubsection{Totality: 
+%         $\forall x,y \in \mathbb{F} \implies x \Rel_1 y \lor y \Rel_1 x$}
+%         \begin{align*}
+%             \forall x,y \in \mathbb{F} &\implies x \Rel_1 y \lor y \Rel_1 x\\
+%             \forall_{x \in \Q(\sqrt{2})}
+%                     \forall_{y \in \Q(\sqrt{2})}
+%                 &\implies \qty(x \cdot x \leq y \cdot y)
+%                     \lor \qty(y \cdot y \leq x \cdot x)\\
+%             \forall_{(x_1,x_2) \in \Q(\sqrt{2}))}
+%                     \forall_{(y_1,y_2) \in \Q(\sqrt{2})}
+%                 &\implies \qty((x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                     \leq (y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)) \lor\\
+%                 &\qquad \lor \qty((y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)
+%                     \leq (x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2))\\
+%             % \forall_{x_1 \in \N} \forall_{x_2\in \N}
+%             %         \forall_{y_1 \in \N} \forall_{y_2 \in \N}
+%             \forall_{x_1, x_2, y_1, y_2 \in \Q}
+%                 &\qty(\qty(x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_2^2)
+%                     \lor \qty(y_1^2 + 2 y_2^2 \leq x_1^2 + 2 x_2^2))\\
+%             % \forall_{x_1, x_2, y_1, y_2 \in \Q(\sqrt{2})}
+%             %     &\qty(x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_2^2)
+%             %         \lor \qty(y_1^2 + 2 y_2^2 \leq x_1^2 + 2 x_2^2)
+%         \end{align*}
+%     \end{proof}
+% \end{theorem}
+
+% % Part 2
+% \subsection{Ordering 2: $\Rel_2$}
+% \begin{definition}
+%     An relation $a \Rel_2 b$
+%     $$\Rel \subset \Q(\sqrt{2}) \cross \Q(\sqrt{2}) 
+%         := \qty{(a,b) \st a \cdot a \leq b \cdot b}$$
+% \end{definition}
+
+
+% % not done yet
+% \begin{theorem}
+%     The relation $a \Rel_1 b$ is an ordered relation over $\mathbb{F}$
+%     \begin{proof}
+%         Over $\mathbb{F}$ the ordered relation $(a_1,a_2) \Rel_1 (b_1,b_2)$ can be defined by 
+%         $$(a, b) \Rel_1 (b_1,b_2) 
+%             := \qty{((a_1,a_2),(b_1,b_2)) \st (a_1 \cdot a_1 + 2 \cdot a_2 \cdot a_2) 
+%                 \leq (b_1 \cdot b_1 + 2 \cdot b_2 \cdot b_2)}
+%         $$
+%         $(a_1, a_2) \Rel_1 (b_1,b_2)$ satisfies the 3 ordered properties:
+%         \subsubsection{Reflective: $x \Rel_1 x$}
+%         \begin{align*}
+%             (a_1 \cdot a_1 + 2 \cdot a_2 \cdot a_2) 
+%                 \leq (b_1 \cdot b_1 + 2 \cdot b_2 \cdot b_2)
+%                 &\implies a \Rel_1 b\\
+%             (x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2) 
+%                 \leq (x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                 &\implies x \Rel_1 x\\
+%             x_1^2 + 2 x_2^2 \leq x_1^2 + 2 x_2^2 &\implies x \Rel_1 x
+%         \end{align*}
+        
+%         \subsubsection{Anti-Symmetry: $x \Rel_1 y \land y \Rel_1 x$}
+%         \begin{align*}
+%             x \Rel_1 y \land y \Rel_1 x &\implies x = y\\
+%             (x_1,x_2) \Rel_1 (y_1,y_2) \land (y_1,y_2) \Rel_1 (x_1,x_2) 
+%                 &\implies (x_1,x_2)=(y_1,y_2)\\
+%             \qty((x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                     \leq (y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2))
+%             &\land\\
+%                 \land \qty((y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)
+%                     \leq (x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2))
+%                 &\implies (x_1,x_2) = (y_1,y_2)\\
+%             \qty(x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_2^2)
+%                 \land \qty(y_1^2 + 2 y_2^2 \leq x_1^2 + 2 x_2^2)
+%                 &\implies (x_1,x_2) = (y_1,y_2)\\
+%             % (x \cdot x \leq y \cdot y) \land (y \cdot y \leq x \cdot x)
+%             %     &\implies x = y
+%         \end{align*}
+        
+%         \subsubsection{Transivity: $x \Rel_1 y \land y \Rel_1 z \implies x \Rel_1 z$}
+%         \begin{align*}
+%             x \Rel_1 y \land y \Rel_1 z 
+%                 &\implies x \Rel_1 z\\
+%             (x_1,x_2) \Rel_1 (y_1,y_2) \land (y_1,y_2) \Rel_1 (z_1,z_2)
+%                 &\implies (x_1,x_2) \Rel_1 (z_1,z_2)\\
+%             \qty((x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                     \leq (y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)) 
+%                 \land&\\
+%                 \land \qty((y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)
+%                     \leq (z_1 \cdot z_1 + 2 \cdot z_2 \cdot z_2)) 
+%                 &\implies \qty((x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                     \leq (z_1 \cdot z_1 + 2 \cdot z_2 \cdot z_2))\\
+%             \qty(x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_2^2)
+%                     \land \qty(y_1^2 + 2 y_2^2 \leq z_1^2 + 2 z_2^2)
+%                 &\implies \qty(x_1^2 + 2 x_2^2 \leq z_1^2 + 2 z_2^2)\\
+%             x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_1^2 \leq z_1^2 + 2 z_2^2
+%                 &\implies x \cdot x \leq y \cdot y \leq z \cdot z
+%         \end{align*}
+%     \end{proof}
+% \end{theorem}
+
+% \begin{theorem}
+%     The ordered relation $x \Rel_1 y$ forms a total order over $\mathbb{F}$.
+%     \begin{proof}
+%         $x \Rel_1 y$ satisfies the totality condition:
+%         \subsubsection{Totality: 
+%         $\forall x,y \in \mathbb{F} \implies x \Rel_1 y \lor y \Rel_1 x$}
+%         \begin{align*}
+%             \forall x,y \in \mathbb{F} &\implies x \Rel_1 y \lor y \Rel_1 x\\
+%             \forall_{x \in \Q(\sqrt{2})}
+%                     \forall_{y \in \Q(\sqrt{2})}
+%                 &\implies \qty(x \cdot x \leq y \cdot y)
+%                     \lor \qty(y \cdot y \leq x \cdot x)\\
+%             \forall_{(x_1,x_2) \in \Q(\sqrt{2}))}
+%                     \forall_{(y_1,y_2) \in \Q(\sqrt{2})}
+%                 &\implies \qty((x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2)
+%                     \leq (y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)) \lor\\
+%                 &\qquad \lor \qty((y_1 \cdot y_1 + 2 \cdot y_2 \cdot y_2)
+%                     \leq (x_1 \cdot x_1 + 2 \cdot x_2 \cdot x_2))\\
+%             % \forall_{x_1 \in \N} \forall_{x_2\in \N}
+%             %         \forall_{y_1 \in \N} \forall_{y_2 \in \N}
+%             \forall_{x_1, x_2, y_1, y_2 \in \N}
+%                 &\qty(\qty(x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_2^2)
+%                     \lor \qty(y_1^2 + 2 y_2^2 \leq x_1^2 + 2 x_2^2))\\
+%             % \forall_{x_1, x_2, y_1, y_2 \in \Q(\sqrt{2})}
+%             %     &\qty(x_1^2 + 2 x_2^2 \leq y_1^2 + 2 y_2^2)
+%             %         \lor \qty(y_1^2 + 2 y_2^2 \leq x_1^2 + 2 x_2^2)
+%         \end{align*}
+%     \end{proof}
+% \end{theorem}
+
+
+
+
+
+
+% Problem 5
+\newpage
+\section{}
+Infinitely many wizards $W_1, W_2,\dots$ stay in the line.
+Each wizard wears a hat of one the three colors: Red, Yellow or Green. 
+Every wizard $W_n$ can see the hats of all the next wizards in line (i.e. Wn+1, Wn+2, etc.) 
+Starting  with  the  wizard $W_1$ every one has to guess the color of his own hat. 
+If the wizard guesses correctly, he can go free. Otherwise he got dematerialized. 
+Wizards  discussed  their  strategy  before  this  event. 
+Show that if the wizards were smart enough, then only finitely many of them will disappear.
 
 
 
