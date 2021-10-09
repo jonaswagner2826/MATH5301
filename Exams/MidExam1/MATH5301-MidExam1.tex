@@ -61,18 +61,51 @@ at every second if two neighboring soldiers find themselves facing each other,
 they rotate by 180 degrees. Show that this process will not last forever.
 
 \subsection*{Problem Formulation}
+The state of the 100 soldiers represented as arrows pointed to the right or left 
+for each time step, $n$, is visualized by the following drawing:\\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{MidExam1_pblm1_a.png}
+\end{figure}
 
+For each time step all of the individual pairs of soldiers facing each other 
+flip and it progresses until all soldiers on the left face left and soldiers 
+on the right face right.\\
 
+This can be similarly described as a sequence of binary states and a simplistic update 
+operation.\\
+Let $1$ denote $\rightarrow$.\\
+Let $0$ denote $\leftarrow$.\\
+Define and randomly populate sequence 
+$$\qty{x_n \st x_n \in \{0,1\} }_{n \in [1,100]}^{(k)}, k \in \N$$
+The dependent update operation can be defined as 
+$$\qty{x_n}^{(k+1)} 
+    := \qty{x_n \st x_n = 
+    \begin{cases}
+        1   & (x_n \land x_{n+1}) \lor (~x_n \land x_{n-1})\\
+        0   & (~x_n \land ~x_{n-1}) \lor (x_n \land ~x_{n+1})
+    \end{cases}
+    \
+    }
+$$
+where $x_0 = 0$ and $x_{101} = 1$ get referenced.\\
 
+\newpage
+\subsection*{Stopping Demonstration}
+An example demonstrating this progression on the left is shown in the following drawing: 
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width = 0.7 \textwidth]{MidExam1_pblm1_b.png}
+\end{figure*}
 
+It is clear that after each update, the system will begin to converge so that 
+$$\exists_{a \in [1,100]} : \forall_{i < a} x_i = 0$$ and 
+$$\exists_{b \in [1,100]} : \forall_{i > b} x_i = 1$$
 
+Therefore, and since $\qty{x_n}^{(k)}$ is a finite set, the following must be true:
+$$\exists_{n \in \N} \forall_{k > n} \implies \qty{X_n}^{(k)} = \qty{X_n}^{(k+1)}$$
 
-
-
-
-
-
-
+Which means that the dependent operation will no longer change the state of the system.
 
 % Problem 2
 \newpage
@@ -93,6 +126,9 @@ Prove that such a relation is an order relation on $R^\infty$. Is it a total ord
 
 
 $$\exists_{j\in\N} : \qty(\forall_{k < j} \ a_k = b_k) \land (a_j > b_j)$$
+
+
+
 
 
 
@@ -435,6 +471,19 @@ A proof of Effectiveness is probably easily demonstrated through mathematical in
 Essentially, the finite loss of Wizards can be demonstrated using the size of $k$ 
 being bounded from below and increasing regardless of the color of the next hat.
 % Demonstrate with actual things...
+
+
+
+
+
+% Problem 6
+\newpage
+\section{}
+Show that $A$ is an infinite set if and only if $A$ has a proper subset 
+$B \ : \ (B \subsetneq A)$ with the same cardinality $(\abs{A} = \abs{B})$.
+
+
+
 
 
 

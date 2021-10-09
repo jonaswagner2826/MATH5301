@@ -1,8 +1,10 @@
 # Fdb version 3
-["pdflatex"] 1633710918 "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Exams/MidExam1/MATH5301-MidExam1.tex" "MATH5301-MidExam1.pdf" "MATH5301-MidExam1" 1633710920
-  "MATH5301-MidExam1.aux" 1633710920 545 713b1ee280c250654f6a28927d2f0fbb "pdflatex"
-  "MATH5301-MidExam1.tex" 1633710918 17816 f741f358f8aff491606fdde3770c7e5d ""
-  "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Exams/MidExam1/MATH5301-MidExam1.tex" 1633710918 17816 f741f358f8aff491606fdde3770c7e5d ""
+["pdflatex"] 1633748331 "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Exams/MidExam1/MATH5301-MidExam1.tex" "MATH5301-MidExam1.pdf" "MATH5301-MidExam1" 1633748333
+  "MATH5301-MidExam1.aux" 1633748333 641 4dea9f28d66b583d0ff8eaf49c8d73cc "pdflatex"
+  "MATH5301-MidExam1.tex" 1633748330 19785 2651e3c3871d260f1f0596660cbb64d1 ""
+  "MidExam1_pblm1_a.png" 1633744532 92154 0f2e548652cdc56989b6c08610e77b85 ""
+  "MidExam1_pblm1_b.png" 1633747956 48700 993ab3fb7b0a4c9434ad3fe8d7ca4630 ""
+  "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Exams/MidExam1/MATH5301-MidExam1.tex" 1633748330 19785 2651e3c3871d260f1f0596660cbb64d1 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1630539342 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1630540355 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1630539923 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -90,6 +92,6 @@
   "c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1630544666 2797773 0a4f2f027c3c660d286f461b7d600241 ""
   "c:/texlive/2021/texmf.cnf" 1630544502 713 e69b156964470283e0530f5060668171 ""
   (generated)
+  "MATH5301-MidExam1.log"
   "MATH5301-MidExam1.aux"
   "MATH5301-MidExam1.pdf"
-  "MATH5301-MidExam1.log"

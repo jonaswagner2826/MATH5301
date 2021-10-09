@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.1)  8 OCT 2021 11:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.9.1)  8 OCT 2021 21:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -255,29 +255,51 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
  (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+<MidExam1_pblm1_a.png, id=1, 666.23906pt x 274.02374pt>
+File: MidExam1_pblm1_a.png Graphic file (type png)
+<use MidExam1_pblm1_a.png>
+Package pdftex.def Info: MidExam1_pblm1_a.png  used on input line 68.
+(pdftex.def)             Requested size: 328.82707pt x 135.24704pt.
 
-{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5]
-LaTeX Font Info:    Trying to load font information for OML+cmr on input line 414.
+Underfull \hbox (badness 10000) in paragraph at lines 71--74
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 90--92
+
+ []
+
+[1
+
+{c:/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./MidExam1_pblm1_a.png>]
+<MidExam1_pblm1_b.png, id=21, 371.13657pt x 246.1697pt>
+File: MidExam1_pblm1_b.png Graphic file (type png)
+<use MidExam1_pblm1_b.png>
+Package pdftex.def Info: MidExam1_pblm1_b.png  used on input line 98.
+(pdftex.def)             Requested size: 328.82707pt x 218.10994pt.
+ [2 <./MidExam1_pblm1_b.png>] [3] [4] [5] [6]
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 450.
  (c:/texlive/2021/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 414.
- [6] (./MATH5301-MidExam1.aux) ) 
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 450.
+ [7] [8] (./MATH5301-MidExam1.aux) ) 
 Here is how much of TeX's memory you used:
- 5605 strings out of 478599
- 74454 string characters out of 5858102
+ 5620 strings out of 478599
+ 74800 string characters out of 5858102
  408866 words of memory out of 5000000
- 23432 multiletter control sequences out of 15000+600000
+ 23444 multiletter control sequences out of 15000+600000
  414423 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,12n,81p,466b,1231s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 71i,12n,81p,466b,1232s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on MATH5301-MidExam1.pdf (6 pages, 183059 bytes).
+Output written on MATH5301-MidExam1.pdf (8 pages, 290577 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
- 63 compressed objects within 1 object stream
+ 117 PDF objects out of 1000 (max. 8388607)
+ 70 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
