@@ -1,10 +1,12 @@
 # Fdb version 3
-["pdflatex"] 1633748331 "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Exams/MidExam1/MATH5301-MidExam1.tex" "MATH5301-MidExam1.pdf" "MATH5301-MidExam1" 1633748333
-  "MATH5301-MidExam1.aux" 1633748333 641 4dea9f28d66b583d0ff8eaf49c8d73cc "pdflatex"
-  "MATH5301-MidExam1.tex" 1633748330 19785 2651e3c3871d260f1f0596660cbb64d1 ""
+["pdflatex"] 1633755781 "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Exams/MidExam1/MATH5301-MidExam1.tex" "MATH5301-MidExam1.pdf" "MATH5301-MidExam1" 1633755784
+  "MATH5301-MidExam1.aux" 1633755783 3774 4e333e17becb042b513bd2e75bbc35f4 "pdflatex"
+  "MATH5301-MidExam1.tex" 1633755779 23362 7f169cf8a12832859b46de7bc71c8617 ""
   "MidExam1_pblm1_a.png" 1633744532 92154 0f2e548652cdc56989b6c08610e77b85 ""
   "MidExam1_pblm1_b.png" 1633747956 48700 993ab3fb7b0a4c9434ad3fe8d7ca4630 ""
-  "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Exams/MidExam1/MATH5301-MidExam1.tex" 1633748330 19785 2651e3c3871d260f1f0596660cbb64d1 ""
+  "MidExam1_pblm3_e.png" 1633748764 29169 2e10611223398833d6c9f238c69e43cb ""
+  "MidExam1_pblm6.png" 1633755769 227876 c8057a56b4073e567a75ae43b3b12aaa ""
+  "c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Exams/MidExam1/MATH5301-MidExam1.tex" 1633755779 23362 7f169cf8a12832859b46de7bc71c8617 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1630539342 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "c:/texlive/2021/texmf-dist/fonts/map/fontname/texfonts.map" 1630540355 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2021/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1630539923 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -47,7 +49,9 @@
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1630538426 35752 024fb6c41858982481f6968b5fc26508 ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1630538426 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1630538426 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
+  "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1630538426 31809 8670ca339bf94e56da1fc21c80635e2a ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1630538426 32762 7fee39e011c23b3589931effd97b9702 ""
+  "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1630538426 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1630538426 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1630538426 32716 08e384dc442464e7285e891af9f45947 ""
   "c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1630538426 37944 359e864bd06cde3b1cf57bb20757fb06 ""
@@ -69,6 +73,7 @@
   "c:/texlive/2021/texmf-dist/tex/latex/amsmath/amstext.sty" 1630538432 2444 b015525572ea0d0165d6ce81ba5e5259 ""
   "c:/texlive/2021/texmf-dist/tex/latex/base/article.cls" 1630541175 20144 0fe9067680219956678b52f12bdce8ee ""
   "c:/texlive/2021/texmf-dist/tex/latex/base/omlcmr.fd" 1630541175 2470 c2c019f70756763a210c8c4439f55d8a ""
+  "c:/texlive/2021/texmf-dist/tex/latex/base/omscmr.fd" 1630541175 2469 ed49302eacbaebdd899d39dedcd25393 ""
   "c:/texlive/2021/texmf-dist/tex/latex/base/size10.clo" 1630541175 8448 05e1c6a8fc5db344ed9d7aeb299acbce ""
   "c:/texlive/2021/texmf-dist/tex/latex/enumitem/enumitem.sty" 1630540023 51697 f8f08183cd2080d9d18a41432d651dfb ""
   "c:/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1630540046 13886 d1306dcf79a944f6988e688c1785f9ce ""
@@ -92,6 +97,6 @@
   "c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt" 1630544666 2797773 0a4f2f027c3c660d286f461b7d600241 ""
   "c:/texlive/2021/texmf.cnf" 1630544502 713 e69b156964470283e0530f5060668171 ""
   (generated)
-  "MATH5301-MidExam1.log"
   "MATH5301-MidExam1.aux"
   "MATH5301-MidExam1.pdf"
+  "MATH5301-MidExam1.log"
