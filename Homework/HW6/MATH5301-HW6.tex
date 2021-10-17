@@ -37,6 +37,7 @@
 \newtheorem{definition}{Definition}
 \newtheorem{assumption}{Assumption}
 \newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
 
 
 %opening
@@ -93,7 +94,7 @@
 
 \begin{definition}
     for $f: (S_1, d_1) \to (S_2, d_2)$, $f(x)$ is a continuous function iff
-    $$\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \epsilon \implies d_2(f(x),f(y)) < \epsilon$$
+    $$\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(f(x),f(y)) < \epsilon$$
 \end{definition}
 
 %Part a
@@ -102,10 +103,10 @@
     If $f: (S_1,d_1) \to (S_2,d_2)$ is continuous and $U\subset S_1$ is open then $f(U) \subset S_2$ is also open.
     \begin{proof}
         \begin{align*}
-            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \epsilon &\implies d_2(f(x),f(y)) < \delta \ \land \\
+            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta &\implies d_2(f(x),f(y)) < \epsilon \ \land \\
                 &\land \forall_{x \in U} \exists_{\epsilon>0} \st B_\epsilon(x) \subset U \implies\\
                 &\implies \forall_{f(x) \in F(U)} \exists_{\epsilon>0} \st B_\epsilon(f(x)) \subset U\\
-            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \epsilon &\implies d_2(f(x),f(y)) < \delta \land \\
+            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta &\implies d_2(f(x),f(y)) < \delta \land \\
                 &\land \forall_{x \in U} \exists_{\epsilon_1>0} \st \forall_{y \in S_1} d(x,y) < \epsilon_1 \subset U \implies\\
                 &\implies \forall_{f(x) \in F(U)} \exists_{\epsilon_2>0} \st \forall_{f(x) \in f(U)} : \forall_{f(y) \in S_2} : d_2(f(x),f(y)) < \epsilon_2 \subset U
         \end{align*}
@@ -118,7 +119,7 @@
     $f: (S_1,d_1) \to (S_2,d_2)$ is continuous $\iff$ $\forall_{C \subset S_2}$ closed, the set $f^{-1} (C) \subset S_1$ is also closed.
     \begin{proof}
         \begin{align*}
-            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \epsilon &\implies d_2(f(x),f(y)) < \delta \iff\\
+            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta &\implies d_2(f(x),f(y)) < \epsilon \iff\\
             &\iff \forall_{C\subset S_2} : \forall_{x \in C^\complement} \exists_{\epsilon>0} : B_{\epsilon}(x) \in C^\complement \implies\\
             &\implies \forall_{x \in f^{-1}(C)^\complement} \exists_{\epsilon>0} : B_{\epsilon}(x) \in f^{-1}(C)^\complement
         \end{align*}
@@ -147,10 +148,156 @@
     $\forall_{a,b\in\R} \forall_{f,g : S_1 \to S_2}$ continuous $\implies (a f + b g) (x) := a f(x) + b g(x) : S_1 \to S_2$ continuous.
     \begin{proof}
         \begin{align*}
-            \forall_{a,b\in\R} \forall_{f,g : S_1 \to S_2} 
+            \forall_{a,b\in\R} \forall_{f,g : S_1 \to S_2} : &\\
+                &\qty(\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(f(x),f(y)) < \epsilon) \land\\
+                &\land \qty(\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(g(x),g(y)) < \epsilon) \implies\\
+                &\implies \qty(\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(a f(x) + b g(x),a f(y) + b g(y)) < \epsilon)\\
+            \forall_{a,b\in\R} \forall_{f,g : S_1 \to S_2} : &\\
+                &\forall_{x\in S_1} \forall_{\epsilon_{1,2,3}>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies\\
+                &\implies \qty(d_2(f(x),f(y) < \epsilon_1) \land \qty(d_2(g(x),g(y)) < \epsilon_2)) \implies\\
+                    &\qquad \implies d_2(a f(x) + b g(x),a f(y) + b g(y)) < \epsilon_3
         \end{align*}
+        Which by the additive and multiplicative properties of a metric space, along with the triangular inequality, this is clearly true:
+        $$d_2(a f(x) + b g(x), a f(y) + b g(y)) \leq a d_2(f(x),f(y)) + b d_2(g(x),g(y))$$
+        Therefore this statement is true.
     \end{proof}
 \end{theorem}
+
+%Part b
+\subsection{$\forall_{f : S_1 \to S_2}$ continuous and $\forall_{h : S_1 \to \R}$ continuous $\implies (h f) (x) := h(x) \cdot f(x) : S_1 \to S_2$ continuous.}
+\begin{theorem}
+    $\forall_{f : S_1 \to S_2}$ continuous and $\forall_{h : S_1 \to \R}$ continuous $\implies (h f) (x) := h(x) \cdot f(x) : S_1 \to S_2$ continuous.
+    \begin{proof}
+        \begin{align*}
+            &\forall_{f : S_1 \to S_2} : \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(f(x),f(y)) < \epsilon) \land\\
+                &\qquad\land \forall_{h : S_1 \to \R} : \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(h(x),h(y)) < \epsilon) \implies\\
+                &\qquad \qquad \implies \qty(\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(h(x) \cdot f(x),h(y) \cdot f(y)) < \epsilon)\\
+            &\forall_{f : S_1 \to S_2} \land \forall_{h : S_1 \to \R} : \forall_{x\in S_1} \forall_{\epsilon_{1,2,3}>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies\\
+                &\qquad \implies \qty(d_2(f(x),f(y))< \epsilon_1 \land d_2(h(x),h(y)) < \epsilon_2 \implies d_2(h(x) \cdot f(x), h(y) \cdot f(y)) < \epsilon_3)
+        \end{align*}
+        Which by the multiplicative properties of a metric space this is clearly true:
+        $$d_2(h(x) \cdot f(x), h(y) \cdot f(y)) \leq d_2(h(x),h(y)) \cdot d_2(f(x),f(y))$$
+        Therefore this statement is true.
+    \end{proof}
+\end{theorem}
+
+\newpage
+%Part c
+\subsection{$h(x) \neq 0 \forall_{x\in S_1} \implies \frac{1}{h(x)}$ is continuous.}
+Note: assuming $h : S_1 \to \R \backslash \{0\}$ and continuous.
+\begin{theorem}
+    $\forall_{h : S_1 \to \R \backslash \{0\}}$ continuous $\implies (h(x))^{-1} := \frac{1}{h(x)}: S_1 \to \R$ continuous.
+    \begin{proof}
+        \begin{align*}
+            \forall_{h : S_1 \to \R \backslash \{0\}} : 
+                &\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(h(x),h(y)) < \epsilon) \implies\\
+                &\implies \qty(\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2\qty(\frac{1}{h(x)},\frac{1}{h(y)}) < \epsilon)\\
+            \forall_{h : S_1 \to \R \backslash \{0\}} :
+                &\forall_{x\in S_1} \forall_{\epsilon_{1,2}>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta \implies d_2(h(x),h(y)) < \epsilon) \implies\\
+                &\implies d_2(h(x),h(y)) < \epsilon_1 \land d_2\qty(\frac{1}{h(x)},\frac{1}{h(y)})< \epsilon_2
+        \end{align*}
+        Within $(\R \backslash \{0\}, d_2)$, 
+        $$d_2(a,b) < \epsilon_1 \implies \exists_{\epsilon_2>0} : d_2 \qty(\frac{1}{a}, \frac{1}{b}) < \epsilon_2$$
+        Therefore it's true.
+    \end{proof}
+\end{theorem}
+
+
+% Problem 4
+\newpage
+\section{Prove the following statement:}
+If $A$ and $B$ are two closed nonempty disjoint % means A \cap B = \emptyset...
+sets in the metric space (S,d) then there exists a continuous function $\mathcal{X}(x)$ such that $\mathcal{X}(x) = 0$ for all $x \in A$ and $\mathcal{X} = 1$ for all $x \in B$.
+\begin{theorem}
+    $$A, B \neq \emptyset \in (S,d) : A \cap B = \emptyset \implies \exists_{\mathcal{X}: S \to \{0,1\}} \textnormal{continuous} : \qty( \forall_{x \in A} \mathcal{X} = 0) \land \qty(\forall_{x \in B} \mathcal{X} = 1)$$
+    \begin{proof}
+        %Part a
+        Define the distance from the point $x$ to the set $A$ as 
+        $$\rho_A(x) := \inf_{y\in A} d(x,y)$$
+        %Part b
+        \begin{lemma}
+            $$\rho_A(x) = 0 \iff x \in \bar{A}$$
+            \begin{proof}
+                
+                % \begin{align*}
+                %     \rho_A(x) = \forall_{a \in S}\forall_{y \in A} : a \leq d(x,y) = 0 
+                %         &\iff x \in \qty{x \in S \st \forall_{\epsilon>0} B_{\epsilon}(x) \cap A \neq \emptyset}
+                % \end{align*}
+            \end{proof}
+        \end{lemma}
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+% Problem 5
+\newpage
+\section{Which of following sets in $\R^2$ are compact?}
+\begin{definition}
+    Let $(S,d)$ be a metric space with $A \subset S$,
+    \begin{enumerate}
+        \item For $\{U_\alpha\}_{\alpha \in A}, \ U_\alpha \subset S$, is a \textbf{\underline{cover}} of the set $A$ if 
+        $$A \subset \bigcup_{\alpha\in A} U_\alpha$$
+        \item A cover $\{U_\alpha\}_{\alpha \in A}$ of $A$ is an \textbf{\underline{open cover}} if $\forall_{\alpha \in A}$ $U_\alpha$ is an open set.
+        \item $\{V_\beta\}_{\beta\in B}$ is called a \textbf{\underline{subcover}} of $\{U_\alpha\}_{\alpha \in A}$ if
+        \begin{enumerate}
+            \item $\{V_\beta\}_{\beta\in B}$ is a cover of $A$
+            \item $\forall_{\beta \in B} \exists_{\alpha \in A} V_\beta = U_\alpha$
+        \end{enumerate}
+        \item A cover with a finite number of sets is called a \textbf{\underline{finite cover}}.
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    For $A \subset (S,d)$, $A$ is \textbf{\underline{compact}} if for every open cover of $A$ there exists a finite sub cover.
+\end{definition}
+
+%Part a
+\subsection{$A = \qty{(x,y) \st x^2 - y^2 \leq 1}$}
+This set (a cone I believe) is not bounded and therefore no, through contradiction of the necessary (but insufficient) condition of boundedness, it is not compact.
+
+%Part b
+\subsection{$B = \qty{(x,y) \st 0 < x^2 + y^2 \leq 1}$}
+This set is a disk, but because it excludes the origin it is no longer closed which is a necessary (but insufficient) condition of boundedness, therefore it is not compact.
+
+%Part c
+\subsection{$C = \qty{(x,y) \st x^2+y^4 \leq 1}$}
+This set is compact. Although it is technically not a disk, it follows the same principle because it contains its boundary (meaning it is closed), but generally it is both complete and totally bounded, which is equivalent to being compact.
+
+%Part d
+\subsection{$D = \qty{\qty(1,\frac{1}{n}) \st n \in \N} \cup (1,0)$}
+For the one single dimension ($1/n$) it is clear that it is closed and bounded (which are necessary but not sufficient conditions). 
+Similarly, the dimension where 1 = 1 is also both closed and bounded. 
+To prove compactness, one could use the equivalency of compactness with: $\forall_{{a_k}_{k\in \N}} \exists_{{a_{n_k}}} : a_{n_k} \to a \in A$.
+
+% Problem 6
+\newpage
+\section{Let $A \subset S$ be a compact set. Show the following:}
+Note: it is assumed that $B, C \subset S$ as well as I believe that was the intent.
+%Part a
+\subsection{$\partial A$ is compact.}
+When $A$ is compact, it will be closed meaning $\partial A \subset A$. 
+% Additionally, every sequence within $A$ will have a converging subsequence and since $\partial A$ will maintain both its completeness and its totally boundedness. 
+From the original definition of a compact set, it is known that a finite subcover exists around the entirety of the set $A$, and from $\partial A \subset A$ it can be concluded that a finite subcover will exist for this boundary itself; therefore $\partial A$ is compact.
+
+%Part b
+\subsection{For any closed $B$, $A \cap B$ is compact.}
+
+
+
+
+%Part c
+\subsection{For any compact $C$, $A \cup C$ is compact.}
+
+
+
+
+%Part d
+\subsection{Union of infinitely many compact sets may be not compact.}
+One of the necessary (but not sufficient) conditions of a compact set is that it is bounded. If an infinitely many compact sets are structured so that they become unbounded this could violate that necessary condition.
+
 
 
 
