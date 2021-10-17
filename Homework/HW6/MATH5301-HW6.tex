@@ -1,0 +1,158 @@
+\documentclass[]{article}
+
+\usepackage{graphicx}
+
+\usepackage[margin=1in]{geometry}
+
+\setlength\parindent{0pt}
+
+\usepackage{physics}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+
+\usepackage{listings}
+
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand*{\thesection}{Problem \arabic{section}}
+\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
+\newcommand{\divisible}{ \ \vdots \ }
+\newcommand{\st}{\ : \ }
+
+
+% Theorem Definition
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
+
+
+%opening
+
+\title{MATH 5301 Elementary Analysis - Homework 6}
+
+\author{Jonas Wagner}
+
+\date{2021, October 17\textsuperscript{th}}
+
+\begin{document}
+
+\maketitle
+
+% Problem 1
+\section{}
+% Part a
+\subsection{Show that $\forall_{x > 0} \ x\in \R \implies \lim_{n\to \infty} x^{1/n} = 1$}
+
+\begin{definition}
+    for $f : (S_1, d_1) \to (S_2,d_2)$, \\
+    if $a \in \bar{S}_1$ then we say $$\lim_{x\to a} f(x) = b$$ if $$\forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x \in \dot{B}_\delta(a) \subset S_1} \implies f(x) \in B_{\epsilon}(b) \subset S_2$$
+\end{definition}
+
+\begin{theorem}
+    $$\forall_{x > 0} \ x\in \R \implies \lim_{n\to \infty} x^{1/n} = 1$$
+    \begin{proof}
+        \begin{align*}
+            \forall_{x > 0} \ x\in \R 
+                &\implies \lim_{n\to \infty} f(x) = x^{1/n} = 1 &\\
+            &\implies \forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x \in \dot{B}_\delta(a)} \implies f(x) \in B_{\epsilon}(b)\\
+            &\implies \forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x\in \R} : d_1 (a, x) < \delta(\epsilon) \implies x^{1/n} \in \R : d_2(b,x^{1/n}) < \epsilon
+        \end{align*}
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 2
+\newpage
+\section{True or False?}
+
+\begin{definition}
+    for $f: (S_1, d_1) \to (S_2, d_2)$, $f(x)$ is a continuous function iff
+    $$\forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \epsilon \implies d_2(f(x),f(y)) < \epsilon$$
+\end{definition}
+
+%Part a
+\subsection{If $f: (S_1,d_1) \to (S_2,d_2)$ is continuous and $U\subset S_1$ is open then $f(U) \subset S_2$ is also open}
+\begin{theorem}
+    If $f: (S_1,d_1) \to (S_2,d_2)$ is continuous and $U\subset S_1$ is open then $f(U) \subset S_2$ is also open.
+    \begin{proof}
+        \begin{align*}
+            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \epsilon &\implies d_2(f(x),f(y)) < \delta \ \land \\
+                &\land \forall_{x \in U} \exists_{\epsilon>0} \st B_\epsilon(x) \subset U \implies\\
+                &\implies \forall_{f(x) \in F(U)} \exists_{\epsilon>0} \st B_\epsilon(f(x)) \subset U\\
+            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \epsilon &\implies d_2(f(x),f(y)) < \delta \land \\
+                &\land \forall_{x \in U} \exists_{\epsilon_1>0} \st \forall_{y \in S_1} d(x,y) < \epsilon_1 \subset U \implies\\
+                &\implies \forall_{f(x) \in F(U)} \exists_{\epsilon_2>0} \st \forall_{f(x) \in f(U)} : \forall_{f(y) \in S_2} : d_2(f(x),f(y)) < \epsilon_2 \subset U
+        \end{align*}
+        which is clearly true.
+    \end{proof}
+\end{theorem}
+
+\subsection{$f: (S_1,d_1) \to (S_2,d_2)$ is continuous $\iff$ $\forall_{C \subset S_2}$ closed, the set $f^{-1} (C) \subset S_1$ is also closed.}
+\begin{theorem}
+    $f: (S_1,d_1) \to (S_2,d_2)$ is continuous $\iff$ $\forall_{C \subset S_2}$ closed, the set $f^{-1} (C) \subset S_1$ is also closed.
+    \begin{proof}
+        \begin{align*}
+            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \epsilon &\implies d_2(f(x),f(y)) < \delta \iff\\
+            &\iff \forall_{C\subset S_2} : \forall_{x \in C^\complement} \exists_{\epsilon>0} : B_{\epsilon}(x) \in C^\complement \implies\\
+            &\implies \forall_{x \in f^{-1}(C)^\complement} \exists_{\epsilon>0} : B_{\epsilon}(x) \in f^{-1}(C)^\complement
+        \end{align*}
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 3
+\newpage
+\section{Prove the following properties of continuous functions:}
+
+%Part a
+\subsection{$\forall_{a,b\in\R} \forall_{f,g : S_1 \to S_2}$ continuous $\implies (a f + b g) (x) := a f(x) + b g(x) : S_1 \to S_2$ continuous.}
+\begin{theorem}
+    $\forall_{a,b\in\R} \forall_{f,g : S_1 \to S_2}$ continuous $\implies (a f + b g) (x) := a f(x) + b g(x) : S_1 \to S_2$ continuous.
+    \begin{proof}
+        \begin{align*}
+            \forall_{a,b\in\R} \forall_{f,g : S_1 \to S_2} 
+        \end{align*}
+    \end{proof}
+\end{theorem}
+
+
+
+
+\end{document}
