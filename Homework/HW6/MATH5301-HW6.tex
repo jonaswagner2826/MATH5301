@@ -59,18 +59,26 @@
 
 \begin{definition}
     for $f : (S_1, d_1) \to (S_2,d_2)$, \\
-    if $a \in \bar{S}_1$ then we say $$\lim_{x\to a} f(x) = b$$ if $$\forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x \in \dot{B}_\delta(a) \subset S_1} \implies f(x) \in B_{\epsilon}(b) \subset S_2$$
+    if $a \in \bar{S}_1$ then we say 
+    $$\lim_{x\to a} f(x) = b$$ if 
+    $$\forall_{\epsilon>0} \exists_{\delta>0} \forall_{x \in S_1} : 0 < d_1(a,x) < \delta \implies d_2(f(x),b) < \epsilon$$
+    or written in Ball form:
+    $$\forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x \in \dot{B}_\delta(a) \subset S_1} \implies f(x) \in B_{\epsilon}(b) \subset S_2$$
 \end{definition}
 
 \begin{theorem}
     $$\forall_{x > 0} \ x\in \R \implies \lim_{n\to \infty} x^{1/n} = 1$$
     \begin{proof}
         \begin{align*}
-            \forall_{x > 0} \ x\in \R 
-                &\implies \lim_{n\to \infty} f(x) = x^{1/n} = 1 &\\
-            &\implies \forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x \in \dot{B}_\delta(a)} \implies f(x) \in B_{\epsilon}(b)\\
-            &\implies \forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x\in \R} : d_1 (a, x) < \delta(\epsilon) \implies x^{1/n} \in \R : d_2(b,x^{1/n}) < \epsilon
+            \forall_{x > 0} \ x\in \R = \forall_{x \in \R_+}
+            &\implies \forall_{\epsilon>0} \exists_{\delta>0} \forall_{x \in S_1} : 0 < d_1(a,x) < \delta \implies d_2(f(x),b) < \epsilon
         \end{align*}
+        % \begin{align*}
+        %     \forall_{x > 0} \ x\in \R 
+        %         &\implies \lim_{n\to \infty} f(x) = x^{1/n} = 1 &\\
+        %     &\implies \forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x \in \dot{B}_\delta(a)} \implies f(x) \in B_{\epsilon}(b)\\
+        %     &\implies \forall_{\epsilon>0} \exists_{\delta(\epsilon) > 0} \st \forall_{x\in \R} : d_1 (a, x) < \delta(\epsilon) \implies x^{1/n} \in \R : d_2(b,x^{1/n}) < \epsilon
+        % \end{align*}
     \end{proof}
 \end{theorem}
 
@@ -78,10 +86,33 @@
 
 
 
+%Part b
+\subsection{Show that for any bounded sequence $\{a_n\}$ and any sequence $\{b_n\}$, converging to zero, the sequence $\{a_n b_n\}$ converges to zero.}
+\begin{theorem}
+    $\forall \{a_n\}$ bounded $\land$ $\forall \{b_n\}$ converging to zero $\implies$ $\{a_n b_n \}$ converges to zero.
+    \begin{proof}
+        \begin{align*}
+            \qty(\exists_{N_1>0} \st \forall_{n\in\N} a_n < N_1) \land \qty(\forall_{\epsilon>0} \exists_{N_2(\epsilon) > 0}  \forall_{n > N_2} b_n < \epsilon) \implies \forall_{\epsilon>0} \exists_{N_3(\epsilon) > 0}  \forall_{n > N_3} a_n b_n < \epsilon\\
+            \forall_{\epsilon_{2,3}>0} \exists_{N_1,N_2,N_3 > 0} \st \forall{n > \max(N_2,N_3)} \qty((a_n < N_1) \land (b_n < \epsilon_{2}) \implies a_n b_n < \epsilon_3)
+        \end{align*}
+        Which clearly implies $\{a_n b_n\}$ converges to zero.
+    \end{proof}
+\end{theorem}
+
+
+%Part c
+\subsection{Find the limit $\lim_{n\to\infty} a_n$. Prove the convergence.}
+$$a_n = \sqrt{2 + \sqrt{2 + \sqrt{2 + \cdots + \sqrt{2}}}}$$
+
+This is a pretty simple that it is just $2$. This true for any of a similar type of problem.
 
 
 
 
+%Part d
+\subsection{Find the limit $\lim_{n\to\infty} a_n$ where $a_n = 2 + \cfrac{1}{2+\cfrac{1}{\ddots + \frac{1}{2}}}$. Prove the convergence.}
+
+This one just converges to around $2.4$... not that that is the answer, I just ran out of time to do correctly...
 
 
 
@@ -114,26 +145,57 @@
     \end{proof}
 \end{theorem}
 
+%Part b
 \subsection{$f: (S_1,d_1) \to (S_2,d_2)$ is continuous $\iff$ $\forall_{C \subset S_2}$ closed, the set $f^{-1} (C) \subset S_1$ is also closed.}
 \begin{theorem}
     $f: (S_1,d_1) \to (S_2,d_2)$ is continuous $\iff$ $\forall_{C \subset S_2}$ closed, the set $f^{-1} (C) \subset S_1$ is also closed.
     \begin{proof}
         \begin{align*}
-            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta &\implies d_2(f(x),f(y)) < \epsilon \iff\\
-            &\iff \forall_{C\subset S_2} : \forall_{x \in C^\complement} \exists_{\epsilon>0} : B_{\epsilon}(x) \in C^\complement \implies\\
-            &\implies \forall_{x \in f^{-1}(C)^\complement} \exists_{\epsilon>0} : B_{\epsilon}(x) \in f^{-1}(C)^\complement
+            \forall_{x\in S_1} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in S_1} : d_1(x,y) < \delta 
+                &\implies d_2(f(x),f(y)) < \epsilon \iff\\
+                &\iff \forall_{C\subset S_2} : \lnot \textnormal{open} \implies f^{-1}(C) \lnot \textnormal{open}
+                &\iff \forall_{c \in C \subset S_2} \exists_{! x \in f^{-1}(C) \subset S_1} : f(x) = c
+                % &\iff \forall_{C\subset S_2} : \forall_{x \in C^\complement} \exists_{\epsilon>0} : B_{\epsilon}(x) \in C^\complement \implies\\
+                % &\implies \forall_{x \in f^{-1}(C)^\complement} \exists_{\epsilon>0} : B_{\epsilon}(x) \in f^{-1}(C)^\complement\\
         \end{align*}
+        By definition of a function, $\forall_{y \in Y} \exists_{! x \in f^{-1}(Y)} : f(x) = y$ so there exists a one-to-one mapping and since $f$ is continuous it therefore can maintain closeness. So true.
     \end{proof}
 \end{theorem}
 
+%Part c
+\subsection{If $f,g: (S,d) \to \R$ continuous $\implies m(x) := \max(f(x),g(x))$ and $n(x) := \min(f(x),g(x))$ are both continuous.}
+\begin{theorem}
+    If $f,g: (S,d) \to \R$ continuous $\implies m(x) := \max(f(x),g(x))$ and $n(x) := \min(f(x),g(x))$ are both continuous.
+    \begin{proof}
+        \begin{align*}
+            \forall_{x,y\in S} \forall_{\epsilon_{1,2}>0} \exists_{\delta(x,\epsilon)>0} : d(x,y) < \delta 
+                &\implies d(f(x),f(y)) < \epsilon_1 \land d(g(x),g(y)) < \epsilon_2 \implies\\
+            &\implies \forall_{x,y\in S} \forall_{\epsilon_{3,4}>0} \exists_{\delta(x,\epsilon)>0} : d(x,y) < \delta \implies\\
+            &\implies d(\max(f(x),g(x)),\max(f(y),g(y))) < \epsilon_3 \land\\
+            &\qquad \land d(\min(f(x),g(x)),\min(f(y),g(y))) < \epsilon_4
+        \end{align*}
+        Upon inspection, $\epsilon_3, \epsilon_4 \leq \epsilon_1 + \epsilon_2$ at the worst case (at least thats what I learned when doing uncertainty calculations in the past...), therefore the implication is obvious.
+    \end{proof}    
+\end{theorem}
 
-
-
-
-
-
-
-
+\newpage
+%Part d
+\subsection{If $f: (S,d) \to \R$ continuous the for any Cauchy sequence $\{x_n\} \in S$, the sequence $f(x_n)$ is a Cauchy sequence in $\R$}
+\begin{definition}
+    For the metric space $(S,d)$, a sequence $\{x_n\}$ is considered a \textbf{\underline{Cauchy Sequence}} if 
+    $$\forall_{\epsilon>0} \exists_{N\in\N} \st \forall_{m,n > N} d(x_m,x_n) < \epsilon$$
+\end{definition}
+\begin{theorem}
+    If $f: (S,d) \to \R$ continuous the for any Cauchy sequence $\{x_n\} \in S$, the sequence $f(x_n)$ is a Cauchy sequence in $\R$.
+    \begin{proof}
+        \begin{align*}
+            \forall_{x,y\in S} \forall_{\epsilon_1>0} \exists_{\delta(x,\epsilon_1)>0} : d(x,y) < \delta \implies d(f(x),f(y)) < \epsilon_1 \implies\\
+            \implies(\forall_{\epsilon_2>0} \exists_{N\in\N} \st \forall_{m,n > N} d(x_m,x_n) < \epsilon_2)\implies\\
+            \implies(\forall_{\epsilon_3>0} \exists_{N\in\N} \st \forall_{m,n > N} d(f(x_n),f(x_m)) < \epsilon_3)
+        \end{align*}
+        From the continuous implication that: $\delta \to 0 \implies d(f(x),f(y)) \to 0$, the fact that $\{x_n\}$ converges mean that $\epsilon_2 \to 0 \implies d(f(x_n),f(x_m)) \to 0$. Therefore the sequence $\{f(x_n)\}$ would be considered a Cauchy sequence. 
+    \end{proof}
+\end{theorem}
 
 
 
@@ -208,23 +270,45 @@ Note: assuming $h : S_1 \to \R \backslash \{0\}$ and continuous.
 \section{Prove the following statement:}
 If $A$ and $B$ are two closed nonempty disjoint % means A \cap B = \emptyset...
 sets in the metric space (S,d) then there exists a continuous function $\mathcal{X}(x)$ such that $\mathcal{X}(x) = 0$ for all $x \in A$ and $\mathcal{X} = 1$ for all $x \in B$.
+\begin{definition}
+    A function $f : (S_1, d_1) \to (S_2, d_2)$ is considered \textbf{\underline{Lipschitz Continous Function}} if 
+    $$\exists_{L>0} : \forall_{x,y \in S_1} d_2 (f(x),f(y)) \leq L d_1(x,y)$$
+\end{definition}
+
+
 \begin{theorem}
-    $$A, B \neq \emptyset \in (S,d) : A \cap B = \emptyset \implies \exists_{\mathcal{X}: S \to \{0,1\}} \textnormal{continuous} : \qty( \forall_{x \in A} \mathcal{X} = 0) \land \qty(\forall_{x \in B} \mathcal{X} = 1)$$
+    $$A, B \neq \emptyset \in (S,d) : A \cap B = \emptyset \implies \exists_{\mathcal{X}: S \to \R} \textnormal{continuous} : \qty( \forall_{x \in A} \mathcal{X} = 0) \land \qty(\forall_{x \in B} \mathcal{X} = 1)$$
     \begin{proof}
         %Part a
         Define the distance from the point $x$ to the set $A$ as 
         $$\rho_A(x) := \inf_{y\in A} d(x,y)$$
         %Part b
         \begin{lemma}
-            $$\rho_A(x) = 0 \iff x \in \bar{A}$$
+            $$\rho_A(x) = 0 \iff x \in \bar{A}$$ % 0 if in closure... (compliment of interior)
             \begin{proof}
-                
-                % \begin{align*}
-                %     \rho_A(x) = \forall_{a \in S}\forall_{y \in A} : a \leq d(x,y) = 0 
-                %         &\iff x \in \qty{x \in S \st \forall_{\epsilon>0} B_{\epsilon}(x) \cap A \neq \emptyset}
-                % \end{align*}
+                The lower bound of $d(x,y)$ for $y\in A$ will never be zero unless $x \in \bar{A}$, so clearly the $\inf$ will be zero if and only if $x \in \bar{A}$.
             \end{proof}
         \end{lemma}
+        %Part c
+        \begin{lemma}
+            $\rho_A(x)$ is lipshits with $L = 1$
+            \begin{proof}
+                \begin{align*}
+                    \exists_{L>0} : \forall_{x,y \in S} d(\rho_A(x),\rho_A(y)) \leq L d(x,y)\\
+                    \intertext{Let $L=1$,}
+                    \forall_{x,y \in S} d(\rho_A(x),\rho_A(y)) \leq d(x,y)\\
+                \end{align*}
+                By definition of $\rho_A(x)$,
+                $$\rho_A(x) = \inf_{y\in A} d(x,y) \leq d(x,y) \forall y \in A$$
+                Therefore, $d(\rho_A(x),\rho_A(y)) \leq d(x,y)$ and $\rho_A(x)$ is lipshits with $L=1$.
+            \end{proof}
+        \end{lemma}
+        %Part d
+        Consider $\mathcal{X}(x) = \cfrac{\rho_B(x)}{\rho_A(x) + \rho_B(x)}$,
+        Although I believe it has merit I will actually be using the similar version: 
+        $\mathcal{X}(x) = \cfrac{\rho_A(x)}{\rho_A(x) + \rho_B(x)}$
+        From lemma 2 it is clear that $\rho_A(x)$ and $\rho_B(x)$ are Lipschitz and therefore this rational combination of these will still be continuous within its defined regions.
+        From Lemma 1, it is clear that  $\cfrac{\rho_A(x)}{\rho_A(x) + \rho_B(x)} = 0 \forall_{x\in \bar{A}} and \cfrac{\rho_A(x)}{\rho_A(x) + \rho_B(x)} = 1 \forall x \in \bar{B}$.
     \end{proof}
 \end{theorem}
 
@@ -279,27 +363,25 @@ Note: it is assumed that $B, C \subset S$ as well as I believe that was the inte
 %Part a
 \subsection{$\partial A$ is compact.}
 When $A$ is compact, it will be closed meaning $\partial A \subset A$. 
-% Additionally, every sequence within $A$ will have a converging subsequence and since $\partial A$ will maintain both its completeness and its totally boundedness. 
+Additionally, every sequence within $A$ will have a converging subsequence and since $\partial A$ will maintain both its completeness and its totally boundedness. 
 From the original definition of a compact set, it is known that a finite subcover exists around the entirety of the set $A$, and from $\partial A \subset A$ it can be concluded that a finite subcover will exist for this boundary itself; therefore $\partial A$ is compact.
 
 %Part b
 \subsection{For any closed $B$, $A \cap B$ is compact.}
-
-
-
+When $A$ is compact, it will also be closed and so since $B$ is closed, $A \cap B$ is also closed.
+Additionally, by definition of an intersection of sets, $A \cap B \subset A$.
+Since $A$ is compact, it is both complete and totally bounded which I believe means that closed subsets of $A$ will remain complete and totally bounded.
+Since $A \cap B$ is closed and $A \cap B \subset A$, $A \cap B$ is complete and totally bounded $\iff$ $A\cap B$ is compact.
 
 %Part c
 \subsection{For any compact $C$, $A \cup C$ is compact.}
-
-
-
+From the original definition of a compact set, it is known that a finite subcover exists around the entirety of sets $A$ and $C$. 
+$A \cup C$ will be closed (because it is a finite union of closed sets) and I believe the completeness and boundedness from each compact set will be maintained.
+Since both $A$ and $C$ individually were covered by finite subcovers, $A \cup C$ could then also be covered by a finite number of subcovers.
+Therefore $A \cup C$ satisfies the criteria to be a compact set.
 
 %Part d
 \subsection{Union of infinitely many compact sets may be not compact.}
 One of the necessary (but not sufficient) conditions of a compact set is that it is bounded. If an infinitely many compact sets are structured so that they become unbounded this could violate that necessary condition.
-
-
-
-
 
 \end{document}
