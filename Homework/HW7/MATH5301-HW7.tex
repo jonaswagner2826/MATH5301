@@ -1,0 +1,523 @@
+\documentclass[]{article}
+
+\usepackage{graphicx}
+
+\usepackage[margin=1in]{geometry}
+
+\setlength\parindent{0pt}
+
+\usepackage{physics}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{mathtools}
+
+\usepackage{listings}
+
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand*{\thesection}{Problem \arabic{section}}
+\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
+\newcommand{\divisible}{ \ \vdots \ }
+\newcommand{\st}{\ : \ }
+
+
+% Theorem Definition
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+
+%opening
+
+\title{MATH 5301 Elementary Analysis - Homework 6}
+
+\author{Jonas Wagner}
+
+\date{2021, October 17\textsuperscript{th}}
+
+\begin{document}
+
+\maketitle
+
+% Problem 1 ----------------------------------------------
+\section{Provide examples of the sets $A,B \subset \R^2$ so that:}
+
+\begin{definition}
+    Set $A$ is \emph{connected} if it is not disconnected.
+\end{definition}
+\begin{definition}
+    Set $A$ is \emph{disconnected} if $\forall U, V$ - open: 
+    \begin{enumerate}
+        \item $U \cap A \neq \emptyset$, $V \cap A \neq \emptyset$
+        \item $\qty(U \cap V) \cap A \neq \emptyset$ \quad \underline{Note:} this implies $U \neq \emptyset$ and $V \neq \emptyset$
+        \item $A \subset U \cup V \neq \emptyset$
+    \end{enumerate}
+\end{definition}
+
+%Part a
+\subsection{$A$ and $B$ are connected but $A \cup B$ is not.}
+Sets $A$ and $B$ are individually connected but that just aren't near each other. An example are these open balls:
+\begin{align*}
+    A = \mathcal{B}_{r}((0,0))
+        &:= \qty{(x,y)\in\R \st x^2 + y^2 < r^2}\\
+    B = \mathcal{B}_{r}((-5r,5r))
+        &:= \qty{(x,y)\in\R \st (x+5r)^2 + (y-5r)^2 < r^2}
+\end{align*}
+
+%Part b
+\subsection{$A$ and $B$ are connected but $A \cap B$ is not.}
+Sets $A$ and $B$ are individually connected, but they intersect in two areas resulting in a disjoint intersection... Such as this donut and square sets:
+\begin{align*}
+    A = \mathcal{B}^{(2)}_{R}((0,0)) \backslash \mathcal{B}^{(2)}_{r}((0,0))
+        &= \qty{(x,y)\in\R \st r^2 < x^2 + y^2 < R^2}\\
+    B = \mathcal{B}^{(\infty)}_{r}((0,0))
+        &= \qty{(x,y) \in \R \st x < r \land y < r}
+\end{align*}
+
+%Part c
+\subsection{$A$ and $B$ are not connected but $A \cup B$ is connected.}
+$A$ and $B$ individually are disjoint shapes but each individual disjointed part intersects with one from the other set. An example would be a couple of disjoint (then connected when a union) regions.
+\begin{align*}
+    A &:= \qty{(x,y) \in \R \st x \in [-1,0] \cup [1,2] \land y \in [-2,2]}\\
+    B &:= \qty{(x,y) \in \R \st x \in [-2,1.25] \cup [1.75,4] \land y \in [-1,3]}
+\end{align*}
+
+%Part d
+\subsection{$A$ and $B$ are not connected but $A \cap B$ is connected.}
+$A$ and $B$ individually are disjoint shapes, there is then only one connected region where they intersect. An example is two overlapping regions, each with random other disjoint parts.
+\begin{align*}
+    A &:= \qty{(x,y) \in \R \st x \in [0,1] \cup [15,30], y \in [0,1]}\\
+    B &:= \qty{(x,y) \in \R \st x \in [-1, 1] \cup [-15,-20], y \in [0,1]}
+\end{align*}
+
+%Part e
+\subsection{$A$ and $B$ are not connected but $A \ \backslash \ B$ is connected.}
+$A$ and $B$ individually are disjoint shapes, with a part of $B$ covering all but one disjoint region of $A$. An example is a two overlapping regions with disjoint parts and $A$ having one (only one) disjoint part not fully covered by $B$.
+\begin{align*}
+    A &:= \qty{(x,y) \in \R \st x \in [0,1] \cup [15,30], y \in [0,1]}\\
+    B &:= \qty{(x,y) \in \R \st x \in [-1, 0.5] \cup [15,30], y \in [0,1]}
+\end{align*}
+
+
+% Problem 2 ----------------------------------------------
+\newpage
+\section{}
+%Part a
+\subsection{Prove that every monotone bounded sequence in $\R$ converge.}
+\begin{definition}
+    The function $f : \R \to \R$ is called \emph{monotone} if and only if it is either entirely non-increasing or non-decreasing.
+    \begin{enumerate}
+        \item $f$ is \emph{non-decreasing} if $\forall_{x,y \in \R} x \leq y \implies f(x) \leq f(y)$.
+        \item $f$ is \emph{non-increasing} if $\forall_{x,y \in \R} x \leq y \implies f(x) \geq f(y)$.
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    The function $f : \R \to \R$ is called \emph{bounded} if 
+    \[\exists_{N\in \R} : \forall_{x\in\R} \ \abs{f(x)} \leq N\]
+\end{definition}
+\begin{definition}
+    A sequence $\{a_n\}$ is said to \emph{converge} to limit $a$ if 
+    \[
+        \forall_{\epsilon>0} \exists_{N(\epsilon)} : \forall_{n>N} \abs{a_n - a} < \epsilon 
+    \]
+\end{definition}
+\begin{theorem}
+    Every monotone bounded sequence in $\R$ converges.
+    \begin{proof}
+        Define sequence $\{a_n\}$ bounded and monotone. (i.e)
+        \[\qty(\qty(\forall_{n,m\in \N : m > n} a_n \geq a_m) 
+            \lor \qty(\forall_{n,m\in \N : m > n} a_n \leq a_m))
+            \land \qty(\exists_{N \in \R} \forall_{n\in\N} \abs{a_n} \leq N)
+        \]
+        Taking only the positive case (non-decreasing and bounded from above), a proof can be made without loss of generality (as thats how $\abs{\cdot}$ works...).
+        \begin{align*}
+            \qty(\forall_{n,m\in \N : n>m} a_n \leq a_m) 
+                \land \qty(\exists_{a \in \R} \forall_{n\in\N} \abs{a_n} \leq a)
+                &\implies \forall_{\epsilon>0} \exists_{N(\epsilon)} : \forall_{n>N} \abs{a_n - a} < \epsilon\\
+            \exists_{a \in \R} \forall_{n,m \in \N, n > m} a_n \leq a_m \leq a  
+                &\implies \forall_{\epsilon>0} \exists_{N(\epsilon)} \forall_{n>N} a - a_n < \epsilon\\
+            \forall_{\epsilon>0} \exists_{N(\epsilon)} \exists_{a \in \R} \forall_{n,m \in \N, n > m > N} a_n \leq a_m \leq a  
+                &\implies  a - a_n < \epsilon
+        \end{align*}
+        Clearly since the sequence is non-decreasing and bounded from above it will converge to the upper boundary.\\
+        This can then be applied again for below to fully prove this.
+    \end{proof}
+\end{theorem}
+
+%Part b
+\subsection{Provide an example of the set $A \in \R$ having exactly four limit points.}
+\begin{definition}
+    For a set $A \subset S$ in metric space $(S,d)$, $x \in S$ is called a \emph{limit point} of $A$ if 
+    \[\forall_{\epsilon>0}\exists_{y\in A} : 0 < d(x,y) < \epsilon\]
+\end{definition}
+
+Define $A$ as a simple union of simple single limit point sets:
+\[A := \{\frac{1}{n}, n \in \N\} 
+    \cup \{\sqrt{2} + \frac{1}{n}, n \in \N\}
+    \cup \{\pi + \frac{1}{n}, n \in \N\}
+    \cup \{e + \frac{1}{n}, n \in \N\}
+\]
+In this case the limit points are: $0$, $\sqrt{2}$, $\pi$, and $e$.
+
+
+%Part c
+\subsection{Provide an example of a sequence $\{a_n\}$, so that every point in the interval $[2019,2021]$ is a limit point of it.}
+
+Because sinusoidal functions are fun, lets use:
+\[\{a_n\} := \{a_n = 2000 + \sin(n), \ n = 1, 2, \dots\}\]
+
+
+% Problem 3 ----------------------------------------------
+\newpage
+\section{}
+%Part a
+\subsection{}
+Provide an example of a sequence $\{a_n\}$ so that $a_n$ diverges, but $\lim_{n\to\infty} (a_n - a_{2n}) = 0$.
+
+This is perhaps going too fun with it, but how about:
+\[
+    \{a_n\} := \{a_n = 
+    \begin{cases}
+        a_{n/2} + \frac{1}{n} &n \divisible 2\\
+        n^2 &\text{else}
+    \end{cases}\}
+\]
+
+%Part b
+\subsection{}
+Provide an example of two sequences $\{a_n\}$ and $\{b_n\}$ so that
+    
+\[
+    \qty(\liminf_{n\to\infty} {a_n} + \liminf_{n\to\infty} {b_n}) 
+    < \liminf_{n\to\infty} (a_n + b_n)
+    < \qty(\liminf_{n\to\infty} {a_n} + \limsup_{n\to\infty} {b_n})
+    < \limsup_{n\to\infty} (a_n + b_n)
+    < \qty(\limsup_{n\to\infty} {a_n} + \limsup_{n\to\infty} {b_n})
+\]
+
+\begin{definition}
+    A \emph{Limit Superior}, denoted as $\limsup_{n\to\infty}$, is the limit of an superior function on the extremes of a sequence. This is defined by 
+    \[\limsup_{n\to\infty} x_n := \lim_{n\to\infty} \qty(\sup_{m\geq n}x_m)\]
+\end{definition}
+\begin{definition}
+A \emph{Limit Inferior}, denoted as $\liminf_{n\to\infty}$, is the limit of an inferior function on the extremes of a sequence. This is defined by 
+    \[\liminf_{n\to\infty} x_n := \lim_{n\to\infty} \qty(\inf_{m\geq n}x_m)\]
+\end{definition}
+
+Defining two sinusoidal functions with the same frequency but with a phase shift to incur the strictness requirements.
+\begin{align*}
+    \{a_n\} := \{a_n = \cos(\omega_1 n + \theta_1)\}_{n \in \N}\\
+    \{b_n\} := \{b_n = \cos(\omega_2 n + \theta_2)\}_{n \in \N}
+\end{align*}
+with $\omega_1 = \omega_2 = \frac{\pi}{25}$, $\theta_1 = 0$, and $\theta_2 = \frac{\pi}{8}$.
+
+
+
+
+% Problem 4 ----------------------------------------------
+\newpage
+\section{}
+Show the equivalence of the norms $\norm{\cdot}_1,\norm{\cdot}_2,\norm{\cdot}_p, p>1$ and $\norm{\cdot}_\infty$ on $\R^n$.
+\begin{definition}
+    A \emph{norm} is a function $\norm{\cdot} : S \to \R_+$ satisfying:
+    \begin{enumerate}
+        \item $\norm{\va{x}} > 0, \ \va{x} \neq 0$
+        \item $\norm{\lambda \va{x}} = \abs{\lambda} \norm{\va{x}}$
+        \item $\norm{\va{x} + \va{y}} \leq \norm{\va{x}} + \norm{\va{y}}$
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    For $\norm{\cdot}_a, \norm{\cdot}_b$ on $S$, 
+    $\norm{\cdot}_a$ is said to be \emph{stronger} then $\norm{\cdot}_b$ if 
+    \[\forall \{x_n\} \subset S \st x_n \xrightarrow[d_a]{} x \implies x_n \xrightarrow[d_b]{} x\]
+    Which is equivalent to 
+\end{definition}
+\begin{definition}
+    $\norm{\cdot}_a$ and $\norm{\cdot}_b$ are said to be \emph{equivalent},  $\norm{\cdot}_a \sim \norm{\cdot}_b$,
+    if $\norm{\cdot}_a$ is stronger then $\norm{\cdot}_b$ 
+    and $\norm{\cdot}_b$ is stronger then $\norm{\cdot}_a$. 
+    Additionally, the following is also true: 
+    \[
+        \norm{\cdot}_a \sim \norm{\cdot}_b 
+            \implies \exists{\alpha,\beta \in \R_{>0}} : 
+            \forall_{x\in S} \alpha \norm{\cdot}_b \leq \norm{\cdot}_a \leq \beta \norm{x}_b
+    \]
+\end{definition}
+
+\begin{definition} The standard norms are defined as
+    \begin{enumerate}
+        \item $\norm{\cdot}_1 := \norm{x}_1 = \sum_{i=1}^n \abs{x_i} = \abs{x_1} + \abs{x_2} + \dots + \abs{x_n}$
+        \item $\norm{\cdot}_2 := \norm{x}_2 = \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2} = \qty(\abs{x_1}^2 + \abs{x_2}^2 + \dots + \abs{x_n}^2)^{1/2}$
+        \item $\norm{\cdot}_p := \norm{x}_p = \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} =\qty(\abs{x_1}^p + \abs{x_2}^p + \dots + \abs{x_n}^p)^{1/p}, \ p > 1$
+        \item $\norm{\cdot}_\infty := \norm{x}_\infty = \max_{i=1}^n \abs{x_i} = \max(\abs{x_1}, \abs{x_2}, \dots, \abs{x_n})$
+    \end{enumerate}
+\end{definition}
+
+
+\begin{theorem}
+    The norms $\norm{\cdot}_1,\norm{\cdot}_2,\norm{\cdot}_p,$ and $\norm{\cdot}_\infty$ are all equivalent on $\R^n$.
+    \begin{proof}
+        % 1-norm ~ 2-norm
+        \begin{lemma}
+            $\norm{\cdot}_1$ is equivalent to $\norm{\cdot}_2$
+            \begin{proof}
+                \begin{multline*} 
+                    \norm{\cdot}_1 \sim \norm{\cdot}_2 
+                        \implies \exists{\alpha,\beta \in \R_{>0}} \st \forall_{x\in \R}
+                        \alpha \norm{x}_2 \leq \norm{x}_1 \leq \beta \norm{x}_2\\
+                    \alpha \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}\\
+                    \qty(\alpha \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2})^2 
+                        \leq \qty(\sum_{i=1}^n \abs{x_i})^2 
+                        \leq \qty(\beta \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2})^2\\
+                    \alpha^2 \sum_{i=1}^n \abs{x_i}^2 
+                        \leq \qty(\sum_{i=1}^n \abs{x_i}) \qty(\sum_{j=1}^n \abs{x_j}) 
+                        \leq \beta^2 \sum_{i=1}^n \abs{x_i}^2\\
+                    % \alpha^2 \sum_{i=1}^n \abs{x_i}^2 
+                    %     \leq \qty(\sum_{i=1}^n (\abs{x_i}^2)^{1/2}) \qty(\sum_{j=1}^n (\abs{x_j}^2)^{1/2}) 
+                    %     \leq \beta^2 \sum_{i=1}^n \abs{x_i}^2\\
+                \end{multline*}
+                From the Cauchy-Schwartz inequality $(\sum_{i=1}^n u_i v_i)^2 \leq (\sum_{i=1}^n u_i^2) (\sum_{i=1}^n v_i^2)$
+                \begin{multline*}
+                    \alpha^2 \sum_{i=1}^n \abs{x_i}^2 
+                        \leq \sum_{i=1}^n \abs{x_i x_i}
+                        \leq \sum_{i=1}^n \abs{x_i}^2
+                        \leq \qty(\sum_{i=1}^n \abs{x_i}) \qty(\sum_{j=1}^n \abs{x_j}) 
+                        \leq \qty(\sum_{i=1}^n \abs{x_i})^2
+                        \leq \beta^2 \sum_{i=1}^n \abs{x_i}^2\\
+                \end{multline*}
+                Clearly, this is true for when $\alpha \in (0,1]$ and $\beta \in [1,\infty)$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_2$.
+            \end{proof}
+        \end{lemma}
+    %     % \newpage
+    %     % 1-norm ~ p-norm
+    %     \begin{lemma}
+    %         $\norm{\cdot}_1$ is equivalent to $\norm{\cdot}_p$
+    %         \begin{proof}
+    %             \begin{multline*} 
+    %                 \norm{\cdot}_1 \sim \norm{\cdot}_p 
+    %                     \implies \exists{\alpha,\beta \in \R_{>0}} \st \forall_{x\in \R}
+    %                     \alpha \norm{x}_p \leq \norm{x}_1 \leq \beta \norm{x}_p\\
+    %                 \alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
+    %                 \qty(\alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} \leq \sum_{i=1}^n \abs{x_i}) 
+    %                     \land \qty(\sum_{i=1}^n \abs{x_i} \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p})\\
+    %                 \qty(\qty(\qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p})^p \leq \qty(\frac{1}{\alpha} \sum_{i=1}^n \abs{x_i})^p)
+    %                     \land \qty(\qty(\frac{1}{\beta} \sum_{i=1}^n \abs{x_i})^p \leq \qty(\qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p})^p)\\
+    %                 \qty(\sum_{i=1}^n \abs{x_i}^p \leq \sum_{i=1}^n \frac{1}{\alpha^p}\abs{x_i}^p)
+    %                     \land \qty(\sum_{i=1}^n \frac{1}{\beta^p} \abs{x_i}^p \leq \sum_{i=1}^n \abs{x_i}^p)\\
+    %             \end{multline*}
+    %             Clearly, this is true for when $\alpha \in (0,1]$ and $\beta \in [1,\infty)$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_p$.
+    %         \end{proof}
+    %     \end{lemma}
+    %     % 1-norm ~ \infty-norm
+    %     \begin{lemma}
+    %         $\norm{\cdot}_1$ is equivalent to $\norm{\cdot}_\infty$
+    %         \begin{proof}
+    %             \begin{multline*} 
+    %                 \norm{\cdot}_1 \sim \norm{\cdot}_\infty 
+    %                     \implies \exists{\alpha,\beta \in \R_{>0}} \st \forall_{x\in \R}
+    %                     \alpha \norm{x}_p \leq \norm{x}_1 \leq \beta \norm{x}_\infty\\
+    %                 \alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i}\\
+    %                 \qty(\alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i}) 
+    %                     \land \qty(\sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i})\\
+    %             \end{multline*}
+    %             Clearly, this is true for when $\alpha \in (0,1]$. Similarily, when $\beta \geq n$ then $\sum_{i=1}^n \max_{i=1}^n \abs{x_i}$ and then clearly greater then the $\norm{x}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
+    %         \end{proof}
+    %     \end{lemma}
+    %     From the previous lemas it is clear that 
+    \end{proof}
+\end{theorem}
+
+
+
+
+% Need to do this again... the way I first did it was pretty terrible math...
+
+
+
+
+
+
+
+
+
+
+
+% Problem 5 ----------------------------------------------
+\newpage
+\section{}
+Are there any open sets $A$ and $B$ in $\R^4$ so that $dist(A,B) = 0$ but $A \cap B = \emptyset$?
+
+\begin{definition}
+    For sets $A,B \subset S$ in metric space $(S,d)$, 
+    \[dist(A,B) := \inf\{d(x,y) \st x \in A, y \in B\}\]
+\end{definition}
+
+\begin{proposition}
+    There exists open sets $A$ and $B$ in $\R^2$ so that $d(A,B) = 0$ but $A \cap B = \emptyset$.
+    \begin{proof}
+        $A,B \in \R^4$ open means 
+        \[
+            \forall_{x \in A} \exists_{\epsilon>0} \forall_{y \in \R^4} d(x,y) < \epsilon \implies y \in A
+        \]
+        and 
+        \[
+            \forall_{x \in B} \exists_{\epsilon>0} \forall_{y \in \R^4} d(x,y) < \epsilon \implies y \in B
+        \]
+        $dist(A,B) = 0$ means that 
+        \[dist(A,B) = \inf\{d(x,y) \st x \in A, y \in B\} = 0\]
+        Additionally, $A \cap B = \emptyset$ implies that $\forall_{x \in A} \forall_{y \in B} x \neq y$.
+
+        In order for $dist(A,B) = 0$ and $A \cap B = \emptyset$, 
+        \[\exists_{x \in A} : \inf_{y \in B} \{d(x,y)\} = 0 \land x \notin B\]
+        One solution to this is that
+        \[\exists_{x \in \partial{A}, y \in \partial{B}} \st d(x,y) = 0\]
+        Therefore, it is possible for open sets $A$ and $B$ in $\R^4$ so that $dist(A,B) = 0$ and $A \cap B = \emptyset$.
+
+        Essentially, $\partial{A} \cap \partial{B} \neq \emptyset$.
+
+        An example would be: 
+        \[A := \{(x,y) \in \R^2 : x^2 + y^2 < r_1^2\}\]
+        and 
+        \[B := \{(x,y) \in \R^2: (x + 2r_2)^2 + y^2 < r_2^2\}\]
+        with $r_1 = r_2 = r \in \R$.
+    \end{proof}
+\end{proposition}
+
+% Problem 6 ----------------------------------------------
+\newpage
+\section{}
+Let $\mathcal{B}([0,1])$ denote the set of all bounded functions from $[0,1]$ to $\R$. Define the metric on $\mathcal{B}([0,1])$ as $d(f,g) = \sup_{x \in [0,1]} \abs{f(x) - g(x)}$.
+
+%Part a
+\subsection{Show that this is indeed a metric.}
+
+\begin{theorem}
+    The metric $d : \mathcal{B}([0,1]) \to \R$
+    \[d(f,g) := \sup_{x \in [0,1]} \abs{f(x) - g(x)}\]
+    is a metric on $\mathcal{B}([0,1])$.
+\end{theorem}
+\begin{proof}
+    A metric must satisfy (i) non-negativity, 
+    (ii) Symmetry, and (iii) Triangle Inequality.
+    \subsubsection{Non-negativy \[d(f,g) = \sup_{x \in [0,1]} \abs{f(x) - g(x)} \geq 0\]}
+        Since $\abs{f(x) - g(x)} \geq 0$, $\sup_{x \in [0,1]} \abs{f(x) - g(x)} \geq 0$ and therefore $d(f,g) \geq 0$.
+    \subsubsection{Symmetry \[d(f,g) = d(g,f)\]}
+    \begin{align*}
+        d(f,g) = \sup_{x \in [0,1]} \abs{f(x) - g(x)} &= d(g,f) = \sup_{x \in [0,1]} \abs{g(x) - f(x)}\\
+        \sup_{x \in [0,1]} \abs{f(x) - g(x)} &= \sup_{x \in [0,1]} \abs{(-1)(f(x) -g(x))}\\
+        \sup_{x \in [0,1]} \abs{f(x) - g(x)} &= \sup_{x \in [0,1]} \abs{(f(x) -g(x))}
+    \end{align*}
+    Therefore it is symmetric.
+    \subsubsection{Triangle Inequality \[d(f,h) \leq d(f,g) + d(g,h)\]}
+    Denoting $N_f (M_f)$, $N_g (M_g)$, and $N_h (M_h)$ as the upper (and lower) bounds within $x \in [0,1]$ of $f(x)$ ,$g(x)$, and $h(x)$ respectively. \underline{Note:} this is not a very efficient proof...
+    \begin{align*}
+        \sup_{x \in [0,1]} \abs{f(x) - g(x)} &\leq \abs{N_f - M_g} + \abs{N_g - M_f}\\
+        \sup_{x \in [0,1]} \abs{g(x) - h(x)} &\leq \abs{N_g - M_h} + \abs{N_h - M_g}\\
+        \sup_{x \in [0,1]} \abs{f(x) - h(x)} &\leq \abs{N_f - M_h} + \abs{N_h - M_f}
+    \end{align*}
+    \begin{align*}
+        d(f,h) = \sup_{x \in [0,1]} \abs{f(x) - h(x)} 
+            &\leq d(f,g) + d(g,h) = \sup_{x \in [0,1]} \abs{f(x) - g(x)} + \sup_{x \in [0,1]} \abs{g(x) - h(x)}\\
+        \abs{N_f - M_g} + \abs{N_g - M_f} &\leq \abs{N_g - M_h} + \abs{N_h - M_g} + \abs{N_f - M_h} + \abs{N_h - M_f}
+    \end{align*}
+    Which demonstrates something.... I'll have to look at this again because it is problematic
+\end{proof}
+
+
+
+
+
+
+% Look at the thing above again.......
+
+
+
+
+
+
+\newpage
+%Part b
+\subsection{Prove that the space $(\mathcal{B}([0,1]),d)$ is a complete metric space.}
+\begin{definition}
+    Metric space $(S,d)$ is called a \emph{complete metric space} if every cauchy sequence $\{a_n\}\subset S$ converges in $S$.
+    \[\forall_{\{a_n\}\subset S \st \{a_n\} \ \textnormal{cauchy} \ \implies \exists_{a \in S} \st \lim_{n\to\infty} a_n = a}\]
+\end{definition}
+\begin{theorem}
+    $(\mathcal{B}([0,1]),d)$ is a complete metric space.
+    \begin{proof}
+        Let $\{a_n\}$ be a cauchy sequence (i.e.)
+        \[\{a_n\} : \forall_{\epsilon>0} \exists_{N} : \forall_{n,m > N} \implies d(a_n,a_m) < \epsilon\]
+        Consider set $D_N = \{x \in S \st \forall_{n < N} a_n < x\}$
+        \begin{enumerate}
+            \item $D$ is bounded (i.e $x \in D < a_N + \epsilon$)
+            \item $D$ is nonempty (i.e $a_N - \epsilon \in D$)
+        \end{enumerate}
+        For a fixed $\epsilon$, 
+        \[\exists_{N} \st \forall_{n > N + 1} \implies d(a_n, a_{N+1}) < \epsilon\]
+        We then take $a = \sup\{D\}$.
+
+        Claim $a = \lim_{n\to\infty} a_n$,
+        \[\forall_{\epsilon>0} \exists_N \st \forall_{n>N} \implies d(a,a_n) < \epsilon\]
+        Claim $y < a \implies y \in D$,
+        \[y \in D \land z < y \implies z \in D\]
+        \[\forall_{\epsilon>0} \exists_{N(\epsilon)} \st \forall_{n>N} a_n > a - \frac{\epsilon}{2}\]
+        However, it is also true by definition of cauchy sequence: 
+        \[d(a_m, a_n) < \frac{\epsilon}{2} \ \forall_{m,n > \hat{N}}\]
+        Also,
+        \[n > \max[N,\hat{N}] \st d(a_n,a) \leq d(a_n,a_m) + d(a_m,a) \leq \epsilon\]
+        Since $\epsilon>0$ is arbitrarily selected and $d(a_n,a) < \epsilon$ whenever $n\geq N$, this implies $\{a_n\}$ converges to $a$.
+    \end{proof}
+\end{theorem}
+
+\newpage
+%Part c
+\subsection{Is the unit ball $\mathcal{B}_1(0) = \{f(x) \st d(f,0) \leq 1\}$ compact?}
+\begin{definition}
+    Let $(S,d)$ be a metric space with $A \subset S$,
+    \begin{enumerate}
+        \item For $\{U_\alpha\}_{\alpha \in A}, \ U_\alpha \subset S$, is a \textbf{\underline{cover}} of the set $A$ if 
+        $$A \subset \bigcup_{\alpha\in A} U_\alpha$$
+        \item A cover $\{U_\alpha\}_{\alpha \in A}$ of $A$ is an \textbf{\underline{open cover}} if $\forall_{\alpha \in A}$ $U_\alpha$ is an open set.
+        \item $\{V_\beta\}_{\beta\in B}$ is called a \textbf{\underline{subcover}} of $\{U_\alpha\}_{\alpha \in A}$ if
+        \begin{enumerate}
+            \item $\{V_\beta\}_{\beta\in B}$ is a cover of $A$
+            \item $\forall_{\beta \in B} \exists_{\alpha \in A} V_\beta = U_\alpha$
+        \end{enumerate}
+        \item A cover with a finite number of sets is called a \textbf{\underline{finite cover}}.
+    \end{enumerate}
+\end{definition}
+\begin{definition}
+    For $A \subset (S,d)$, $A$ is \textbf{\underline{compact}} if for every open cover of $A$ there exists a finite sub cover.
+\end{definition}
+
+\begin{proposition}
+    $\mathcal{B}_1(0) = \{f(x) \st d(f,0) \leq 1\}$ is compact.
+    \begin{proof}
+        \begin{align*}
+            \mathcal{B}_1(0) &= \qty{f(x) \st d(f,0) \leq 1}\\
+            &= \qty{f(x) \st \sup_{x \in [0,1]} \abs{f(x) - 0} \leq 1}\\
+            &= \qty{f(x) \st \sup_{x \in [0,1]} \abs{f(x)} \leq 1}\\
+            &= \qty{f(x) \st \forall_{x \in [0,1]} \abs{f(x)} \leq 1}\\
+            &= \qty{f(x) \st \forall_{x \in [0,1]} -1 \leq f(x) \leq 1}\\
+        \end{align*}
+        In other words, the ball is totally bounded. 
+        Since it is also known that this bounded subset of $\mathcal{B}([0,1])$ is complete, it is therefore also compact.
+    \end{proof}
+\end{proposition}
+
+\end{document}
