@@ -141,10 +141,10 @@ Show that the norms $\norm{\cdot}_1$, $\norm{\cdot}_p$ for $p > 1$, and $\norm{\
                     \alpha \norm{x}_\infty \leq \norm{x}_1 \leq \beta \norm{x}_\infty\\
                     \alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i}\\
                 \end{multline*}
-                Clearly, this is true for when $\alpha \in (0,1]$. Similarily, when $\beta \geq n$ then $\sum_{i=1}^n \max_{i=1}^n \abs{x_i}$ and then clearly greater then the $\norm{x}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
+                Clearly, this is true for when $\alpha \in (0,1]$. Similarly, when $\beta \geq n$ then $\sum_{i=1}^n \max_{i=1}^n \abs{x_i}$ and then clearly greater then the $\norm{x}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
             \end{proof}
         \end{lemma}
-        From, Lemma \ref{lem:1-1to2}, Lemma \ref{lem:1-1toP}, and Lemma \ref{lem:1-1toInfty}, it is clear that $\forall_{p > 1}$:
+        From, Lemma \ref{lem:1-1toP} and Lemma \ref{lem:1-1toInfty}, it is clear that $\forall_{p > 1}$:
         \[
             \norm{x}_\infty 
             \leq \norm{x}_p 
@@ -180,12 +180,29 @@ Show that the following norms on $S \cross S'$ are equivalent.
                     \forall_{(x,y) \in S \cross S'} \exists_{\alpha,\beta \in \R_+} :\\
                     \alpha \norm{(x,y)}_2 
                         \leq \norm{(x,y)}_1 
-                        \leq \norm{(x,y)}_2\\
+                        \leq \beta \norm{(x,y)}_2\\
                     \alpha (\norm{x}^2 + (\norm{y}')^2)^{1/2}
                         \leq \norm{x} + \norm{y}'
                         \leq \beta (\norm{x}^2 + (\norm{y}')^2)^{1/2}\\
                 \end{multline*}
-                From the Holder's inequality we have 
+                First, the following demonstrates that $\norm{(x,y)}_2 \leq \norm{(x,y)}_1$
+                \begin{align*}
+                    \norm{(x,y)}_1^2
+                        &= (\norm{x} + \norm{y}')^2\\
+                        &= \norm{x}^2 + (\norm{y}')^2 + \norm{x}\norm{y}'\\
+                        &\leq \norm{x}^2 + (\norm{y}')^2 + (\norm{x})^2 + (\norm{y}')^2\\
+                        &= 2 \norm{x}^2 + 2(\norm{y}')^2\\
+                        &= 2 \norm{(x,y)}_2^2\\
+                    \frac{1}{2} \norm{(x,y)}_1^2 
+                        &\leq \norm{(x,y)}_2^2
+                \end{align*}
+                Therefore,
+                \[
+                    \frac{1}{\sqrt{2}} \norm{(x,y)}_2 \leq \norm{(x,y)}_1
+                \]
+                and this is also true for any $p>2$ as well using an arbitrary number of power expansions.
+
+                Next, from the Cauchy Schwartz's inequality we have 
                 \begin{align*}
                     \norm{(x,y)}_1 
                         &= \norm{x} + \norm{y}'\\
@@ -196,101 +213,56 @@ Show that the following norms on $S \cross S'$ are equivalent.
                     \norm{(x,y)}_1
                         &\leq \sqrt{2} \norm{(x,y)}_2
                 \end{align*}
-                Similarily, 
-                \begin{align*}
-                    \norm{(x,y)}_2 
-                        &= \sqrt{\norm{x}^2 + (\norm{y}')^2}\\
-                        % &= \frac{\sqrt{2}}{\sqrt{2}} \qty(\norm{x}^2 + (\norm{y}')^2)^{\frac{1}{2}}\\
-                        % &= \frac{1}{\sqrt{2}} \qty(1^2 + 1^2)^{\frac{1}{2}} \qty(\norm{x}^2(1)^2 + (\norm{y}')^2(1)^2)^{\frac{1}{2}}\\
-                        &= \qty(\norm{x} \norm{x} + \norm{y}' \norm{y}')^{\frac{1}{2}}\\
-                        &\leq \qty(\qty(\norm{x}^2 + \qty(\norm{y}')^2)^{\frac{1}{2}})^2 \qty(\qty(\norm{x}^2 + \qty(\norm{y}')^2)^{\frac{1}{2}})^2\\
-                        &= 2\qty(\norm{x}^2 + \qty(\norm{y}')^2)
-                    % &= \qty(\norm{x} (1) + \norm{y}' (1))\\
-                    % &\leq \qty(\norm{x}^2 + (\norm{y}')^2)^{\frac{1}{2}} \qty(1^2 + 1^2)^{1 - \frac{1}{2}}\\
-                    % &= \qty(2)^\frac{1}{2} \qty(\norm{x}^2 + (\norm{y}')^2)^{\frac{1}{2}}\\
-                    % &= \sqrt{2} \sqrt{\norm{x}^2 + (\norm{y}')^2}\\
-                    % \norm{(x,y)}_1
-                    %     &\leq \sqrt{2} \norm{(x,y)}_2
-                \end{align*}
-                So.... this isn't complete... need to do it still... figure out why you can just take 1/epsilon for it to work...
-                % So for $0 < \alpha \leq n^{1/2}$ and $\beta \geq n^{1/2}$,
-                % \begin{align*}
-                %     &\alpha \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
-                %         &&\leq \sum_{i=1}^n \abs{x_i}
-                %         &&\leq \beta \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}\\
-                %     &\qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
-                %         &&\leq n^{1/2} \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2} 
-                %         &&\leq n^{1/2} \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
-                % \end{align*}
-                % Therefore,
-                % \[\norm{x}_2 \leq \norm{x}_1 \leq n^{\frac{1}{1-p}} \norm{x}_2\]
-                % which proves $\norm{\cdot}_1 \sim \norm{\cdot}_2$.
+                Therefore,
+                \[\frac{1}{\sqrt{2}} \norm{x}_2 \leq \norm{x}_1 \leq \sqrt{2} \norm{x}_2\]
+                which proves $\norm{\cdot}_1 \sim \norm{\cdot}_2$.
             \end{proof}
         \end{lemma}
-    %     \newpage
-    %     % 1-norm ~ p-norm
-    %     \begin{lemma}\label{lem:2-1toP}
-    %         $\norm{\cdot}_1 \sim \norm{\cdot}_p$
-    %         \begin{proof}
-    %             $\norm{\cdot}_1 \sim \norm{\cdot}_p$ is true iff
-    %             \begin{multline*}
-    %                 \forall_{x \in \R^n} \exists_{\alpha,\beta \in \R_+} :\\
-    %                 \alpha \norm{x}_p 
-    %                     \leq \norm{x}_1 
-    %                     \leq \norm{x}_p\\
-    %                 \alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
-    %                     \leq \sum_{i=1}^n \abs{x_i}
-    %                     \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
-    %             \end{multline*}
-    %             From the Holder's inequality we have 
-    %             \begin{align*}
-    %                 \norm{x}_1 = \sum_{i=1}^n \abs{x_i}
-    %                     &= \sum_{i=1}^n \abs{x_i} (1)\\
-    %                     &\leq \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
-    %                         \qty(\sum_{i=1}^n \abs{1}^{(1-p)})^{1/(1-p)}\\
-    %                     &\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} 
-    %             \end{align*}
-    %             So for $0 < \alpha \leq n^{1/(1-p)}$ and $\beta \geq n^{1/(1-p)}$,
-    %             \begin{align*}
-    %                 &\alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
-    %                     &&\leq \sum_{i=1}^n \abs{x_i}
-    %                     &&\leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
-    %                 &\qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
-    %                     &&\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} 
-    %                     &&\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
-    %             \end{align*}
-    %             Therefore,
-    %             \[\norm{x}_p \leq \norm{x}_1 \leq n^{\frac{1}{1-p}} \norm{x}_p\]
-    %             which proves $\norm{\cdot}_1 \sim \norm{\cdot}_p$.
-    %         \end{proof}
-    %     \end{lemma}
-    %     \newpage
-    %     %1-norm ~ \infty-norm
-    %     \begin{lemma}\label{lem:2-1toInfty}
-    %         $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$
-    %         \begin{proof}
-    %             $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$ is true iff
-    %             \begin{multline*} 
-    %                 \forall_{x \in \R^n} \exists_{\alpha,\beta \in \R_+} :\\
-    %                 \alpha \norm{x}_\infty \leq \norm{x}_1 \leq \beta \norm{x}_\infty\\
-    %                 \alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i}\\
-    %             \end{multline*}
-    %             Clearly, this is true for when $\alpha \in (0,1]$. Similarily, when $\beta \geq n$ then $\sum_{i=1}^n \max_{i=1}^n \abs{x_i}$ and then clearly greater then the $\norm{x}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
-    %         \end{proof}
-    %     \end{lemma}
-    %     From, Lemma \ref{lem:2-1to2}, Lemma \ref{lem:1-1toP}, and Lemma \ref{lem:1-1toInfty}, it is clear that $\forall_{p > 1}$ (which implies $\norm{x}_2$ as well):
-    %     \[
-    %         \norm{x}_\infty 
-    %         \leq \norm{x}_p 
-    %         \leq \norm{x}_1 
-    %         \leq n^{1/{1-p}} \norm{x}_p 
-    %         \leq n \norm{x}_\infty
-    %     \]
-    %     Therefore, $\norm{\cdot}_1 \sim \norm{\cdot}_2 \sim \norm{\cdot}_p \sim \norm{\cdot}_\infty$ on $\R^n$ ($\forall_{p > 1}$).
+        \newpage
+        % 1-norm ~ p-norm
+        \begin{lemma}\label{lem:2-1toP}
+            $\norm{\cdot}_1 \sim \norm{\cdot}_p$
+            \begin{proof}
+                $\norm{\cdot}_1 \sim \norm{\cdot}_p$ is true iff
+                \begin{multline*}
+                    \forall_{(x,y) \in S \cross S'} \exists_{\alpha,\beta \in \R_+} :\\
+                    \alpha \norm{(x,y)}_p 
+                        \leq \norm{(x,y)}_1 
+                        \leq \beta \norm{(x,y)}_p\\
+                    \alpha \qty(\norm{x}^p + (\norm{y}')^p)^{1/p}
+                        \leq \norm{x} + \norm{y}'
+                        \leq \beta \qty(\norm{x}^p + (\norm{y}')^p)^{1/p}\\
+                \end{multline*}
+                From the Holder's inequality we have 
+                \begin{align*}
+                    \norm{x}_1 = \norm{x} + \norm{y}'\\
+                        &= \norm{x}(1) + \norm{y}'(1)\\
+                        &\leq \qty(\norm{x}^p + (\norm{y}')^p)^{1/p} \qty(\sum_{i=1}^2 \abs{1}^{(1-p)})^{\frac{1}{1-p}}\\
+                        &= n^{\frac{1}{1-p}} \qty(\norm{x}^p + (\norm{y}')^p)^{1/p}\\
+                        &= n^{\frac{1}{1-p}} \norm{(x,y)}_p
+                \end{align*}
+                Therefore,
+                \[
+                    \norm{(x,y)}_1 \leq n^{\frac{1}{1-p}} \norm{(x,y)}_p
+                \]
+                and, since $p > 1$, then the remainder of the arguments from Lemma \ref{lem:2-1to2} can be applied here to any arbitrary $p > 1$ to prove the norm equivalence with 1, 2, and any $p$ norms.
+            \end{proof}
+        \end{lemma}
+        %1-norm ~ \infty-norm
+        \begin{lemma}\label{lem:2-1toInfty}
+            $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$
+            \begin{proof}
+                $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$ is true iff
+                \begin{multline*} 
+                    \forall_{(x,y) \in S \cross S'} \exists_{\alpha,\beta \in \R_+} :\\
+                    \alpha \norm{(x,y)}_\infty \leq \norm{(x,y)}_1 \leq \beta \norm{(x,y)}_\infty\\
+                    \alpha \max\qty{\norm{x} + \norm{y}'} \leq \norm{x} + \norm{y}' \leq \beta \max\qty{\norm{x} + \norm{y}'}\\
+                \end{multline*}
+                Clearly, this is true for when $\alpha \in (0,1]$. Similarly, when $\beta \geq 2$ then $\max{\norm{x},\norm{y}'}$ and is clearly greater then the $\norm{(x,y)}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
+            \end{proof}
+        \end{lemma}
     \end{proof}
 \end{theorem}
-
-
 
 % Problem 3
 \newpage
@@ -303,26 +275,85 @@ Consider the set $\mathcal{B}(X,V)$ of all bounded functions from $X \to V$.
 \subsection{}
 Show that $\mathcal{B}(X,V)$ is a vector space.
 
+\begin{definition}
+    A \emph{Vector space} over a field is the set $V$ along with two operations (vector addition and vector multiplication) satisfying the basic vector properties.
+    \begin{enumerate}
+        \item Associativity of vector addition
+        \[\vb{u} + (\vb{v} + \vb{w}) = (\vb{u} + \vb{v}) + \vb{w}\]
+        \item Commutativity of vector addition
+        \[\vb{u} + \vb{v} = \vb{v} + \vb{u}\]
+        \item Identity element of vector addition (zero vector)
+        \[\forall_{\vb{v} \in V} \exists_{\vb{0} \in V} \st \vb{v} + \vb{0} = v \]
+        \item Inverse elements of vector addition (additive inverse)
+        \[\forall_{\vb{v} \in V} \exists_{-v \in V} \st \vb{v} + (-\vb{v}) = \vb{0}\]
+        \item Compatibility of scalar and field multiplication
+        \[a (b \vb{v}) = (a b) \vb{v}\]
+        \item Identity element of scalar multiplication (multiplicative identity)
+        \[\exists_{1 \in F} \vb{1} \vb{v} = v\]
+        \item Distributivity of scalar multiplication with vector addition
+        \[a (\vb{u} + \vb{v}) = a \vb{u} + a \vb{v}\]
+        \item Distributivity of scalar multiplication with field addition
+        \[(a + b) \vb{v} = a \vb{v} + b \vb{v}\]
+    \end{enumerate}
+\end{definition}
 
-do the thing...
+\begin{definition}
+    $\mathcal{B}(X,V)$ is the set of all functions $f : X \to V$ that are bounded under the definition:
+    \[\exists_{M \in V} \st \forall_{x\in X} \implies \norm{f(x)} < M\]
+\end{definition}
 
-
-
+\begin{theorem}
+    $\mathcal{B}(X,V)$ is a vector space.
+    \begin{proof}
+        It is known that $X$ is a vector space and $V$ is a normed vector space.
+        For all functions between $X$ and $V$ the normed space result implies many of the required vector space properties directly.
+        For instance, assuming standard function addition and multiplication methods, the mapped results of the new superimposed function will satisfy Associativity, Commutativity, Identity and inverse for addition, Compatibility and identity of multiplication.
+        The Distributivity properties require more justification as they do not clearly result from the results of a single function.
+        Fortunately, the boundedness of $\mathcal{B}(X,V)$ provides that an upper bound exists for the output and so the complicated parts of accounting for weirder functions allows for a proof of distributivity based on the output and the induced addition and multiplication operations will satisfy all of the superposition properties.
+    \end{proof}
+\end{theorem}
 
 %Part b
 \subsection{}
-Show that the function $\mathcal{B}(X,V) \to \R_{+} :$
+Show that the function $\norm{\cdot}_\infty : \mathcal{B}(X,V) \to \R_{+} :$
 \[
     \norm{f}_\infty := \sup_{x\in X} \norm{f(x)}
 \]
 defines a norm on $\mathcal{B}(X,V)$.
 
+\begin{definition}
+    A \emph{norm} is a function $\norm{\cdot} : V \to \R_{+}$ satisfying
+    \begin{enumerate}
+        \item Non-negativity 
+            \[\forall_{x\in V} \norm{x} \geq 0 \implies \norm{x} = 0 \iff x = 0\]
+        \item Homogeneity 
+            \[\norm{\lambda \cdot x} = \abs{\lambda} \norm{x}\]
+        \item Triangle inequality 
+            \[\norm{x + y} \leq \norm{x} + \norm{y}\]
+    \end{enumerate}
+\end{definition}
 
-Show the things that the norm needs... (mainly triangular inequality)
+\begin{theorem}
+    $\norm{\cdot}_\infty$ is a norm on $\mathcal{B}(X,V)$.
+    \begin{proof}
+        Since $\mathcal{B}(X,V)$ is a vector space, the important properties of a field and simple vector operations can be assumed.
 
+        First, by definition, the non-negativity is satisfied by the mapped results are within $\R_+$.
 
+        Second, the original norm properties from the normed vector space $V$ can be applied to each of the $\norm{f(x)}$ within the $\sup_{x \in X}$, resulting in the homogeneity required for a norm.
 
-
+        Third, The triangle inequality can also be easily seen with the following:
+        \begin{align*}
+            \norm{x + y} 
+                &\leq \norm{x} + \norm{y}\\
+            \sup_{(x + y) \in X} \norm{f(x + y)}
+                &\leq \sup{x \in X} \norm{f(x)} + \sup_{y \in X} \norm{f(y)}\\
+            \sup_{x,y \in X \st x+y \in X} \norm{f(x + y)}
+                &\leq \sup_{x,y \in X} \norm{x} + \norm{y}
+        \end{align*}
+        which is clearly true considering the definition of the original normed space $V$.
+    \end{proof}
+\end{theorem}
 
 % Problem 4
 \newpage
