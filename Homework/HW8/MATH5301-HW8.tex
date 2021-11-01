@@ -275,7 +275,7 @@ Consider the set $\mathcal{B}(X,V)$ of all bounded functions from $X \to V$.
 \subsection{}
 Show that $\mathcal{B}(X,V)$ is a vector space.
 
-\begin{definition}
+\begin{definition}\label{def:vec_space}
     A \emph{Vector space} over a field is the set $V$ along with two operations (vector addition and vector multiplication) satisfying the basic vector properties.
     \begin{enumerate}
         \item Associativity of vector addition
@@ -358,53 +358,128 @@ defines a norm on $\mathcal{B}(X,V)$.
 % Problem 4
 \newpage
 \section{}
-Let $A$ be a dense set in metric space $(S,d)$, let $(V,d_1)$ be a complete metric space, and $f : A \to Y$ be a uniformly continuous function. 
+Let $A$ be a dense set in metric space $(S,d)$, let $(V,d_1)$ be a complete metric space, and $f : A \to Y$ be a uniformly continuous function.
+
+Note: assuming that there was a typo and that $Y$ is also dense within $V$.
 
 %Part a
 \subsection{Show that if $\{x_n\}$ is a Cauchy sequence in $A$ then $\{f(x_n)\}$ is a Cauchy sequence in $Y$.}
 
+\begin{definition}
+    A set $A$ is \emph{dense} within metric space $(S,d)$ if and only if $A = X$.
+\end{definition}
 
+\begin{definition}\label{def:complete}
+    Metric space $(S,d)$ is called a \emph{complete metric space} if every cauchy sequence $\{a_n\}\subset S$ converges in $S$.
+    \[\forall_{\{a_n\} \subset S \st \{a_n\} \ \textnormal{cauchy} \ \implies \exists_{a \in S} \st \lim_{n\to\infty} a_n = a}\]
+\end{definition}
 
+\begin{definition}
+    $\{a_n\}$ is said to be a \emph{cauchy} sequence if
+    \[\{a_n\} : \forall_{\epsilon>0} \exists_{N} : \forall_{n,m > N} \implies d(a_n,a_m) < \epsilon\]
+\end{definition}
+
+\begin{definition}
+    A function $f : X \to Y$ is said to be \emph{uniformly continuous} if and only if
+    \[\forall_{\epsilon>0} \exists_{\delta>0} \forall_{x,x' \in X} d_X(x,x') < \delta \implies d_Y(f(x), f(x')) < \epsilon\]
+\end{definition}
+
+\begin{theorem}
+    If $\{x_n\}$ is a Cauchy sequence in $A$ then $\{f(x_n)\}$ is a Cauchy sequence in $Y$.
+    \begin{proof}
+        \begin{align*}
+            \{x_n\} \ \text{cauchy} &\implies \{f(x_n)\} \ \text{cauchy}\\
+            \forall_{\epsilon,\delta>0} \exists_{N(\epsilon,\delta) \in \N} : \forall_{n,m > N} \implies d(x_n,x_m) < \epsilon)
+            &\implies d_1(f(x_{n_1}),f(x_{n_1})) < \epsilon_1)
+        \end{align*}
+        By definition of the complete metric space $Y$, every cauchy sequence within $Y$ will converge to within $Y$, therefore every cauchy sequence that gets mapped from the dense $A$ to $Y$ via the uniformly continuos function $f$ will be guaranteed to be cauchy as well.
+        (this could also be written out in a more complicated way using quantifiers, but the words just explained it better)
+    \end{proof}
+\end{theorem}
 
 %Part b
-\subsection{Show that there is only one continuous function $g : X \to Y$ so that $g(x) = f(x)$ forall $x \in $.}
-
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Show that there is only one continuous function $g : X \to Y$ so that $g(x) = f(x)$ forall $x \in A$.}
+\begin{theorem}
+    There is only one continuous $g : X \to Y$ so that $g(x) = f(x)$ forall $x \in A$.
+    \begin{proof}
+        This means that each continuous function from $X$ or $A$ to $Y$ only has one complimentary function that produces the same image as it in $Y$.
+        For $f$, the definition of uniformly continuous is
+        \[\forall_{\epsilon>0} \exists_{\delta>0} \forall_{x,x' \in A} d(x,x') < \delta \implies d_1(f(x), f(x')) < \epsilon\]
+        Similarly, $g$ being continuous is defined by 
+        \[\forall_{x \in X} \forall_{\epsilon>0} \exists_{\delta > 0} \forall_{x, x'\in X} d(x,x') < \delta \implies d_1(g(x),g(x')) < \epsilon\]
+        There is only one possible mapping for each complete relation between each of the element $x \in A$ to $f(x) \in Y$, so since $A$ is dense in $X$, each element $x \in X$ can be mapped from $X$ to the image in $Y$.
+        Although this is simple and the result clearly follows, the quantifiers can be used to demonstrate this as follows:
+        \begin{multline*}
+            \qty(\forall_{\epsilon>0} \exists_{\delta>0} \forall_{x,x' \in A} d(x,x') < \delta \implies d_1(f(x), f(x')) < \epsilon) \land \\
+            \land \qty(\forall_{x \in X} \forall_{\epsilon>0} \exists_{\delta > 0} \forall_{x, x'\in X} d(x,x') < 
+            \delta \implies d_1(g(x),g(x')) < \epsilon)\\
+            \forall_{\epsilon>0} \exists_{\delta>0} \forall_{x,x' \in A} d(x,x') < \delta \implies d_1(f(x), f(x')) < \epsilon \land \exists_{\epsilon_1(\epsilon,x,x')} d_1(g(x),g(x'))) < \epsilon_1
+        \end{multline*}
+        And since we want $g(x) = f(x)$, it is clear that the exact same restrictions (for each element across all of $A$ and $X$) will be in place, which implies that only one function will be able to satisfy it.
+    \end{proof}
+\end{theorem}
 
 % Problem 5
 \newpage
 \section{}
 Let $(L, \norm{\cdot})$ be a Banach space. 
 Let $L_0$ be a closed subspace of $L$. 
-Define the factor-space $L/L_0$ as $l_1 := L/L_0 = \qty{x + y \st x \in L, y \in L_0}$. 
+Define the factor-space $L/L_0$ as $:L_1 := L/L_0 = \qty{x + y \st x \in L, y \in L_0}$. 
 In other works, $L_1$ consists of all subsets of $L$ obtained from $L_0$ by shifting all its elements by some element $x$. 
 
 %Part a
 \subsection{Show that $L_1$ is a vector space.}
-
+\begin{theorem}
+    $L_1$ is a vector space.
+    \begin{proof}
+        From the definition of a vector space, Definition \ref{def:vec_space}, it is necessary for all vector spaces to have additive and multiplicative operations that satisfy the multiple properties of superposition.
+        Directly by definition of the of $L_1$, being composed of a Banach space and a closed subspace within it, it may be possible to directly claim that it is also Banach. Regardless, the definition of each element within $L_1$ as a summation of two elements within a Banach (and therefore vector) space, already demonstrates the additive properties. Similarly, the composition of $L_1$ as a linear combination of elements from $L$ (and $L_0$) that individually satisfy all of the vector space properties will imply that an induced (yet technically undefined in the problem statement) set of additive and multiplicative operations that obey superposition.
+    \end{proof}
+\end{theorem}
 
 %Part b
 \subsection{}
 Define the function $\norm{\cdot} : L_1 \to \R_{+}$ as $\norm{x}_1 = \inf_{x - y \in L_0} \norm{y}$. 
 Show that this function defines a norm on the space $L_1$.
 
+\begin{theorem}
+    $\norm{x}_1$ is a norm on $L_1$.
+    \begin{proof}
+        Since $L_1$ is a vector space, the important properties of a field and simple vector operations can be assumed.
+
+        First, by definition, the non-negativity is satisfied by the mapped results are within $\R_+$.
+
+        Second, the original norm properties from $L$ apply to each  $\norm{y}$ within the $\inf_{x-y \in L_0}$, resulting in the homogeneity required for a norm.
+
+        Third, The triangle inequality can also be easily seen with the following:
+        \begin{align*}
+            \norm{(a,b) + (x,y)} 
+                &\leq \norm{(a,b)} + \norm{(x,y)}\\
+            \inf_{(a+x) - (b+y) \in L_0} \norm{b+y}
+                &\leq \inf_{a - b \in L_0} \norm{b} + \inf_{x-y \in L_0} \norm{y}\\
+                &\leq \inf_{(a-b), (x-y) \in L_0} \norm{b + y}
+        \end{align*}
+        which is clearly true considering the definition of the original banach space $L$.
+    \end{proof}
+\end{theorem}
 
 %Part c
 \subsection{Show that $L_1$ is a Banach space.}
+\begin{definition}
+    A complete, normed, space is called a \emph{Banach space}.
+\end{definition}
 
-
-
+\begin{theorem}
+    $L_1$ is a Banach space.
+    \begin{proof}
+        From the first two parts of this question, we know that $L_1$ is a vector space, and $(L_1, \norm{x}_1)$ is a normed space.
+        The only remaining requirement is that of completeness, which by Definition \ref{def:complete}, means
+        \begin{align*}
+            \forall\{l_n\} \subset L_1 \st \{l_n\} \ \textnormal{cauchy} \ \implies \exists_{l \in L_1} \st \lim_{n\to\infty} l_n = l
+        \end{align*}
+        Since $L_1$ is composed of the complete collection of projections of the closed $L_0$ shifted by arbitrary values within $L$, both of which are complete (since they are Banach), so any possible cauchy sequences within $L_1$ will tend towards another element within $L_1$.
+    \end{proof}
+\end{theorem}
 
 
 
@@ -416,8 +491,24 @@ Let $C([-1,1])$ be the space of all continuous real-valued functions $f(x)$ with
 Let $\norm{f}_\infty := \sup_{x \in [-1,1]} \abs{f(x)}$. 
 Find the distance from point $p = x^{2021}$ to the space $P_{2020}$ of all polynomials of degree less than or equal to 2020.
 
+\begin{definition}
+    The \emph{distance} between a point and a set is defined by 
+    \[dist(x,A) := \inf_{a \in A} d(x,a) = \inf_{a \in A} \norm{x - a}\]
+\end{definition}
 
+The distance between point $p = x^{2021}$ and $P_{2020}$ is calculated as follows:
+\begin{align*}
+    \textnormal{dist}(p,P) 
+        &= \inf_{y \in P_{2020}} d(p,y)
+            = \inf_{y \in P_{2020}} \norm{p - y}\\
+        &= \inf_{y \in P_{2020}} \sup_{x \in [-1,1]} \abs{p(x) - y(x)}\\
+        &= \inf_{y \in P_{2020}} \sup_{x \in [-1,1]} \abs{x^{2021} - \sum_{i=0}^{2020} a_i^{(y)} x^i}
+    \intertext{Since the supremum has to bound the maximum value, it can be assumed that the suppremmum of an absolute value will only occur when $a_i^{(y)}<0$ and $x = \max{x \in [-1,1]} = 1$.}
+        &= \inf_{y \in P_{2020}} (1)^{2021} - \sum_{i=0}^{2020} -\abs{a_i^{(y)}} (1)^i\\
+        &= \inf_{y \in P_{2020}} 1 + \sum_{i=0}^{2020} \abs{a_i^{(y)}}
+\end{align*}
+We can then see that the largest lower bound would be when $a_i^{(y)} = 0, \ \forall_{i\in [0,2020]}$.
 
-
+Therefore, \[\textnormal{dist}(p=x^{2021},P_{2020}) = 1\]
 
 \end{document}
