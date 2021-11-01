@@ -1,17 +1,22 @@
+% Standard Article Definition
 \documentclass[]{article}
 
-\usepackage{graphicx}
-
+% Page Formatting
 \usepackage[margin=1in]{geometry}
-
 \setlength\parindent{0pt}
 
+% Graphics
+\usepackage{graphicx}
+
+% Math Packages
 \usepackage{physics}
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
 \usepackage{mathtools}
 
+% Code Def
 \usepackage{listings}
 
+% Section Heading Settings
 \usepackage{enumitem}
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand*{\thesection}{Problem \arabic{section}}
@@ -44,11 +49,11 @@
 
 %opening
 
-\title{MATH 5301 Elementary Analysis - Homework 6}
+\title{MATH 5301 Elementary Analysis - Homework 7}
 
 \author{Jonas Wagner}
 
-\date{2021, October 17\textsuperscript{th}}
+\date{2021, October 22\textsuperscript{nd}}
 
 \begin{document}
 
@@ -251,10 +256,10 @@ Show the equivalence of the norms $\norm{\cdot}_1,\norm{\cdot}_2,\norm{\cdot}_p,
     $\norm{\cdot}_a$ and $\norm{\cdot}_b$ are said to be \emph{equivalent},  $\norm{\cdot}_a \sim \norm{\cdot}_b$,
     if $\norm{\cdot}_a$ is stronger then $\norm{\cdot}_b$ 
     and $\norm{\cdot}_b$ is stronger then $\norm{\cdot}_a$. 
-    Additionally, the following is also true: 
+    This means that
     \[
         \norm{\cdot}_a \sim \norm{\cdot}_b 
-            \implies \exists{\alpha,\beta \in \R_{>0}} : 
+            \iff \exists{\alpha,\beta \in \R_{>0}} : 
             \forall_{x\in S} \alpha \norm{\cdot}_b \leq \norm{\cdot}_a \leq \beta \norm{x}_b
     \]
 \end{definition}
@@ -268,77 +273,106 @@ Show the equivalence of the norms $\norm{\cdot}_1,\norm{\cdot}_2,\norm{\cdot}_p,
     \end{enumerate}
 \end{definition}
 
-
+\newpage
 \begin{theorem}
     The norms $\norm{\cdot}_1,\norm{\cdot}_2,\norm{\cdot}_p,$ and $\norm{\cdot}_\infty$ are all equivalent on $\R^n$.
     \begin{proof}
         % 1-norm ~ 2-norm
-        \begin{lemma}
-            $\norm{\cdot}_1$ is equivalent to $\norm{\cdot}_2$
+        \begin{lemma}\label{lem:1to2}
+            $\norm{\cdot}_1 \sim \norm{\cdot}_2$
             \begin{proof}
-                \begin{multline*} 
-                    \norm{\cdot}_1 \sim \norm{\cdot}_2 
-                        \implies \exists{\alpha,\beta \in \R_{>0}} \st \forall_{x\in \R}
-                        \alpha \norm{x}_2 \leq \norm{x}_1 \leq \beta \norm{x}_2\\
-                    \alpha \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}\\
-                    \qty(\alpha \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2})^2 
-                        \leq \qty(\sum_{i=1}^n \abs{x_i})^2 
-                        \leq \qty(\beta \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2})^2\\
-                    \alpha^2 \sum_{i=1}^n \abs{x_i}^2 
-                        \leq \qty(\sum_{i=1}^n \abs{x_i}) \qty(\sum_{j=1}^n \abs{x_j}) 
-                        \leq \beta^2 \sum_{i=1}^n \abs{x_i}^2\\
-                    % \alpha^2 \sum_{i=1}^n \abs{x_i}^2 
-                    %     \leq \qty(\sum_{i=1}^n (\abs{x_i}^2)^{1/2}) \qty(\sum_{j=1}^n (\abs{x_j}^2)^{1/2}) 
-                    %     \leq \beta^2 \sum_{i=1}^n \abs{x_i}^2\\
-                \end{multline*}
-                From the Cauchy-Schwartz inequality $(\sum_{i=1}^n u_i v_i)^2 \leq (\sum_{i=1}^n u_i^2) (\sum_{i=1}^n v_i^2)$
+                $\norm{\cdot}_1 \sim \norm{\cdot}_2$ is true iff
                 \begin{multline*}
-                    \alpha^2 \sum_{i=1}^n \abs{x_i}^2 
-                        \leq \sum_{i=1}^n \abs{x_i x_i}
-                        \leq \sum_{i=1}^n \abs{x_i}^2
-                        \leq \qty(\sum_{i=1}^n \abs{x_i}) \qty(\sum_{j=1}^n \abs{x_j}) 
-                        \leq \qty(\sum_{i=1}^n \abs{x_i})^2
-                        \leq \beta^2 \sum_{i=1}^n \abs{x_i}^2\\
+                    \forall_{x \in \R^n} \exists_{\alpha,\beta \in \R_+} :\\
+                    \alpha \norm{x}_2 
+                        \leq \norm{x}_1 
+                        \leq \norm{x}_2\\
+                    \alpha \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
+                        \leq \sum_{i=1}^n \abs{x_i}
+                        \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}\\
                 \end{multline*}
-                Clearly, this is true for when $\alpha \in (0,1]$ and $\beta \in [1,\infty)$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_2$.
+                From the Holder's inequality we have 
+                \begin{align*}
+                    \norm{x}_1 = \sum_{i=1}^n \abs{x_i}
+                        &= \sum_{i=1}^n \abs{x_i} (1)\\
+                        &\leq \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
+                            \qty(\sum_{i=1}^n \abs{1}^{2})^{1/2}\\
+                        &\leq n^{1/2} \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2} 
+                \end{align*}
+                So for $0 < \alpha \leq n^{1/2}$ and $\beta \geq n^{1/2}$,
+                \begin{align*}
+                    &\alpha \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
+                        &&\leq \sum_{i=1}^n \abs{x_i}
+                        &&\leq \beta \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}\\
+                    &\qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
+                        &&\leq n^{1/2} \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2} 
+                        &&\leq n^{1/2} \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
+                \end{align*}
+                Therefore,
+                \[\norm{x}_2 \leq \norm{x}_1 \leq n^{\frac{1}{1-p}} \norm{x}_2\]
+                which proves $\norm{\cdot}_1 \sim \norm{\cdot}_2$.
             \end{proof}
         \end{lemma}
-    %     % \newpage
-    %     % 1-norm ~ p-norm
-    %     \begin{lemma}
-    %         $\norm{\cdot}_1$ is equivalent to $\norm{\cdot}_p$
-    %         \begin{proof}
-    %             \begin{multline*} 
-    %                 \norm{\cdot}_1 \sim \norm{\cdot}_p 
-    %                     \implies \exists{\alpha,\beta \in \R_{>0}} \st \forall_{x\in \R}
-    %                     \alpha \norm{x}_p \leq \norm{x}_1 \leq \beta \norm{x}_p\\
-    %                 \alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
-    %                 \qty(\alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} \leq \sum_{i=1}^n \abs{x_i}) 
-    %                     \land \qty(\sum_{i=1}^n \abs{x_i} \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p})\\
-    %                 \qty(\qty(\qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p})^p \leq \qty(\frac{1}{\alpha} \sum_{i=1}^n \abs{x_i})^p)
-    %                     \land \qty(\qty(\frac{1}{\beta} \sum_{i=1}^n \abs{x_i})^p \leq \qty(\qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p})^p)\\
-    %                 \qty(\sum_{i=1}^n \abs{x_i}^p \leq \sum_{i=1}^n \frac{1}{\alpha^p}\abs{x_i}^p)
-    %                     \land \qty(\sum_{i=1}^n \frac{1}{\beta^p} \abs{x_i}^p \leq \sum_{i=1}^n \abs{x_i}^p)\\
-    %             \end{multline*}
-    %             Clearly, this is true for when $\alpha \in (0,1]$ and $\beta \in [1,\infty)$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_p$.
-    %         \end{proof}
-    %     \end{lemma}
-    %     % 1-norm ~ \infty-norm
-    %     \begin{lemma}
-    %         $\norm{\cdot}_1$ is equivalent to $\norm{\cdot}_\infty$
-    %         \begin{proof}
-    %             \begin{multline*} 
-    %                 \norm{\cdot}_1 \sim \norm{\cdot}_\infty 
-    %                     \implies \exists{\alpha,\beta \in \R_{>0}} \st \forall_{x\in \R}
-    %                     \alpha \norm{x}_p \leq \norm{x}_1 \leq \beta \norm{x}_\infty\\
-    %                 \alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i}\\
-    %                 \qty(\alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i}) 
-    %                     \land \qty(\sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i})\\
-    %             \end{multline*}
-    %             Clearly, this is true for when $\alpha \in (0,1]$. Similarily, when $\beta \geq n$ then $\sum_{i=1}^n \max_{i=1}^n \abs{x_i}$ and then clearly greater then the $\norm{x}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
-    %         \end{proof}
-    %     \end{lemma}
-    %     From the previous lemas it is clear that 
+        \newpage
+        % 1-norm ~ p-norm
+        \begin{lemma}\label{lem:1toP}
+            $\norm{\cdot}_1 \sim \norm{\cdot}_p$
+            \begin{proof}
+                $\norm{\cdot}_1 \sim \norm{\cdot}_p$ is true iff
+                \begin{multline*}
+                    \forall_{x \in \R^n} \exists_{\alpha,\beta \in \R_+} :\\
+                    \alpha \norm{x}_p 
+                        \leq \norm{x}_1 
+                        \leq \norm{x}_p\\
+                    \alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                        \leq \sum_{i=1}^n \abs{x_i}
+                        \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
+                \end{multline*}
+                From the Holder's inequality we have 
+                \begin{align*}
+                    \norm{x}_1 = \sum_{i=1}^n \abs{x_i}
+                        &= \sum_{i=1}^n \abs{x_i} (1)\\
+                        &\leq \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                            \qty(\sum_{i=1}^n \abs{1}^{(1-p)})^{1/(1-p)}\\
+                        &\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} 
+                \end{align*}
+                So for $0 < \alpha \leq n^{1/(1-p)}$ and $\beta \geq n^{1/(1-p)}$,
+                \begin{align*}
+                    &\alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                        &&\leq \sum_{i=1}^n \abs{x_i}
+                        &&\leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
+                    &\qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                        &&\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} 
+                        &&\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                \end{align*}
+                Therefore,
+                \[\norm{x}_p \leq \norm{x}_1 \leq n^{\frac{1}{1-p}} \norm{x}_p\]
+                which proves $\norm{\cdot}_1 \sim \norm{\cdot}_p$.
+            \end{proof}
+        \end{lemma}
+        \newpage
+        %1-norm ~ \infty-norm
+        \begin{lemma}\label{lem:1toInfty}
+            $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$
+            \begin{proof}
+                $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$ is true iff
+                \begin{multline*} 
+                    \forall_{x \in \R^n} \exists_{\alpha,\beta \in \R_+} :\\
+                    \alpha \norm{x}_\infty \leq \norm{x}_1 \leq \beta \norm{x}_\infty\\
+                    \alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i}\\
+                \end{multline*}
+                Clearly, this is true for when $\alpha \in (0,1]$. Similarily, when $\beta \geq n$ then $\sum_{i=1}^n \max_{i=1}^n \abs{x_i}$ and then clearly greater then the $\norm{x}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
+            \end{proof}
+        \end{lemma}
+        From, Lemma \ref{lem:1to2}, Lemma \ref{lem:1toP}, and Lemma \ref{lem:1toInfty}, it is clear that $\forall_{p > 1}$ (which implies $\norm{x}_2$ as well):
+        \[
+            \norm{x}_\infty 
+            \leq \norm{x}_p 
+            \leq \norm{x}_1 
+            \leq n^{1/{1-p}} \norm{x}_p 
+            \leq n \norm{x}_\infty
+        \]
+        Therefore, $\norm{\cdot}_1 \sim \norm{\cdot}_2 \sim \norm{\cdot}_p \sim \norm{\cdot}_\infty$ on $\R^n$ ($\forall_{p > 1}$).
     \end{proof}
 \end{theorem}
 
@@ -403,6 +437,16 @@ Are there any open sets $A$ and $B$ in $\R^4$ so that $dist(A,B) = 0$ but $A \ca
 \section{}
 Let $\mathcal{B}([0,1])$ denote the set of all bounded functions from $[0,1]$ to $\R$. Define the metric on $\mathcal{B}([0,1])$ as $d(f,g) = \sup_{x \in [0,1]} \abs{f(x) - g(x)}$.
 
+\begin{definition}
+    For  ordered field $S$ and $A$ bounded from above, $c \in S$ is a \emph{supremum} of $A$, 
+    $c = \sup A$, if: 
+    \[
+        c = \sup A \iff 
+            \qty(\forall_{a\in A} a \leq c) 
+            \land \qty(\forall_{\epsilon>0} \exists_{a\in A} \st c - \epsilon < a)
+    \]
+\end{definition}
+
 %Part a
 \subsection{Show that this is indeed a metric.}
 
@@ -424,31 +468,26 @@ Let $\mathcal{B}([0,1])$ denote the set of all bounded functions from $[0,1]$ to
     \end{align*}
     Therefore it is symmetric.
     \subsubsection{Triangle Inequality \[d(f,h) \leq d(f,g) + d(g,h)\]}
-    Denoting $N_f (M_f)$, $N_g (M_g)$, and $N_h (M_h)$ as the upper (and lower) bounds within $x \in [0,1]$ of $f(x)$ ,$g(x)$, and $h(x)$ respectively. \underline{Note:} this is not a very efficient proof...
     \begin{align*}
-        \sup_{x \in [0,1]} \abs{f(x) - g(x)} &\leq \abs{N_f - M_g} + \abs{N_g - M_f}\\
-        \sup_{x \in [0,1]} \abs{g(x) - h(x)} &\leq \abs{N_g - M_h} + \abs{N_h - M_g}\\
-        \sup_{x \in [0,1]} \abs{f(x) - h(x)} &\leq \abs{N_f - M_h} + \abs{N_h - M_f}
+        d(f,h) &\leq d(f,g) + d(g,h)\\
+        \sup_{x \in [0,1]} \abs{f(x) - h(x)} 
+            &\leq  = \sup_{x \in [0,1]} \abs{f(x) - g(x)} + \sup_{x \in [0,1]} \abs{g(x) - h(x)}\\
+        \forall_{x \in [0,1]} \qty(\abs{f(x) - h(x)} < d(f,h))
+            &\leq \forall_{x \in [0,1]} \qty(\abs{f(x) - g(x)} < d(f,g)) + \forall_{x \in [0,1]} \qty(\abs{g(x) - h(x)} < d(g,h))\\
+        \forall_{x_1,x_2,x_3 \in [0,1]} (\abs{f(x_1) - h(x_1)}
+            & \leq \abs{f(x_2) - g(x_2)} + \abs{g(x_3) - h(x_3)})
     \end{align*}
+    Suppose this is false
     \begin{align*}
-        d(f,h) = \sup_{x \in [0,1]} \abs{f(x) - h(x)} 
-            &\leq d(f,g) + d(g,h) = \sup_{x \in [0,1]} \abs{f(x) - g(x)} + \sup_{x \in [0,1]} \abs{g(x) - h(x)}\\
-        \abs{N_f - M_g} + \abs{N_g - M_f} &\leq \abs{N_g - M_h} + \abs{N_h - M_g} + \abs{N_f - M_h} + \abs{N_h - M_f}
+        \exists_{x_1,x_2,x_3 \in [0,1]} (\abs{f(x_1) - h(x_1)}
+        & > \abs{f(x_2) - g(x_2)} + \abs{g(x_3) - h(x_3)})\\
+        \exists_{x_1,x_2,x_3 \in [0,1]} \st \Big(\abs{f(x_1) - h(x_1)} 
+        > \abs{f(x_1)} + \abs{h(x_1)}
+        &> \abs{f(x_2) - h(x_2)} + \abs{h(x_3) - g(x_3)}\\
+        &> \abs{f(x_2)} - \abs{g(x_2)} + \abs{g(x_3)} - \abs{g(x_3)})\Big)\\
     \end{align*}
-    Which demonstrates something.... I'll have to look at this again because it is problematic
+    Which due to the triangular inequality property of $\abs{\cdot}$, is clearly not possible and therefore the metric satisfies the Triangular inequality.
 \end{proof}
-
-
-
-
-
-
-% Look at the thing above again.......
-
-
-
-
-
 
 \newpage
 %Part b

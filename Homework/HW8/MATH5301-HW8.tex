@@ -1,0 +1,392 @@
+% Standard Article Definition
+\documentclass[]{article}
+
+% Page Formatting
+\usepackage[margin=1in]{geometry}
+\setlength\parindent{0pt}
+
+% Graphics
+\usepackage{graphicx}
+
+% Math Packages
+\usepackage{physics}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{mathtools}
+
+% Code Def
+\usepackage{listings}
+
+% Section Heading Settings
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand*{\thesection}{Problem \arabic{section}}
+\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
+\newcommand{\divisible}{ \ \vdots \ }
+\newcommand{\st}{\ : \ }
+
+
+% Theorem Definition
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+
+%opening
+
+\title{MATH 5301 Elementary Analysis - Homework 8}
+
+\author{Jonas Wagner}
+
+\date{2021, October 29\textsuperscript{th}}
+
+\begin{document}
+
+\maketitle
+
+% Problem 1 ----------------------------------------------
+\section{}
+Show that the norms $\norm{\cdot}_1$, $\norm{\cdot}_p$ for $p > 1$, and $\norm{\cdot}_\infty$ are equivalent.
+
+\begin{definition}
+    For $\norm{\cdot}_a, \norm{\cdot}_b$ on $S$, 
+    $\norm{\cdot}_a$ is said to be \emph{stronger} then $\norm{\cdot}_b$ if 
+    \[
+        \forall \{x_n\} \subset S \st x_n \xrightarrow[d_a]{} x \implies x_n \xrightarrow[d_b]{} x
+    \]
+\end{definition}
+\begin{definition}
+    $\norm{\cdot}_a$ and $\norm{\cdot}_b$ are said to be \emph{equivalent},  $\norm{\cdot}_a \sim \norm{\cdot}_b$,
+    if $\norm{\cdot}_a$ is stronger then $\norm{\cdot}_b$ 
+    and $\norm{\cdot}_b$ is stronger then $\norm{\cdot}_a$. 
+    This means that
+    \[
+        \norm{\cdot}_a \sim \norm{\cdot}_b 
+            \iff \exists{\alpha,\beta \in \R_{>0}} : 
+            \forall_{x\in S} \alpha \norm{\cdot}_b \leq \norm{\cdot}_a \leq \beta \norm{x}_b
+    \]
+\end{definition}
+\begin{definition} The following norms are defined as
+    \begin{enumerate}
+        \item $\norm{\cdot}_1 := \norm{x}_1 = \sum_{i=1}^n \abs{x_i} = \abs{x_1} + \abs{x_2} + \dots + \abs{x_n}$
+        \item $\norm{\cdot}_2 := \norm{x}_2 = \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2} = \qty(\abs{x_1}^2 + \abs{x_2}^2 + \dots + \abs{x_n}^2)^{1/2}$
+        \item $\norm{\cdot}_p := \norm{x}_p = \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} =\qty(\abs{x_1}^p + \abs{x_2}^p + \dots + \abs{x_n}^p)^{1/p}, \ p > 1$
+        \item $\norm{\cdot}_\infty := \norm{x}_\infty = \max_{i=1}^n \abs{x_i} = \max(\abs{x_1}, \abs{x_2}, \dots, \abs{x_n})$
+    \end{enumerate}
+\end{definition}
+
+\newpage
+\begin{theorem}
+    The norms $\norm{\cdot}_1, \norm{\cdot}_p,$ and $\norm{\cdot}_\infty$ are equivalent.
+    \begin{proof}
+        % 1-norm ~ p-norm
+        \begin{lemma}\label{lem:1-1toP}
+            $\norm{\cdot}_1 \sim \norm{\cdot}_p$
+            \begin{proof}
+                $\norm{\cdot}_1 \sim \norm{\cdot}_p$ is true iff
+                \begin{multline*}
+                    \forall_{x} \exists_{\alpha,\beta \in \R_+} :\\
+                    \alpha \norm{x}_p 
+                        \leq \norm{x}_1 
+                        \leq \norm{x}_p\\
+                    \alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                        \leq \sum_{i=1}^n \abs{x_i}
+                        \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
+                \end{multline*}
+                From the Holder's inequality we have 
+                \begin{align*}
+                    \norm{x}_1 = \sum_{i=1}^n \abs{x_i}
+                        &= \sum_{i=1}^n \abs{x_i} (1)\\
+                        &\leq \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                            \qty(\sum_{i=1}^n \abs{1}^{(1-p)})^{1/(1-p)}\\
+                        &\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} 
+                \end{align*}
+                So for $0 < \alpha \leq n^{1/(1-p)}$ and $\beta \geq n^{1/(1-p)}$,
+                \begin{align*}
+                    &\alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                        &&\leq \sum_{i=1}^n \abs{x_i}
+                        &&\leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
+                    &\qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                        &&\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} 
+                        &&\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+                \end{align*}
+                Therefore,
+                \[\norm{x}_p \leq \norm{x}_1 \leq n^{\frac{1}{1-p}} \norm{x}_p\]
+                which proves $\norm{\cdot}_1 \sim \norm{\cdot}_p$.
+            \end{proof}
+        \end{lemma}
+        % \newpage
+        %1-norm ~ \infty-norm
+        \begin{lemma}\label{lem:1-1toInfty}
+            $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$
+            \begin{proof}
+                $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$ is true iff
+                \begin{multline*} 
+                    \forall_{x} \exists_{\alpha,\beta \in \R_+} :\\
+                    \alpha \norm{x}_\infty \leq \norm{x}_1 \leq \beta \norm{x}_\infty\\
+                    \alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i}\\
+                \end{multline*}
+                Clearly, this is true for when $\alpha \in (0,1]$. Similarily, when $\beta \geq n$ then $\sum_{i=1}^n \max_{i=1}^n \abs{x_i}$ and then clearly greater then the $\norm{x}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
+            \end{proof}
+        \end{lemma}
+        From, Lemma \ref{lem:1-1to2}, Lemma \ref{lem:1-1toP}, and Lemma \ref{lem:1-1toInfty}, it is clear that $\forall_{p > 1}$:
+        \[
+            \norm{x}_\infty 
+            \leq \norm{x}_p 
+            \leq \norm{x}_1 
+            \leq n^{1/{1-p}} \norm{x}_p 
+            \leq n \norm{x}_\infty
+        \]
+        Therefore, $\norm{\cdot}_1 \sim \norm{\cdot}_p \sim \norm{\cdot}_\infty$ ($\forall_{p > 1}$).
+    \end{proof}
+\end{theorem}
+
+% Problem 2
+\newpage
+\section{}
+Let $(S, \norm{\cdot})$ and $(S', \norm{\cdot}')$ to be two normed spaces. 
+Show that the following norms on $S \cross S'$ are equivalent.
+\begin{enumerate}
+    \item $\norm{(x,y)}_1 = \norm{x} + \norm{y}'$
+    \item $\norm{(x,y)}_2 = \sqrt{\norm{x}^2 + (\norm{y}')^2}$
+    \item $\norm{(x,y)}_p = \qty(\norm{x}^p + (\norm{y}')^p)^{1/p}$
+    \item $\norm{(x,y)}_\infty = \max\qty{\norm{x} + \norm{y}'}$
+\end{enumerate}
+
+\begin{theorem}
+    The norms $\norm{\cdot}_1,\norm{\cdot}_2,\norm{\cdot}_p,$ and $\norm{\cdot}_\infty$ are all equivalent on $S \cross S'$.
+    \begin{proof}
+        % 1-norm ~ 2-norm
+        \begin{lemma}\label{lem:2-1to2}
+            $\norm{\cdot}_1 \sim \norm{\cdot}_2$
+            \begin{proof}
+                $\norm{\cdot}_1 \sim \norm{\cdot}_2$ is true iff
+                \begin{multline*}
+                    \forall_{(x,y) \in S \cross S'} \exists_{\alpha,\beta \in \R_+} :\\
+                    \alpha \norm{(x,y)}_2 
+                        \leq \norm{(x,y)}_1 
+                        \leq \norm{(x,y)}_2\\
+                    \alpha (\norm{x}^2 + (\norm{y}')^2)^{1/2}
+                        \leq \norm{x} + \norm{y}'
+                        \leq \beta (\norm{x}^2 + (\norm{y}')^2)^{1/2}\\
+                \end{multline*}
+                From the Holder's inequality we have 
+                \begin{align*}
+                    \norm{(x,y)}_1 
+                        &= \norm{x} + \norm{y}'\\
+                    &= \qty(\norm{x} (1) + \norm{y}' (1))\\
+                    &\leq \qty(\norm{x}^2 + (\norm{y}')^2)^{\frac{1}{2}} \qty(1^2 + 1^2)^{1 - \frac{1}{2}}\\
+                    &= \qty(2)^\frac{1}{2} \qty(\norm{x}^2 + (\norm{y}')^2)^{\frac{1}{2}}\\
+                    &= \sqrt{2} \sqrt{\norm{x}^2 + (\norm{y}')^2}\\
+                    \norm{(x,y)}_1
+                        &\leq \sqrt{2} \norm{(x,y)}_2
+                \end{align*}
+                Similarily, 
+                \begin{align*}
+                    \norm{(x,y)}_2 
+                        &= \sqrt{\norm{x}^2 + (\norm{y}')^2}\\
+                        % &= \frac{\sqrt{2}}{\sqrt{2}} \qty(\norm{x}^2 + (\norm{y}')^2)^{\frac{1}{2}}\\
+                        % &= \frac{1}{\sqrt{2}} \qty(1^2 + 1^2)^{\frac{1}{2}} \qty(\norm{x}^2(1)^2 + (\norm{y}')^2(1)^2)^{\frac{1}{2}}\\
+                        &= \qty(\norm{x} \norm{x} + \norm{y}' \norm{y}')^{\frac{1}{2}}\\
+                        &\leq \qty(\qty(\norm{x}^2 + \qty(\norm{y}')^2)^{\frac{1}{2}})^2 \qty(\qty(\norm{x}^2 + \qty(\norm{y}')^2)^{\frac{1}{2}})^2\\
+                        &= 2\qty(\norm{x}^2 + \qty(\norm{y}')^2)
+                    % &= \qty(\norm{x} (1) + \norm{y}' (1))\\
+                    % &\leq \qty(\norm{x}^2 + (\norm{y}')^2)^{\frac{1}{2}} \qty(1^2 + 1^2)^{1 - \frac{1}{2}}\\
+                    % &= \qty(2)^\frac{1}{2} \qty(\norm{x}^2 + (\norm{y}')^2)^{\frac{1}{2}}\\
+                    % &= \sqrt{2} \sqrt{\norm{x}^2 + (\norm{y}')^2}\\
+                    % \norm{(x,y)}_1
+                    %     &\leq \sqrt{2} \norm{(x,y)}_2
+                \end{align*}
+                So.... this isn't complete... need to do it still... figure out why you can just take 1/epsilon for it to work...
+                % So for $0 < \alpha \leq n^{1/2}$ and $\beta \geq n^{1/2}$,
+                % \begin{align*}
+                %     &\alpha \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
+                %         &&\leq \sum_{i=1}^n \abs{x_i}
+                %         &&\leq \beta \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}\\
+                %     &\qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
+                %         &&\leq n^{1/2} \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2} 
+                %         &&\leq n^{1/2} \qty(\sum_{i=1}^n \abs{x_i}^2)^{1/2}
+                % \end{align*}
+                % Therefore,
+                % \[\norm{x}_2 \leq \norm{x}_1 \leq n^{\frac{1}{1-p}} \norm{x}_2\]
+                % which proves $\norm{\cdot}_1 \sim \norm{\cdot}_2$.
+            \end{proof}
+        \end{lemma}
+    %     \newpage
+    %     % 1-norm ~ p-norm
+    %     \begin{lemma}\label{lem:2-1toP}
+    %         $\norm{\cdot}_1 \sim \norm{\cdot}_p$
+    %         \begin{proof}
+    %             $\norm{\cdot}_1 \sim \norm{\cdot}_p$ is true iff
+    %             \begin{multline*}
+    %                 \forall_{x \in \R^n} \exists_{\alpha,\beta \in \R_+} :\\
+    %                 \alpha \norm{x}_p 
+    %                     \leq \norm{x}_1 
+    %                     \leq \norm{x}_p\\
+    %                 \alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+    %                     \leq \sum_{i=1}^n \abs{x_i}
+    %                     \leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
+    %             \end{multline*}
+    %             From the Holder's inequality we have 
+    %             \begin{align*}
+    %                 \norm{x}_1 = \sum_{i=1}^n \abs{x_i}
+    %                     &= \sum_{i=1}^n \abs{x_i} (1)\\
+    %                     &\leq \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+    %                         \qty(\sum_{i=1}^n \abs{1}^{(1-p)})^{1/(1-p)}\\
+    %                     &\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} 
+    %             \end{align*}
+    %             So for $0 < \alpha \leq n^{1/(1-p)}$ and $\beta \geq n^{1/(1-p)}$,
+    %             \begin{align*}
+    %                 &\alpha \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+    %                     &&\leq \sum_{i=1}^n \abs{x_i}
+    %                     &&\leq \beta \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}\\
+    %                 &\qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+    %                     &&\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p} 
+    %                     &&\leq n^{1/(1-p)} \qty(\sum_{i=1}^n \abs{x_i}^p)^{1/p}
+    %             \end{align*}
+    %             Therefore,
+    %             \[\norm{x}_p \leq \norm{x}_1 \leq n^{\frac{1}{1-p}} \norm{x}_p\]
+    %             which proves $\norm{\cdot}_1 \sim \norm{\cdot}_p$.
+    %         \end{proof}
+    %     \end{lemma}
+    %     \newpage
+    %     %1-norm ~ \infty-norm
+    %     \begin{lemma}\label{lem:2-1toInfty}
+    %         $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$
+    %         \begin{proof}
+    %             $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$ is true iff
+    %             \begin{multline*} 
+    %                 \forall_{x \in \R^n} \exists_{\alpha,\beta \in \R_+} :\\
+    %                 \alpha \norm{x}_\infty \leq \norm{x}_1 \leq \beta \norm{x}_\infty\\
+    %                 \alpha \max_{i=1}^n \abs{x_i} \leq \sum_{i=1}^n \abs{x_i} \leq \beta \max_{i=1}^n \abs{x_i}\\
+    %             \end{multline*}
+    %             Clearly, this is true for when $\alpha \in (0,1]$. Similarily, when $\beta \geq n$ then $\sum_{i=1}^n \max_{i=1}^n \abs{x_i}$ and then clearly greater then the $\norm{x}_1$; therefore $\norm{\cdot}_1 \sim \norm{\cdot}_\infty$.
+    %         \end{proof}
+    %     \end{lemma}
+    %     From, Lemma \ref{lem:2-1to2}, Lemma \ref{lem:1-1toP}, and Lemma \ref{lem:1-1toInfty}, it is clear that $\forall_{p > 1}$ (which implies $\norm{x}_2$ as well):
+    %     \[
+    %         \norm{x}_\infty 
+    %         \leq \norm{x}_p 
+    %         \leq \norm{x}_1 
+    %         \leq n^{1/{1-p}} \norm{x}_p 
+    %         \leq n \norm{x}_\infty
+    %     \]
+    %     Therefore, $\norm{\cdot}_1 \sim \norm{\cdot}_2 \sim \norm{\cdot}_p \sim \norm{\cdot}_\infty$ on $\R^n$ ($\forall_{p > 1}$).
+    \end{proof}
+\end{theorem}
+
+
+
+% Problem 3
+\newpage
+\section{}
+Let $X$ be a vector space and $V$ be a normed space. 
+The function $f : X \to V$ is called bounded if $\exists M \st \forall_{x\in X} \implies \norm{f(x)} < M$. 
+Consider the set $\mathcal{B}(X,V)$ of all bounded functions from $X \to V$. 
+
+%Part a
+\subsection{}
+Show that $\mathcal{B}(X,V)$ is a vector space.
+
+
+do the thing...
+
+
+
+
+%Part b
+\subsection{}
+Show that the function $\mathcal{B}(X,V) \to \R_{+} :$
+\[
+    \norm{f}_\infty := \sup_{x\in X} \norm{f(x)}
+\]
+defines a norm on $\mathcal{B}(X,V)$.
+
+
+Show the things that the norm needs... (mainly triangular inequality)
+
+
+
+
+
+% Problem 4
+\newpage
+\section{}
+Let $A$ be a dense set in metric space $(S,d)$, let $(V,d_1)$ be a complete metric space, and $f : A \to Y$ be a uniformly continuous function. 
+
+%Part a
+\subsection{Show that if $\{x_n\}$ is a Cauchy sequence in $A$ then $\{f(x_n)\}$ is a Cauchy sequence in $Y$.}
+
+
+
+
+%Part b
+\subsection{Show that there is only one continuous function $g : X \to Y$ so that $g(x) = f(x)$ forall $x \in $.}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 5
+\newpage
+\section{}
+Let $(L, \norm{\cdot})$ be a Banach space. 
+Let $L_0$ be a closed subspace of $L$. 
+Define the factor-space $L/L_0$ as $l_1 := L/L_0 = \qty{x + y \st x \in L, y \in L_0}$. 
+In other works, $L_1$ consists of all subsets of $L$ obtained from $L_0$ by shifting all its elements by some element $x$. 
+
+%Part a
+\subsection{Show that $L_1$ is a vector space.}
+
+
+%Part b
+\subsection{}
+Define the function $\norm{\cdot} : L_1 \to \R_{+}$ as $\norm{x}_1 = \inf_{x - y \in L_0} \norm{y}$. 
+Show that this function defines a norm on the space $L_1$.
+
+
+%Part c
+\subsection{Show that $L_1$ is a Banach space.}
+
+
+
+
+
+
+
+% Problem 6
+\newpage
+\section{}
+Let $C([-1,1])$ be the space of all continuous real-valued functions $f(x)$ with $x \in [-1,1]$. 
+Let $\norm{f}_\infty := \sup_{x \in [-1,1]} \abs{f(x)}$. 
+Find the distance from point $p = x^{2021}$ to the space $P_{2020}$ of all polynomials of degree less than or equal to 2020.
+
+
+
+
+
+\end{document}
