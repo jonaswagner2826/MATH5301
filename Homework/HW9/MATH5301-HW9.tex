@@ -191,19 +191,36 @@ Consider the set $l^{\infty}$ of all real-valued sequences, endowed with the sup
 \begin{theorem}
     The set $l^\infty$ is complete.
     \begin{proof}
-        asdf
+        Let $\{x_m\}$ denote any cauchy sequence in $l^\infty$, which is in $l^\infty$ by definition.
+        For all $m\geq 1$, define
+        \[
+            l_m = \{x_1^{(m)}, x_2^{(m)}, \cdots\} \in l^\infty
+        \]
+        Clearly, $\forall_{j \in \R_{>0}}$ the sequence $\{x_j^{(m)}\}$ is a Cauchy sequence (in $\R$) therefore it converges to $x_j \in \R$.
+        Since $\R$ is complete and $\forall {l_m \in l^\infty} \implies \lim_{m \to \infty} l_m = l$ where $l \in l^infty$, the set $l^\infty$ is complete (because all Cauchy sequences in $l^\infty$ converge within $l^\infty$).
     \end{proof}
 \end{theorem}
-
-
 
 %Part b
 \subsection{Prove that $l^\infty$ is not compact.}
 
-
-
-
-
+\begin{theorem}
+    The set $l^\infty$ is not compact.
+    \begin{proof}
+        Set $l^\infty$ not being compact means that there exists an open cover $\{U_\alpha\}_{\alpha \in l^\infty}$ without a finite subcover.
+        This can be proven by constructing an open cover that consists of an infinite set of subcovers.
+        Let $l_m \in l^\infty$ be constructed with $m$ elements, i.e
+        \[
+            l_m = \{x_1^{(m)}, x_2^{(m)}, \cdots, x_m^{(m)}\} \in l^\infty
+        \]
+        An open cover $$\{U_\alpha\}_{\alpha \in A}$$ can then be constructed by an infinite number of sets
+        \[
+            V_\beta = \qty{l_m^{(\beta)}}_{m \in \{1, 2, \dots, \beta\}}
+        \]
+        Which can be constructed with each additional iteration with $\beta$ will increase the size of the $\{V_\beta\}_{\beta \in B}$ subcover, and will cover $l^\infty$ when taken to infinity, but is not finite.
+        Therefore, the open cover $\{U_\alpha\}_{\alpha \in A}$ will not have an associated finite subcover; implying $l^\infty$ is not compact.
+    \end{proof}
+\end{theorem}
 
 % Problem 3
 \newpage
@@ -215,22 +232,11 @@ Consider the set $\mathbb{B}([0,1],\R)$ of all bounded real-valued functions on 
 \subsection{Prove $B_1$ is closed.}
 \begin{theorem}
     $B_1$ is the closed.
-    % \begin{proof}
-    %     $B_1$ being closed implies $B_1^c$ is open:
-    %     \[\]
-    % \end{proof}
     \begin{proof}
         Set $B_1$ being closed implies $B_1^c$ is open.
         \begin{align*}
             \forall_{f \in B_1^c} \exists_{\epsilon>0} \st \forall_{g \in \mathbb{B}} \ \norm{f-g}_\infty < \epsilon &\implies g \in B_1^c\\
-            \forall_{f \in \mathbb{B}} \norm{f}_\infty > 1 \exists_{\epsilon>0}\st \forall_{g \in \mathbb{B}} \ \norm{f-g}_\infty < \epsilon &\implies g \in \mathbb{B} \st \norm{g}_\infty > 1\\
-            % \implies\\
-            % \implies 
-            \forall_{f, g \in \mathbb{B}} \exists_{\epsilon_1>0} \st \norm{f}_\infty > 1 \land  \norm{f-g}_\infty < \epsilon_1 &\implies \norm{g}_\infty > 1
-            % \forall_{f, g \in \mathbb{B}} \exists_{\epsilon_2>0} \st \norm{f}_\infty > 1 \land  \norm{f-g}_\infty \leq \norm{f}_\infty + \norm{g}_\infty < \epsilon_2 &\implies \norm{g}_\infty > 1
-            % \intertext{with $\epsilon_2 \geq \epsilon_1$.}
-            % \forall_{f, g \in \mathbb{B}} \exists_{\epsilon_1>0} \st \qty(\sup_{x \in [0,1]} \abs{f(x)}) > 1 \land  \qty(\sup_{x \in [0,1]} \abs{f(x)-g(x)}) < \epsilon_1 &\implies \qty(\sup_{x \in [0,1]} \abs{g(x)}) > 1\\
-            % \intertext{Since the supremum is the lowest upper bound, it will always be greater then value of the bounded function}
+            \forall_{f \in \mathbb{B}} \norm{f}_\infty > 1 \exists_{\epsilon>0}\st \forall_{g \in \mathbb{B}} \ \norm{f-g}_\infty < \epsilon &\implies g \in \mathbb{B} \st \norm{g}_\infty > 1
         \end{align*}
         Additionally, since $\norm{f}_\infty > 1$ and $\norm{f-g}_\infty$ is bounded, the only way these are both true this must also be true: $\norm{g}_\infty > 1$.
 
@@ -269,7 +275,7 @@ Consider the set $\mathbb{B}([0,1],\R)$ of all bounded real-valued functions on 
 \newpage
 \section{}
 Let $\{V, \norm{\cdot}\}$ be a normed space.
-Show that the function $f(x) = \norm{x} \st V \to \R$ is continuos on $V$.
+Show that the function $f(x) = \norm{x} \st V \to \R$ is continuous on $V$.
 
 \begin{definition}
     A function $f : (S_1,d_1) \to (S_2,d_2)$ is continuous on $S_1$ if 
@@ -285,8 +291,6 @@ Show that the function $f(x) = \norm{x} \st V \to \R$ is continuos on $V$.
     \]
     \begin{proof}
         \begin{align*}
-            % \forall_{x\in V} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in V} \norm{x - y} < \epsilon 
-            %     &\implies \abs{f(x) - f(y)} < \delta\\
             \forall_{x\in V} \forall_{\epsilon>0} \exists_{\delta(x,\epsilon)>0} \forall_{y\in V} \norm{x - y} < \epsilon 
                 &\implies \abs{\norm{x} - \norm{y}} < \delta\\
             \forall_{x\in V} \forall_{\epsilon_1>0} \exists_{\delta_2(x,\epsilon_1)>0} \forall_{y\in V} \norm{x - y} \leq \norm{x} + \norm{y} < \epsilon_1 
@@ -298,11 +302,10 @@ Show that the function $f(x) = \norm{x} \st V \to \R$ is continuos on $V$.
     \end{proof}
 \end{theorem}
 
-
 % Problem 5
 \newpage
 \section{}
-Let $(X,d_1)$ and $(Y,d_2)$ are two metric spaces.
+$(X,d_1)$ and $(Y,d_2)$ are two metric spaces.
 Assume also that $Y$ is a vector space.
 Construct and example of two continuous functions $f,g : X \to Y$ such that $f + g$ is discontinuous.
 
@@ -332,6 +335,32 @@ Construct and example of two continuous functions $f,g : X \to Y$ such that $f +
                         &\implies d_2(f(x), f(y)) < \delta\\
                         &\implies d_2() < \delta
                 \end{align*}
+            \end{proof}
+        \end{lemma}
+
+        \subsection{}
+        \begin{lemma}
+            $g$ is a continuous function.
+            \begin{proof}
+                \begin{align*}
+                    \forall_{x \in X} \forall_{\epsilon > 0} \exists_{\delta(x, \epsilon)} \forall_{y \in X} \st d_1(x,y) < \epsilon
+                        &\implies d_2(g(x), g(y)) < \delta\\
+                        &\implies d_2() < \delta
+                \end{align*}
+            \end{proof}
+        \end{lemma}
+
+        \subsection{}
+        \begin{lemma}
+            $f + g$ is a discontinuous function.
+            \begin{proof}
+                Proof by contradiction, assume $f + g$ is continuous:
+                \begin{align*}
+                    \forall_{x \in X} \forall_{\epsilon > 0} \exists_{\delta(x, \epsilon)} \forall_{y \in X} \st d_1(x,y) < \epsilon
+                        &\implies d_2(f(x) + g(x), f(y) + g(y)) < \delta\\
+                        &\implies d_2() < \delta
+                \end{align*}
+                since 
             \end{proof}
         \end{lemma}
     \end{proof}
