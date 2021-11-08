@@ -313,12 +313,21 @@ Construct and example of two continuous functions $f,g : X \to Y$ such that $f +
     Let $f : X \to Y$ be defined by
     \[
         f(x) := 
+        \begin{cases}
+            - x & x <0\\
+            x & x > 0\\
+            0 & x = 0
+        \end{cases}
     \]
 \end{definition}
 \begin{definition}
     Let $g : X \to Y$ be defined by
     \[
         g(x) := 
+        \begin{cases}
+            x^2 & x \neq 0\\
+            0 & x = 0
+        \end{cases}
     \]
 \end{definition}
 
@@ -333,8 +342,19 @@ Construct and example of two continuous functions $f,g : X \to Y$ such that $f +
                 \begin{align*}
                     \forall_{x \in X} \forall_{\epsilon > 0} \exists_{\delta(x, \epsilon)} \forall_{y \in X} \st d_1(x,y) < \epsilon
                         &\implies d_2(f(x), f(y)) < \delta\\
-                        &\implies d_2() < \delta
+                        &\implies 
+                        \begin{cases}
+                            d_2(-x, -y) < \delta &x < 0, y < 0\\
+                            d_2(x, -y) < \delta & x > 0, y < 0\\
+                            d_2(-x, y) < \delta & x < 0, y > 0\\
+                            d_2(0, -y) < \delta & x= 0, y <0\\
+                            d_2(0, y) < \delta & x = 0, y > 0\\
+                            d_2(-x, 0) < \delta & x < 0, y = 0\\
+                            d_2(x, 0) < \delta & x > 0, y = 0\\
+                            d_2(0, 0) < \delta & x = 0, y = 0
+                        \end{cases}
                 \end{align*}
+                All of which are clearly true for $d_2$ within a vector space.
             \end{proof}
         \end{lemma}
 
@@ -345,8 +365,15 @@ Construct and example of two continuous functions $f,g : X \to Y$ such that $f +
                 \begin{align*}
                     \forall_{x \in X} \forall_{\epsilon > 0} \exists_{\delta(x, \epsilon)} \forall_{y \in X} \st d_1(x,y) < \epsilon
                         &\implies d_2(g(x), g(y)) < \delta\\
-                        &\implies d_2() < \delta
+                        &\implies 
+                        \begin{cases}
+                            d_2(x^2, y^2) < \delta &x \neq 0, y \neq 0\\
+                            d_2(0, y^2) < \delta & x = 0, y \neq 0\\
+                            d_2(x^2, 0) < \delta & x \neq 0, y = 0\\
+                            d_2(0, 0) < \delta & x = 0, y = 0
+                        \end{cases}
                 \end{align*}
+                All of which are clearly true for $d_2$ within a vector space.
             \end{proof}
         \end{lemma}
 
@@ -358,9 +385,19 @@ Construct and example of two continuous functions $f,g : X \to Y$ such that $f +
                 \begin{align*}
                     \forall_{x \in X} \forall_{\epsilon > 0} \exists_{\delta(x, \epsilon)} \forall_{y \in X} \st d_1(x,y) < \epsilon
                         &\implies d_2(f(x) + g(x), f(y) + g(y)) < \delta\\
-                        &\implies d_2() < \delta
+                        &\implies 
+                        \begin{cases}
+                            d_2(-x + x^2, -y + y^2) < \delta &x < 0, y < 0\\
+                            d_2(x + x^2, -y + y^2) < \delta & x > 0, y < 0\\
+                            d_2(-x + x^2, y + y^2) < \delta & x < 0, y > 0\\
+                            d_2(0, -y + y^2) < \delta & x= 0, y <0\\
+                            d_2(0, y + y^2) < \delta & x = 0, y > 0\\
+                            d_2(-x + x^2, 0) < \delta & x < 0, y = 0\\
+                            d_2(x + x^2, 0) < \delta & x > 0, y = 0\\
+                            d_2(0, 0) < \delta & x = 0, y = 0
+                        \end{cases}
                 \end{align*}
-                since 
+                however, in the cases when $x$ or $y$ are zero and the other is not, the statement of continuity is not always true due to a discontinuity immediately surrounding $x = 0$.
             \end{proof}
         \end{lemma}
     \end{proof}
@@ -373,6 +410,50 @@ Construct and example of two continuous functions $f,g : X \to Y$ such that $f +
 \newpage
 \section{}
 Construct an example of a sequence $\{f_n\}$ of nowhere continuous functions $[0,1] \to \R$ such that $f_n$ converge in the sup-norm to continuous functions.
+
+\begin{definition}
+    Let $\mathbb{NC}$ be defined as the sequence of all nowhere continuous functions from $[0,1] \to \R$, i.e
+    \[
+        \mathbb{NC} := \qty{
+            f : [0,1] \to \R \st \forall_{x \in [0,1]} \exists_{\epsilon>0} \forall_{\delta(x,\epsilon)} \exists_{y \in [0,1]} \st 0 < \norm{x - y} < \delta \land \norm{f(x) - f(y)} \geq \epsilon
+        } 
+    \]
+\end{definition}
+\begin{definition}
+    Let $1_\Q : [0,1] \to \R$ be defined as the \underline{Dirichlet function} as the indicator for the set of rational numbers $\Q$, i.e
+    \[
+        1_\Q (x) := 
+        \begin{cases}
+            1 & x \in \Q\\
+            0 & x \notin \Q
+        \end{cases}
+    \]
+    which is a nowhere continuous function with the binary output of $1$ or $0$.
+\end{definition}
+
+\begin{definition}
+    Let the sequence $\{f_n\} \in \mathbb{NC}$ be defined by
+    \[
+        \{f_n\}_{n\in\N} := 
+        \qty{f_n \st f_n(x) = \qty(\frac{2}{n}) \qty(1_\Q (x) - 0.5)}
+    \]
+\end{definition}
+
+\begin{theorem}
+    Within the sup-norm, $\norm{l}_\infty = \sup_{n\in \N} \abs{f_n}$, the sequence of functions $\{f_n\}$ is continuous.
+    \begin{proof}
+        The definition of continuity for the sequence under the sup-norm is given as:
+        \begin{align*}
+            \forall_{x \in X} \forall_{\epsilon > 0} \exists_{\delta(x, \epsilon)} \forall_{y \in X} \st \norm{x - y} < \epsilon \
+            &\implies \norm{f_n(x) - f_n(y)}_\infty < \delta\\
+            &\implies \norm{f_n(x) - f_n(y)}_\infty \leq \norm{f_n(x)}_\infty + \norm{f_n(y)}_\infty < \delta_2\\
+            &\implies \sup_{n\in \N} \abs{f_n(x)} + \sup_{n\in \N} \abs{f_n(y)} < \delta
+        \end{align*}
+        Since $\abs{f_n(x)}$ is clearly bounded from above by $frac{1}{n}$, 
+        $\sup_{n\in \N} \abs{f_n(x)} \leq \sup_{n\in \N} \frac{1}{n} = 1$,
+        therefore, taking $\delta = 2$ results in the definition of continuity being satisfied for $f_n$ under the sup-norm.
+    \end{proof}
+\end{theorem}
 
 
 
