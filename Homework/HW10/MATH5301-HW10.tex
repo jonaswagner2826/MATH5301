@@ -1,0 +1,555 @@
+% Standard Article Definition
+\documentclass[]{article}
+
+% Page Formatting
+\usepackage[margin=1in]{geometry}
+\setlength\parindent{0pt}
+
+% Graphics
+\usepackage{graphicx}
+
+% Math Packages
+\usepackage{physics}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{mathtools}
+
+% Code Def
+\usepackage{listings}
+
+% Section Heading Settings
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand*{\thesection}{Problem \arabic{section}}
+\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
+\newcommand{\divisible}{ \ \vdots \ }
+\newcommand{\st}{\ : \ }
+
+
+% Theorem Definition
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+
+%opening
+\title{MATH 5301 Elementary Analysis - Homework 10}
+\author{Jonas Wagner}
+\date{2021, November 12\textsuperscript{th}}
+
+\begin{document}
+
+\maketitle
+
+% Problem 1 ----------------------------------------------
+\section{}
+Compute the derivatives of the following functions:
+
+% Derivative
+\begin{definition}
+    Let $f : (a,b) \to \R$ be a function.    
+    \begin{enumerate}
+        \item The \emph{\underline{derivative of the function at point $x_0$}} is defined as
+        \[
+            f'(x_0) := \lim_{x \to x_0} \cfrac{f(x) - f(x_0)}{x - x_0}
+        \]
+        \item If the derivative is defined at $x_0$, then it is \emph{\underline{differentiable at $x_0$}}.
+        \item If the derivative is defined for all $x_0 \in (a,b)$, then the function $f$ is said to be \emph{\underline{differentialble}}.
+        \item When $f$ is differentiable, the \underline{\emph{derivative}} of $f(x)$ is defined as:
+        \[
+            f'(x) := \lim_{h \to 0} \cfrac{f(x + h) - f(x)}{h}
+        \]
+    \end{enumerate}
+\end{definition}
+
+%Part a
+\subsection{
+    $x^2 \sin{\frac{1}{x}}$
+}
+Let
+\[
+    f(x) = x^2 \sin{\frac{1}{x}}
+\]
+Then, by definition, the derivative of $f(x)$ is calculated as
+\begin{align*}
+    f'(x) 
+    &= \lim_{h \to 0} \cfrac{f(x + h) - f(x)}{h}\\
+    &= \lim_{h \to 0} 
+        \cfrac{
+            (x + h)^2 \sin(\frac{1}{x + h}) - x^2 \sin(\frac{1}{x})
+            }{h}\\
+    &= \lim_{h \to 0} 
+        \cfrac{
+            \dv{h}\qty((x + h)^2 \sin(\frac{1}{x + h}) - x^2 \sin(\frac{1}{x}))
+            }{
+                \dv{h} h
+            }\\
+    &= \lim_{h \to 0} 
+        \cfrac{
+            2 (x + h) \sin(\frac{1}{x + h}) + (x + h)^2 \qty(\frac{-1}{(x+h)^2}) \cos(\frac{1}{x + h})
+            }{1}\\
+    &= \lim_{h \to 0} 2 (x + h) \sin(\frac{1}{x + h}) - \cos(\frac{1}{x + h})\\
+    \Aboxed{
+        f'(x)
+        &= 2 x \sin(\frac{1}{x}) - \cos(\frac{1}{x})
+        }
+\end{align*}
+
+%Part b
+\subsection{
+    $\cfrac{e^x + e^{-x}}{2}$
+}
+Let
+\[
+    f(x) = \cosh(x) = \cfrac{e^x + e^{-x}}{2}
+\]
+Then, by definition, the derivative of $f(x)$ is calculated as
+\begin{align*}
+    f'(x) 
+    &= \lim_{h \to 0} \cfrac{f(x + h) - f(x)}{h}\\
+    &= \lim_{h \to 0} 
+        \cfrac{
+            \cfrac{e^{(x+h)} + e^{-(x + h))}}{2} + \cfrac{e^x + e^{-x}}{2}
+            }{h}\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            e^{x + h} + e^{-x - h} + e^{x} + e^{-x}
+        }{
+            2 h
+        }\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            e^{x} e^{h} + e^{-x} e^{-h} + e^{x} + e^{-x}
+        }{
+            2 h
+        }\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            \dv{h} \qty(e^{x} e^{h} + e^{-x} e^{-h} + e^{x} + e^{-x})
+        }{
+            \dv{h} 2 h
+        }\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            e^{x} e^{h} - e^{-x} e^{-h}
+        }{
+            2
+        }\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            e^{x + h} - e^{-x - h}
+        }{
+            2
+        }\\
+    \Aboxed{
+        f'(x)
+        &= \cfrac{e^{x} - e^{-x}}{2} = \sinh(x)
+        }
+\end{align*}
+
+%Part c
+\subsection{
+    $\cfrac{e^x - e^{-x}}{2}$
+}
+Let
+\[
+    f(x) = \sinh(x) = \cfrac{e^x - e^{-x}}{2}
+\]
+Then, by definition, the derivative of $f(x)$ is calculated as
+\begin{align*}
+    f'(x) 
+    &= \lim_{h \to 0} \cfrac{f(x + h) - f(x)}{h}\\
+    &= \lim_{h \to 0} 
+        \cfrac{
+            \cfrac{e^{(x+h)} - e^{-(x + h))}}{2} + \cfrac{e^x - e^{-x}}{2}
+            }{h}\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            e^{x + h} - e^{-x - h} + e^{x} - e^{-x}
+        }{
+            2 h
+        }\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            \dv{h} \qty(e^{x + h} - e^{-x - h} + e^{x} - e^{-x})
+        }{
+            \dv{h} 2 h
+        }\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            e^{x + h} + e^{-x - h}
+        }{
+            2
+        }\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            e^{x + h} + e^{-x - h}
+        }{
+            2
+        }\\
+    \Aboxed{
+        f'(x)
+        &= \cfrac{e^{x} + e^{-x}}{2} = \cosh(x)
+        }
+\end{align*}
+
+%Part d
+\subsection{
+    $e^x + e^{e^x} + e^{e^{e^x}}$
+}
+Let
+\[
+    f(x) = e^x + e^{e^x} + e^{e^{e^x}}
+\]
+Then, by definition, the derivative of $f(x)$ is calculated as
+\begin{align*}
+    f'(x) 
+    &= \lim_{h \to 0} \cfrac{f(x + h) - f(x)}{h}\\
+    &= \lim_{h \to 0} 
+        \cfrac{e^{x+h} + e^{e^{x+h}} + e^{e^{e^{x+h}}} - \qty(e^x + e^{e^x} + e^{e^{e^x}})
+            }{h}\\
+    &= \lim_{h \to 0} \cfrac{e^{x+h} - e^x}{h}
+        + \lim_{h \to 0} \cfrac{e^{e^{x + h}} - e^{e^x}}{h}
+        + \lim_{h \to 0} \cfrac{e^{e^{e^{x + h}}} - e^{e^{e^x}}}{h}\\
+    &= \lim_{h \to 0} \cfrac{
+        \dv{h} \qty(e^{x+h} - e^x)
+        }{\dv{h} h}
+        + \lim_{h \to 0} \cfrac{
+            \dv{h} \qty(e^{e^{x + h}} - e^{e^x})
+            }{h}
+        + \lim_{h \to 0} \cfrac{
+            \dv{h} \qty(e^{e^{e^{x + h}}} - e^{e^{e^x}})
+            }{\dv{h} h}\\
+    &= \lim_{h \to 0} 
+            \cfrac{(1)e^{x+h}}{1} 
+        + \lim_{h \to 0} 
+            \cfrac{
+                (1)(e^{x+h})(e^{e^{x+h}})
+                }{1}
+        + \lim_{h \to 0} 
+            \cfrac{
+                (1)(e^{x+h})(e^{e^{x+h}})(e^{e^{e^{x+h}}})
+                }{1}\\
+    &= \lim_{h \to 0} e^{x+h}
+        + \lim_{h \to 0} e^{x + h} e^{e^{x + h}}
+        + \lim_{h \to 0} e^{x + h} e^{e^{x + h}} e^{e^{e^{x + h}}}\\
+    \Aboxed{
+        f'(x)
+        &=  e^{x} + e^{x} e^{e^{x}} + e^{x} e^{e^{x}} e^{e^{e^{x}}}
+        = e^{x} + e^{x + e^{x}} + e^{x + e^{x} + e^{e^{x}}}
+    }
+\end{align*}
+
+\newpage
+%Part e
+\subsection{
+    $x^{x^{x^x}}$
+}
+Let
+\[
+    f(x) = x^{x^{x^{x}}}
+\]
+Then, by definition, the derivative of $f(x)$ is calculated as
+\begin{align*}
+    f'(x) 
+    &= \lim_{h \to 0} \cfrac{f(x + h) - f(x)}{h}\\
+    &= \lim_{h \to 0} 
+        \cfrac{
+            (x + h)^{(x + h)^{(x + h)^{(x + h)}}} - x^{x^{x^{x}}}
+        }{
+            h
+        }\\
+    &= \lim_{h \to 0} 
+        \cfrac{
+            \dv{h} \qty((x + h)^{(x + h)^{(x + h)^{(x + h)}}} - x^{x^{x^{x}}})
+        }{
+            \dv{h} h
+        }\\
+    &= \lim_{h \to 0}
+        \cfrac{
+            \dv{h} \qty((x + h)^{(x + h)^{(x + h)^{(x + h)}}})
+        }{
+            1
+        }
+    \intertext{
+        Exponent Rule: $a^b = e^{b \ln{a}}$
+    }
+    &= \lim_{h \to 0} \dv{h} \qty(
+        e^{\qty(
+            (x + h)^{(x + h)^{(x + h)}}
+            \ln(x + h)
+        )}
+    )
+    \intertext{
+        Chain Rule: $\dv{f}{x} = \dv{f}{u} \dv{u}{x}$
+    }
+    &= \lim_{h \to 0} 
+        \dv{e^{u}}{u}\dv{u}{h}
+    \intertext{
+        with $u = (x + h)^{(x + h)^{(x + h)}} \ln(x + h)$
+    }
+    &= \lim_{h \to 0} e^{u} \dv{h} \qty(
+        (x + h)^{(x + h)^{(x + h)}} \ln(x + h)
+    )\\
+    &= \lim_{h \to 0} e^{u} \Big[
+        \qty((x + h)^{(x + h)^{(x + h)}}) \frac{1}{x + h}\\
+        &\quad + \ln(x + h) \dv{h} e^{
+            (x + h)^{(x + h)}
+            \ln(x + h)
+        }
+    ]\\
+    &\vdots\\
+    &= \lim_{h \to 0}
+        (x + h)^{(x + h)^{(x + h)^{(x + h)}}} \\
+        &\qquad \Bigg[(x + h)^{(x + h)^{(x + h)}-1}\\
+            &\qquad \qquad + \Bigg(
+                (x + h)^{(x + h)^{(x + h)}} \ln(x + h) \Big(
+                    (x + h)^{h + x - 1}\\
+                    &\qquad \qquad \qquad \qquad 
+                    + (x + h)^{x + h} \ln(x + h) \qty(
+                        1 + \ln(x + h)
+                    )
+                \Big)
+            \Bigg)
+        \Bigg]
+\end{align*}
+
+Then
+\[\boxed{
+    f'(x) = x^{x^{x^{x}}} \qty(
+        x^{x^{x}}\ln(x) \qty(
+            x^{x}\ln(x) \qty(\ln(x) + 1) + x^{x^{x - 1}}
+        )
+        +x^{x^{x} - 1}
+    )
+}\]
+
+% Problem 2
+\newpage
+\section{}
+
+% Differentiable Function
+\begin{definition}
+    A \emph{\underline{differentiable function}} over $(a,b)$ is a function $f$ so that $f'(x)$ exists for all $x \in (a,b)$.
+\end{definition}
+
+% Bounded Function
+\begin{definition}
+    A \emph{\underline{bounded function}} is a function so that 
+    \[
+        \exists_{N \in \R} \st \forall_{x \in (a,b)} \abs{f(x)} < N
+    \]
+\end{definition}
+
+% Unbounded Function
+\begin{definition}
+    An \emph{\underline{unbounded function}} is a function that is not bounded.
+\end{definition}
+
+%Part a
+\subsection{Prove the following:}
+\begin{theorem}
+    If $f \st (-1,1) \to \R$ is a differentiable unbounded function, then $f'$ is also unbounded on $[-1,1]$.
+    \begin{proof}
+        When $f$ is unbounded,
+        \[
+            \forall_{N \in \R} \exists_{x \in (-1,1)} \st \abs{f(x)} \geq N
+        \]
+        then $f'$ is defined by
+        \[
+            f'(x) := \lim_{h \to 0} \cfrac{f(x + h) - f(x)}{h}
+        \]
+        Since the derivative is an instantaneous 'rise' over 'run', in order for no bound to exists within a bounded interval $(-1,1)$, the differentiable (and therefore continuous) function must have an asymptote at the boundaries. This implies that within the closed interval, the derivative must also be unbounded to obtain the the asymptote on the boundary.
+    \end{proof}
+\end{theorem}
+
+%Part b
+\subsection{
+    Provide an example of bounded differentiable function on $[-1,1]$ with an unbounded derivative.
+}
+\begin{theorem}
+    $f(x) = \sqrt{x + 1}$ is a bounded differentiable function on $[-1,1]$, but has an unbounded derivative.
+    \begin{proof}
+        Clearly, $f(x)$ is fully defined and bounded on $[-1,1]$.
+        The domain of $\sqrt{x + 1}$ is $\{x \in \R \st x \geq -1\}$ while the range for $x \in [-1,1]$ is $\{y \in [0,\sqrt(3)]\}$.
+
+        The derivative of $f$ is defined as 
+        \[
+            f'(x) = \cfrac{1}{2 \sqrt{x + 1}}
+        \]
+        which is actually bounded on $x \in (-1,1]$, but an asymptote exists at $x = -1$ in which 
+        \[
+            \lim_{x \to -1^+} \cfrac{1}{2 \sqrt{x + 1}} = + \infty
+        \]
+        and is clearly unbounded.
+    \end{proof}
+\end{theorem}
+
+%Part c
+\subsection{Prove the following:}
+\begin{theorem}
+    If $f \st (-1,1) \to \R$ is a differentiable function, such that $f'$ is bounded on $[-1,1]$, then $f$ is uniformly continuous.
+    \begin{proof}
+        
+    \end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+% Problem 3
+\newpage
+\section{}
+Find $f^{(n)}(0)$ for the following functions:
+
+% n-th Derivative
+\begin{definition}
+    
+\end{definition}
+
+%Part a
+\subsection{
+    $\sin(ax)\cos(bx)$
+}
+
+
+
+
+%Part b
+\subsection{
+    $x^k \sin{\frac{1}{x}}$
+}
+
+
+
+
+
+%Part c
+\subsection{
+    $f(x) =
+    \begin{cases}
+        e^{-\frac{1}{x^2}}, &x > 0\\
+        0,                  &x \leq 0
+    \end{cases}$
+}
+
+
+
+
+% Problem 4
+\newpage
+\section{}
+Construct an example of infinitely many times differentiable function $f(x)$ such that $f(x) = 0$ for $x \leq 0$, $f(x) = 1$ for $x \geq 1$ and $f(x)$ is strictly monotone on the interval $(0,1)$.
+
+Using such function you could construct, for example, a monotone function $g(x)$ such that $\lim_{x \to +\infty} g(x) = 0$ but $\lim_{x \to +\infty} g'(x) \neq 0$. (How?)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 5
+\newpage
+\section{}
+Find the following limits
+
+%Part a
+\subsection{
+    $\lim_{x \to 0} \frac{\tan{x} - x}{x^3}$
+}
+
+
+
+
+
+
+
+
+
+%Part b
+\subsection{
+    $\lim_{x \to 0} \frac{\arctan(\arcsin{x}) - \arcsin(\arctan{x})}{\sin{x} - \tan{x}}$
+}
+
+
+
+
+
+
+
+
+
+%Part c
+\subsection{
+    $\lim_{x \to +\infty} \frac{x^{\ln{x}}}{(\ln{x})^x}$
+}
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 6
+\newpage
+\section{}
+Find the example of a function $f(x)$ which is continuous at every point of the interval $(0,1)$, but is not differentiable at every point $(0,1)$.
+
+Read about the construction of the function, which is differentiable at every point of $(0,1)$ but whose derivative is continuous at every point of $(0,1)$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
