@@ -361,6 +361,17 @@ Then
     An \emph{\underline{unbounded function}} is a function that is not bounded.
 \end{definition}
 
+\begin{definition}
+    A function $f : X \to Y$ is \emph{\underline{Uniformly Continous}} if 
+    \[
+        \forall_{\epsilon > 0} \exists_{\delta(\epsilon) > 0} \st \forall_{x,y \in X} \norm{x - y} < \delta \implies \norm{f(x) - f(y)} < \epsilon
+    \]
+    Note: this is stricter then continuity itself with the only difference that $\exists_{\delta}$ is constant $\forall_{x,y \in X}$; whereas a \emph{\underline{Continous}} function only requires that this is true for some $\delta$ dependent on $\epsilon$, $x$, and $y$:
+    \[
+        \forall_{\epsilon > 0} \forall_{x,y \in X} \exists_{\delta(\epsilon,x,y) > 0} \st \norm{x - y} < \delta \implies \norm{f(x) - f(y)} < \epsilon
+    \]
+\end{definition}
+
 %Part a
 \subsection{Prove the following:}
 \begin{theorem}
@@ -405,18 +416,30 @@ Then
 \begin{theorem}
     If $f \st (-1,1) \to \R$ is a differentiable function, such that $f'$ is bounded on $[-1,1]$, then $f$ is uniformly continuous.
     \begin{proof}
-        
+        $f$ differentiable on $x \in (-1,1)$ means 
+        \[
+            \exists f'(x) = \lim_{h \to 0} \cfrac{f(x + h) - f(x)}{h}
+        \]
+        $f'$ bounded on $x \in [-1,1]$ means $f'(x)$ is bounded on $x \in (-1, 1)$ and that the following is bounded:
+        \[
+            \lim_{h \to 0^{+/-}} \cfrac{f(x + h) - f(x)}{h}
+        \]
+        which is equivalent to saying that these two limits exists and are bounded.
+        \[
+            \lim_{x \to (+/-)1^{+/-}} f(x)
+        \]
+        Since it is already known that $f$ is differentiable on $x \in (-1,1)$, this implies that $f$ is continuous, i.e:
+        \[
+            \forall_{\epsilon > 0} \forall_{x,y \in (-1,1)} \exists_{\delta(\epsilon,x,y) > 0} \st \norm{x - y} < \delta \implies \norm{f(x) - f(y)} < \epsilon
+        \]
+        and since $f'$ is bounded on the entire closed domain, a constant finite bound $\delta$ will exist to bound the 'run' ($\norm{x - y}$) for an arbitrary 'rise' ($\norm{f(x) - f(y)}$).
+        Additionally, the lack of asymptotes at the boundaries also implies that continuity of the open domain will extend to the closed domain.
+        Therefore $f$ is uniformly continuous, i.e:
+        \[
+            \forall_{\epsilon > 0} \exists_{\delta(\epsilon) > 0} \st \forall_{x,y \in [-1,1]} \norm{x - y} < \delta \implies \norm{f(x) - f(y)} < \epsilon
+        \]
     \end{proof}
 \end{theorem}
-
-
-
-
-
-
-
-
-
 
 % Problem 3
 \newpage
@@ -425,16 +448,105 @@ Find $f^{(n)}(0)$ for the following functions:
 
 % n-th Derivative
 \begin{definition}
-    
+    Let $f : (a,b) \to \R$ be a differentiable function.
+    \begin{enumerate}
+        \item If $f' : (a,b) \to \R$ is also differentiable, $f$ is called \emph{\underline{twice differentiable}}.
+        \item The derivative of $f'$ is then denoted as $f''$ and is called the \emph{\underline{Secound Derivative}}.
+        \item The \emph{\underline{n-th Derivative}}, denoted by $f^{(n)} : (a,b) \to \R, n \in \N$, is defined by repeating differentiation on the next derivative:
+        \begin{enumerate}
+            \item $n = 0, \ f^{(0)} = f$
+            \item If $f^{(n)}$ is defined, for $n \geq 0$, then $f^{(n+1)} = \dv{x} (f^{(n)})$.
+        \end{enumerate}
+        \item If $f$ has derivatives up until the order $n, n \geq 1$, then $f$ is \emph{\underline{n-times differentiable}}.
+        \item If $f^{(n)}$ is continuous, the $f$ is \emph{\underline{n-times continously differentiable}}; which is also known as $f$ is of class $C^n$.
+    \end{enumerate}
 \end{definition}
+
+% Leibnitz Formula
+\begin{theorem}
+    \textbf{Leibnitz Formula:}
+    Let $f,g : (a,b) \to \R$ be n-differentiable functions. 
+    Then for $1\leq m \leq n$, the m-th derivative of $f(x)g(x)$ is given by:
+    \[
+        \dv[m]{x}\qty(f(x) g(x)) = \sum_{k=0}^m \mqty(m \\ k) f^{(m-k)}(x) g^{(k)}(x)
+    \]
+    \begin{proof}
+        Proof provided in the lecture notes: Theorem 6.20
+    \end{proof}
+\end{theorem}
 
 %Part a
 \subsection{
     $\sin(ax)\cos(bx)$
 }
+It is known, and can be proven using Euler's identity, that the derivatives of sinusoidal functions follow the following progression:
+    \begin{enumerate}
+        \item $\dv{x} \cos(x) = - \sin(x)$
+        \item $\dv{x} -\sin(x) = - \cos(x)$
+        \item $\dv{x} -\cos(x) = \sin(x)$
+        \item $\dv{x} \sin(x) = \cos(x)$
+    \end{enumerate}
+Additionally, from the chain rule, the m-th derivative of a domain scaled function, $f(a x)$ will be given by
+\[
+    \dv[m]{x} f(a x) = a^{m} f^{(m)}(u), \ u = a x
+\]
+
+Let $f(x) = \sin(ax)$ and $g(x) = \cos(bx)$, by Euler's formula,
+\[
+    f(x) = \sin(ax) = \cfrac{e^{j a x} - e^{- j a x}}{2 j}
+\]
+and
+\[
+    g(x) = \cos(bx) = \cfrac{e^{j b x} + e^{-j b x}}{2}
+\]
+
+The m-th derivatives can be defined in many ways, but the following begins by recognizing that $g(x) = a^{-1} f'(x) = a^{-1} f^{(1)}(x)$; and additionally, $g^{(m)}(x) = a^{-m - 1} b^{m} f^{(m + 1)}(\frac{b}{a}x)$.
 
 
+The m-th derivatives of $f$ and $g$ are then clearly given as:
+\[
+    f^{(m)}(x) 
+    = a^m (j)^{m} \cfrac{e^{j a x} - (-1)^{m} e^{- j a x}}{j 2}
+    = a^m (j)^{m - 1} \cfrac{e^{j a x} + (-1)^{m - 1} e^{- j a x}}{2}
+\]
+and 
+\[
+    g^{(m)}(x) 
+    = b^m (j)^{m} \cfrac{e^{j b x} + (-1)^{m} e^{- j b x}}{2}
+\]
 
+By the Leibnitz Formula, the m-th derivative of $f(x) g(x)$ can be calculated as follows:
+\[
+    \dv[m]{x}\qty(f(x) g(x)) 
+    = \sum_{k=0}^m \mqty(m \\ k) f^{(m-k)}(x) g^{(k)}(x)
+\]
+\begin{align*}
+    \dv[m]{x}\qty(\sin(ax) \cos(bx)) 
+        &= \sum_{k=0}^m \mqty(m \\ k) 
+            \qty(a^{m - k} (j)^{m - k - 1} \cfrac{e^{j a x} + (-1)^{m - k - 1} e^{- j a x}}{2})
+            \qty(b^k (j)^{k} \cfrac{e^{j b x} + (-1)^{k} e^{- j b x}}{2})\\
+        &= \sum_{k=0}^m \mqty(m \\ k) 
+            a^{m - k} b^{k} (j)^{m - k - 1 + k}
+            \cfrac{e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}}{2}\\
+    \Aboxed{
+        \dv[m]{x} \qty(\sin(x) \cos(bx))
+            &= \frac{1}{2} \sum_{k=0}^m \mqty(m \\ k) 
+                a^{m - k} b^{k} (j)^{m - k - 1 + k}
+                \qty[
+                    e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}
+                ]
+    }
+\end{align*}
+Which, using Euler's formula again, can be converted back into many different configurations of sinusoidal forms.
+Then by evaluating for $f^{(n)}(0)$,
+\begin{align*}
+    f^{(n)} (0)= \frac{1}{2} \sum_{k=0}^m \mqty(m \\ k) 
+        a^{m - k} b^{k} (j)^{m - k - 1 + k}
+        \qty[
+            e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}
+        ]
+\end{align*}
+    
 
 %Part b
 \subsection{
