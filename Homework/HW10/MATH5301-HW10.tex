@@ -13,8 +13,9 @@
 \usepackage{amsmath, amsfonts, amssymb, amsthm}
 \usepackage{mathtools}
 
-% Code Def
+% Extra Packages
 \usepackage{listings}
+\usepackage{hyperref}
 
 % Section Heading Settings
 \usepackage{enumitem}
@@ -1029,7 +1030,13 @@ and ultimately the original hypothesis is supported as well.
 
 Therefore, 
 \[
-    \lim_{x \to + \infty} \frac{x^{\ln(x)}}{(\ln(x))^x} = + \infty
+    \lim_{x \to + \infty} \frac{x^{\ln(x)}}{(\ln(x))^x} = + \infty 
+        = \lim_{x \to + \infty}
+            \frac{
+                \frac{2 \ln(x)}{x} e^{(\ln(x))^2}
+            }{
+                \ln^x(x) \qty(\ln(\ln(x))+ \frac{1}{\ln(x)})
+            }
 \]
 
 % Problem 6
@@ -1037,21 +1044,65 @@ Therefore,
 \section{}
 Find the example of a function $f(x)$ which is continuous at every point of the interval $(0,1)$, but is not differentiable at every point $(0,1)$.
 
-Read about the construction of the function, which is differentiable at every point of $(0,1)$ but whose derivative is continuous at every point of $(0,1)$.
+Read about the construction of the function, which is differentiable at every point of $(0,1)$ but whose derivative is discontinuous at every point of $(0,1)$.
 
+\subsection*{Continuous but not differentiable}
+This type of function is known as a fractal curve. An example of this is the \emph{Weierstrass function} which for $(0,1)$ can be defined as:
+\begin{definition}
+    Let $f : (0,1) \to \R$ be defined by
+    \[
+        f(x) := \sum_{n = 0}^{\infty} a^n \cos(b^n \pi x)
+    \]
+    where $0 < a < 1$,
+    $b$ is a positive odd integer $\geq 7$,
+    and
+    \[
+        ab > 1 + \frac{3}{2} \pi
+    \]    
+\end{definition}
+As proven by Weierstrass, the function $f$ is continuous everywhere, but is also not differentiable anywhere.
 
+\subsection*{Differentiable function with a discontinuous derivative}
+An example construction of a function which is discontinuous at every point of $(0,1)$ was found in \url{https://math.stackexchange.com/a/423279}
 
+Reading through this example, the process involves using the differentiable function:
+\[
+    f(x) = \begin{cases}
+        x^2 \sin(1/x) & x \neq 0\\
+        0 & x = 0        
+    \end{cases}
+\]
+whose derivative is discontinuous at $x = 0$
+\[
+    f'(x) = \begin{cases}
+        2 x \sin(\frac{1}{x}) - \cos(\frac{1}{x}) & x \neq 0\\
+        0 & x = 0
+    \end{cases}
+\]
 
+This function is then modified to add additional discontinuities,
+like having discontinuous derivatives at $x = 0$ and $x = 1$:
+\[
+    f(x) = \begin{cases}
+        x^2 (1 - x)^2 \sin(\frac{1}{\pi x (1-x)}) & 0 < x < 1\\
+        0 & \text{else}
+    \end{cases}
+\]
 
+This can then be expanded to have a bunch of discontinuities at $x_m$ and $x_n$ with $x_m < x_n$:
+\[
+    f_{m,n}(x) = \begin{cases}
+        (x_m - x)^2 (x_n - x)^2 \sin(\frac{1}{\pi (x_m - x) (x_n - x)}) & x_m < x < x_n\\
+        0 &\text{else}
+    \end{cases}
+\]
 
+Finally, an sum of these functions can then be developed to achieve the goal of a continuous function with a fully discontinuous derivative
+\[
+    F_N(x) = \sum_{n = 1}^{N} \sum_{m=1}^{2^n} f_{m,n}(x)
+\]
+where the discontinuities for $x_k$ are selected from a sequence containing all values of $x \in (0,1)$.
 
-
-
-
-
-
-
-
-
+The limit of this sum as $N \to \infty$ will essentially develop a similar function to that of the fractal sets, but with differentiability intact.
 
 \end{document}
