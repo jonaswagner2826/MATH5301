@@ -491,13 +491,13 @@ Additionally, from the chain rule, the m-th derivative of a domain scaled functi
     \dv[m]{x} f(a x) = a^{m} f^{(m)}(u), \ u = a x
 \]
 
-Let $f(x) = \sin(ax)$ and $g(x) = \cos(bx)$, by Euler's formula,
+Let $f_1(x) = \sin(ax)$ and $f_2(x) = \cos(bx)$, by Euler's formula,
 \[
-    f(x) = \sin(ax) = \cfrac{e^{j a x} - e^{- j a x}}{2 j}
+    f_1(x) = \sin(ax) = \cfrac{e^{j a x} - e^{- j a x}}{2 j}
 \]
 and
 \[
-    g(x) = \cos(bx) = \cfrac{e^{j b x} + e^{-j b x}}{2}
+    f_2(x) = \cos(bx) = \cfrac{e^{j b x} + e^{-j b x}}{2}
 \]
 
 The m-th derivatives can be defined in many ways, but the following begins by recognizing that $g(x) = a^{-1} f'(x) = a^{-1} f^{(1)}(x)$; and additionally, $g^{(m)}(x) = a^{-m - 1} b^{m} f^{(m + 1)}(\frac{b}{a}x)$.
@@ -505,67 +505,150 @@ The m-th derivatives can be defined in many ways, but the following begins by re
 
 The m-th derivatives of $f$ and $g$ are then clearly given as:
 \[
-    f^{(m)}(x) 
+    f_1^{(m)}(x) 
     = a^m (j)^{m} \cfrac{e^{j a x} - (-1)^{m} e^{- j a x}}{j 2}
     = a^m (j)^{m - 1} \cfrac{e^{j a x} + (-1)^{m - 1} e^{- j a x}}{2}
 \]
 and 
 \[
-    g^{(m)}(x) 
+    f_2^{(m)}(x) 
     = b^m (j)^{m} \cfrac{e^{j b x} + (-1)^{m} e^{- j b x}}{2}
 \]
 
-By the Leibnitz Formula, the m-th derivative of $f(x) g(x)$ can be calculated as follows:
+By the Leibnitz Formula, the m-th derivative of $f_1(x) f_2(x)$ can be calculated as follows:
 \[
-    \dv[m]{x}\qty(f(x) g(x)) 
-    = \sum_{k=0}^m \mqty(m \\ k) f^{(m-k)}(x) g^{(k)}(x)
+    \dv[m]{x}\qty(f_1(x) g_2(x)) 
+    = \sum_{k=0}^m \mqty(m \\ k) f_1^{(m-k)}(x) f_2^{(k)}(x)
 \]
 \begin{align*}
     \dv[m]{x}\qty(\sin(ax) \cos(bx)) 
         &= \sum_{k=0}^m \mqty(m \\ k) 
             \qty(a^{m - k} (j)^{m - k - 1} \cfrac{e^{j a x} + (-1)^{m - k - 1} e^{- j a x}}{2})
             \qty(b^k (j)^{k} \cfrac{e^{j b x} + (-1)^{k} e^{- j b x}}{2})\\
-        &= \sum_{k=0}^m \mqty(m \\ k) 
-            a^{m - k} b^{k} (j)^{m - k - 1 + k}
-            \cfrac{e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}}{4}\\
     \Aboxed{
-        \dv[m]{x} \qty(\sin(x) \cos(bx))
-            &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
-                a^{m - k} b^{k} (j)^{m - k - 1 + k}
-                \qty[
-                    e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}
-                ]
-    }
+    \dv[m]{x}\qty(\sin(ax) \cos(bx)) 
+        &= \sum_{k=0}^m \mqty(m \\ k) \qty(a^{m - k} b^k) 
+            \qty((j)^{m - k - 1} \cfrac{e^{j a x} + (-1)^{m - k - 1} e^{- j a x}}{2})
+            \qty((j)^{k} \cfrac{e^{j b x} + (-1)^{k} e^{- j b x}}{2})
+    }\\
 \end{align*}
-Which, using Euler's formula again, can be converted back into many different configurations of sinusoidal forms.
-Then by evaluating for $f^{(n)}(0)$,
+Which, using Euler's formula again, can be converted back into many different configurations of sinusoidal forms, but regardless, this can be evaluated for $f^{(m)}(0)$ within this complex exponential form:
 \begin{align*}
-    f^{(n)} (0) 
-    &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
-        a^{m - k} b^{k} (j)^{m - k - 1 + k}
-        \qty[
-            e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}
-        ]\\
-    &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
-        a^{m - k} b^{k} (j)^{m - k - 1 + k}
-        \qty(1 + (-1)^{m - k - 1} (1) + 1 + (-1)^{k} (1))\\
-    &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
-        a^{m - k} b^{k} (j)^{m - 1}
-        \qty(1 + (-1)^{m - k - 1} (1) + 1 + (-1)^{k} (1))\\
-    &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
-        a^{m - k} b^{k} (j)^{m - 1} \qty(2 + (-1)^{k} - (-1)^{m - k})
+    f^{(m)} (0) 
+    &= \sum_{k=0}^m \mqty(m \\ k) \qty(a^{m - k} b^k) 
+        \qty((j)^{m - k - 1} \cfrac{e^{j a (0)} + (-1)^{m - k - 1} e^{- j a (0)}}{2})
+        \qty((j)^{k} \cfrac{e^{j b (0)} + (-1)^{k} e^{- j b (0)}}{2})\\
+    &= \sum_{k=0}^m \mqty(m \\ k) \qty(a^{m - k} b^k) 
+        \qty((j)^{m - k - 1} \cfrac{(1) + (-1)^{m - k - 1} (1)}{2})
+        \qty((j)^{k} \cfrac{(1) + (-1)^{k} (1)}{2})\\
+    &= \sum_{k=0}^m \mqty(m \\ k) \qty(a^{m - k} b^k) 
+        \qty((j)^{m - k - 1 + k} \cfrac{(1) + (-1)^{m - k - 1}}{2})
+        \qty[\begin{cases}
+            \qty(\cfrac{(1) + (-1)^{k}}{2})
+            &k \divisible 2\\
+            \qty(\cfrac{(1) + (-1)^{k}}{2})
+            &(k - 1) \divisible 2
+        \end{cases}]
+    \intertext{
+        Clearly, when $(k-1) \divisible 2$, $\frac{1 + (-1)^k}{2} = 0$, 
+        otherwise, $\frac{1 + (-1)^k}{2} = 1$.
+    }
+    &= \sum_{k=0}^m \mqty(m \\ k) \qty(a^{m - k} b^k) 
+        \qty((j)^{m - 1} \cfrac{(1) + (-1)^{m - k - 1}}{2})
+        \qty[\begin{cases}
+            (1)
+            &k \divisible 2\\
+            (0)
+            &(k - 1) \divisible 2
+        \end{cases}]\\
+    &= \sum_{k=0}^m \mqty(m \\ k) \qty(a^{m - k} b^k (j)^{m - 1})
+        \qty[\begin{cases}
+            \cfrac{1 - 1}{2} = 0
+            &(k \divisible 2) \land (m - k \divisible 2)\\
+            \cfrac{1 + 1}{2} = 1
+            &(k \divisible 2) \land (m - k - 1 \divisible 2)\\
+            0
+            &(k - 1) \divisible 2
+        \end{cases}]
+    \intertext{
+        Since $m - 1 \divisible 2 \implies (k \divisible 2) \land (m - k - 1 \divisible 2)$,
+    }
+    &= \begin{cases}
+        \sum_{k=0}^m \mqty(m \\ k)
+        \qty[\begin{cases}
+            a^{m - k} b^k (j)^{m - 1}
+            &k \divisible 2\\
+            0
+            &(k - 1) \divisible 2
+        \end{cases}]
+        & m - 1 \divisible 2\\
+        0 & m \divisible 2
+    \end{cases}
 \end{align*}
+Ultimately this means that 
+\[
+    f^{(n)}(0) = \begin{cases}
+        \sum_{k = 1}^{m/2} a^{m - 2 k} b^{2 k}
+        &(m  - 1 \divisible 2) \land \lnot (m \divisible 4)\\
+        - \sum_{k = 1}^{m/2} a^{m - 2 k} b^{2 k}
+        &(m - 1 \divisible 2) \land (m - 1 \divisible 4)\\
+        0
+        & m \divisible 2
+    \end{cases}
+\]
     
-
 %Part b
 \subsection{
     $x^k \sin{\frac{1}{x}}$
 }
+Assuming that $k \in \N$, Let
+\[
+    f(x) = x^k \sin{\frac{1}{x}}
+\]
 
+Let $f_1(x) = x^k$ and $f_2(x) = \sin(\frac{1}{x})$.
 
+By Leibnitz Formula, the m-th derivative of $f_1(x) f_2(x)$ can be calculated as follows:
+\[
+    \dv[m]{x}\qty(f_1(x) g_2(x)) 
+    = \sum_{k=0}^m \mqty(m \\ k) f_1^{(m-k)}(x) f_2^{(k)}(x)
+\]
+Therefore,
+\[
+    \dv[m]{x} x^k \sin(\frac{1}{x})
+        = \sum_{l = 0}^m \mqty(m \\ l)
+            \dv[m - l]{x} x^k
+            \dv[l]{x} \sin(\frac{1}{x})
+\]
 
+It is known by the power rule, that
+\[
+    \dv[m]{x} x^k = \begin{cases}
+        k^{m} x^{k - m} &m \leq k\\
+        0 &m > k
+    \end{cases}
+\]
 
+Since $f^{m}(0)$ will always let $x = 0$, 
+\[
+    \dv[m]{x} x^k = 0 \forall_{m}
+\]
 
+Therefore,
+\begin{align*}
+    \dv[m]{x} x^k \sin(\frac{1}{x})
+        &= \sum_{l = 0}^m \mqty(m \\ l)
+            \dv[m - l]{x} x^k
+            \dv[l]{x} \sin(\frac{1}{x})\\
+        &= \sum_{l = 0}^m \mqty(m \\ l)
+            (0)
+            \dv[l]{x} \sin(\frac{1}{x})
+\end{align*}
+\[
+    \boxed{f^{m}(0) = 0}
+\]
+
+\newpage
 %Part c
 \subsection{
     $f(x) =
@@ -575,8 +658,41 @@ Then by evaluating for $f^{(n)}(0)$,
     \end{cases}$
 }
 
+Since $\lim_{x \to 0^+} - \frac{1}{x^2} = - \infty$,
+\[
+    \lim_{x \to 0^+} e^{-\frac{1}{x^2}} = 0
+\]
 
+Therefore, the function is smooth and differentiable on all $\R$.
 
+Additionally, since $\forall_{x \leq 0} f(x) = 0$,
+\[
+    \forall_{x \leq 0} f'(x) = 0
+\]
+
+By the Chain rule,
+\[
+    \forall_{x \leq 0} \ \dv{x} e^{- \frac{1}{x^2}} = \frac{2}{x^3} e^{-\frac{1}{x^2}}
+\]
+Similarly, by the chain rule and product rule,
+\[
+    \forall_{x \leq 0} \ \dv[2]{x} e^{- \frac{1}{x^2}} 
+    = \dv{x} \frac{2}{x^3} e^{-\frac{1}{x^2}}
+    = \frac{-6}{x^4} e^{-\frac{1}{x^2}} + \frac{2}{x^3} \frac{2}{x^3} e^{-\frac{1}{x^2}}
+    = \frac{2}{x^6} (2 - 3 x^2) e^{-\frac{1}{x^2}}
+\]
+This can then be expanded further with Leibnitz rule,
+to show that 
+\[
+    \forall_{x \leq 0} \ \dv[m]{x} e^{- \frac{1}{x^2}}
+    = \sum_{k = 0}^m \mqty(m \\ k) \qty(\frac{2}{x^3})^k e^{-\frac{1}{x^2}}
+\]
+and since $\lim_{x \to 0^+} e^{-\frac{1}{x^2}} = 0$,
+\[
+    \lim_{x \to 0^+} \dv[m]{x} e^{- \frac{1}{x^2}} = 0
+\]
+And therefore $f^{(n)}(0) = 0$ since the two limits are the same. 
+Although technically, the understanding of the smoothness of $f(x)$ and the fact that $f(0) = 0$ should have been enough to demonstrate this...
 
 % Problem 4
 \newpage
@@ -585,71 +701,336 @@ Construct an example of infinitely many times differentiable function $f(x)$ suc
 
 Using such function you could construct, for example, a monotone function $g(x)$ such that $\lim_{x \to +\infty} g(x) = 0$ but $\lim_{x \to +\infty} g'(x) \neq 0$. (How?)
 
+\begin{definition}
+    Let $f : \R \to \R$ be defined as
+    \[
+        f(x) := \begin{cases}
+            0   &x \leq 0\\
+            \frac{1 - \cos(\pi x)}{2} & x \in (0,1)\\
+            1   &x \geq 1
+        \end{cases}
+    \]   
+\end{definition}
 
 
+\begin{theorem}
+    $f$ is a strictly monotone function over $(0,1)$, is infinitely differentiable function, has $f(x) = 0$ for $x \leq 0$ and $f(x) = 1$ for $x \geq 1$.
+    \begin{proof}
+        \begin{enumerate}
+            \item $f$ is strictly monotone over $(0,1)$ means
+                \[
+                    \forall_{x \in (0,1)} \ f'(x) > 0 
+                \]
+                Since within the interval $(0,1)$, 
+                $f(x) = cos(\pi x)$, 
+                \[
+                    f'(x) = \pi \sin(\pi x)
+                \]
+                which is strictly positive over $(0,1)$ implying $f(x)$ is strictly increasing.
+                By the definition of a monotone, $f$ is therefore a monotone function.
+            \item $f$ being infinitely differentiable means that the n-th derivative is defined over the entire interval forall $n \in \N$.
+                
+                The nth derivative is in fact defined defined by the following, 
+                \[
+                    f^{(n)}(x) = \begin{cases}
+                        0 & x \in (-\infty, 0] \cup [1,\infty)\\
+                        \begin{cases}
+                            \pi^n \cos(\pi x) &n \divisible 4\\
+                            -\pi^n \sin(\pi x) &n + 1 \divisible 4\\
+                            -\pi^n \cos(\pi x) &n + 2 \divisible 4\\
+                            \pi^n \sin(\pi x) &n + 3 \divisible 4
+                        \end{cases}
+                        &0 < x < 1
+                    \end{cases}
+                \]
+            \item $f(x) = 0$ for $x \leq 0$ is true by the piecewise definition of $f(x)$
+            \item $f(x) = 1$ for $x \leq 1$ is true by the piecewise definition of $f(x)$
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
 
+Perhaps it is possible to complete use such a function to construct the desired function $g(x)$ using one of the monotone functions on that region, but my guess is that such a function will be monotone forall $x$ instead of only within the region as described like I did with the cosine function.
+Perhaps a sigmoid variant would be useful, but I believe that any variation based on the cosine function with the piecewise will not satisfy that condition (at least with all real-values).
 
+% \newpage
+% \begin{definition}
+%     Let $g : (0,\infty) \to \R$ be defined in terms of $f$ as:
+%     \[
+%         g(x) := x\cfrac{f(x) - 1}
+%         = \begin{cases}
+%             \cfrac{e^{x}(-1 - \cos(\pi x))}{2x}
+%             & 0 < x < 1\\
+%             0 & x \geq 0
+%         \end{cases}
+%     \]
+% \end{definition}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+% \begin{theorem}
+%     The function $g(x)$ converges to 0, 
+%     \[
+%         \lim_{x \to +\infty} g(x) = 0
+%     \]
+%     but the same is not the case for $g'(x)$:
+%     \[
+%         \lim_{x \to +\infty} \neq 0
+%     \]
+%     \begin{proof}
+%         \begin{enumerate}
+%             \item Clearly, by definition of $g(x)$, $g(x)$ converges to 0.
+%             \item The derivative does not converge to zero:
+%                 \begin{align*}
+%                     g'(x) = \begin{cases}
+                        
+%                     \end{cases}
+%                 \end{align*}
+%         \end{enumerate}
+%     \end{proof}
+% \end{theorem}
 
 % Problem 5
 \newpage
 \section{}
 Find the following limits
 
+Trigonometric Derivative Reference:
+\begin{align*}
+    \dv{x} \sin(x) &= \cos(x)\\
+    \dv{x} \cos(x) &= -\sin(x)\\
+    \dv{x} \tan(x) &= \secant^2(x)\\
+    \dv{x} \sin[-1](x) &= \frac{1}{\sqrt{1-x^2}}\\
+    \dv{x} \cos[-1](x) &= -\frac{1}{\sqrt{1-x^2}}\\
+    \dv{x} \tan[-1](x) &= \frac{1}{1 + x^2}
+\end{align*}
+
 %Part a
 \subsection{
     $\lim_{x \to 0} \frac{\tan{x} - x}{x^3}$
 }
 
+\begin{align*}
+    \lim_{x \to 0} \frac{\tan{x} - x}{x^3}
+        &= \lim_{x \to 0} \frac{\tan{x}}{x^3} - \frac{x}{x^2}\\
+        &= \lim_{x \to 0} 
+            \frac{\dv{x} \tan{x} - x}{\dv{x} x^3}\\
+        &= \lim_{x \to 0}
+            \frac{\sec^2{x} - 1}{3 x^2}\\
+        &= \lim_{x \to 0}
+            \frac{2 \sec^2{x}\tan{x}}{6 x}\\
+        &= \lim_{x \to 0}
+            \frac{(4 \sin[2](x) + 2) \sec[4](x)}{6}\\
+        &= \frac{(4 (0)^2 + 2) (1)^4}{6}\\
+    \Aboxed{
+        \lim_{x \to 0} \frac{\tan{x} - x}{x^3}
+        &= \frac{2}{6} = \frac{1}{3}
+    }
+\end{align*}
 
-
-
-
-
-
-
-
+\newpage
 %Part b
 \subsection{
     $\lim_{x \to 0} \frac{\arctan(\arcsin{x}) - \arcsin(\arctan{x})}{\sin{x} - \tan{x}}$
 }
 
-
-
-
-
-
-
-
+\begin{align*}
+    \lim_{x \to 0} \frac{\arctan(\arcsin{x}) - \arcsin(\arctan{x})}{\sin{x} - \tan{x}}
+    &= \lim_{x \to 0}
+        \frac{
+            \dv{x} \qty(\tan[-1](\sin[-1](x)) - \sin[-1](\tan[-1](x)))
+        }{
+            \dv{x} \qty(\sin(x) - \tan(x))
+        }\\
+    &= \lim_{x \to 0}
+        \frac{
+            \dv{\tan[-1](\sin[-1](x))}{\sin[-1](x)} \dv{\sin[-1](x)}{x}
+            - \dv{\sin[-1](\tan[-1](x))}{\tan[-1](x)}\dv{\sin[-1](x)}{x}
+        }{
+            \dv{\sin(x)}{x} - \dv{\tan(x)}{x}
+        }\\
+    &= \lim_{x \to 0}
+        \frac{
+            \frac{1}{\sqrt{1-x^2} (1 + \sin[-1](x)^2)} 
+            - \frac{1}{\sqrt{1+x^2} (1 - \tan[-1](x)^2)}
+        }{
+            \cos(x) - \sin(x)
+        }\\
+    &= \lim_{x \to 0}
+        \frac{
+            \frac{
+                - (\sqrt{1-x^2} (1 + \sin[-1](x)^2))
+                + (\sqrt{1+x^2} (1 - \tan[-1](x)^2))
+            }{
+                (\sqrt{1-x^2} (1 + \sin[-1](x)^2))
+                (\sqrt{1+x^2} (1 - \tan[-1](x)^2))
+            }
+        }{
+            \cos(x) - \sin(x)
+        }\\
+    &= \frac{
+            \frac{
+                -(\sqrt{1 - (0)} (1 + (0)^2))
+                +(\sqrt{1 + (0)} (1 - (0)^2))
+            }{
+                (\sqrt{1-0^2} (1 + (0)^2))
+                (\sqrt{1+0^2} (1 - (0)^2))
+            }
+        }{
+            (1) - (0)
+        }\\
+    &= \frac{
+        \frac{
+            -1 + 1
+        }{
+            (1)(1)
+        }
+    }{1}
+\end{align*}
+\begin{equation*}
+    \centering
+    \boxed{
+        \lim_{x \to 0} \frac{\arctan(\arcsin{x}) - \arcsin(\arctan{x})}{\sin{x} - \tan{x}}
+        = 0
+    }
+\end{equation*}
 
 %Part c
 \subsection{
     $\lim_{x \to +\infty} \frac{x^{\ln{x}}}{(\ln{x})^x}$
 }
 
+\begin{align*}
+    \lim_{x \to +\infty} \frac{x^{\ln{x}}}{(\ln{x})^x}
+    &= \lim_{x \to + \infty}
+        x^{\ln(x)} \ln(x)^{-x}\\
+    &= \lim_{x \to + \infty}
+        e^{\ln(x^{\ln(x)})} e^{\ln(\ln(x)^{-x})}\\
+    &= \lim_{x \to + \infty}
+        e^{\ln(x) \ln(x)} e^{- x \ln(\ln(x))}\\
+    &= \lim_{x \to + \infty}
+        \frac{
+            e^{(\ln(x))^2}
+        }{
+            e^{x \ln(\ln(x))}
+        }\\
+    &= \lim_{x \to + \infty}
+        \frac{
+            \dv{x} e^{(\ln(x))^2}
+        }{
+            \dv{x} e^{x \ln(\ln(x))}
+        }\\
+    &= \lim_{x \to + \infty}
+        \frac{
+            \frac{2 \ln(x)}{x} e^{(\ln(x))^2}
+        }{
+            \ln^x(x) \qty(\ln(\ln(x))+ \frac{1}{\ln(x)})
+        }\\
+    &= \lim_{x \to + \infty}
+        \frac{
+            2 \ln(x) e^{\ln^2(x)}
+        }{
+            x \ln^x(x) \qty(\ln(\ln(x))+ \frac{1}{\ln(x)})
+        }\\
+    % &= \lim_{x \to +\infty} 
+    %     \frac{
+    %         \dv{x} x^{\ln{x}}
+    %     }{
+    %         \dv{x} (\ln{x})^x
+    %     }\\
+    % &= \lim_{x \to +\infty} 
+    %     \frac{
+    %         \dv{x^{\ln{x}}}{\ln{x}}{x} \dv{\ln{x}}{x}
+    %     }{
+    %         \dv{x} e^{\ln{(\ln{x})^x}}
+    %     }\\
+    % &= \lim_{x \to +\infty} 
+    %     \frac{
+    %         \ln{x} x^{\ln{x} - 1} \frac{1}{x}
+    %     }{
+    %         \dv{
+    %             x \ln(\ln(x))
+    %         }{x}
+    %         e^{x \ln(\ln{x})}
+    %     }\\
+    % &= \lim_{x \to +\infty} 
+    %     \frac{
+    %         \frac{\ln{x} x^{\ln{x} - 1}}{x}
+    %     }{
+    %         \qty(
+    %             \ln(\ln(x)) 
+    %             + \frac{1}{\ln(x)}
+    %         )
+    %         e^{
+    %             x \ln(\ln{x})
+    %         }
+    %     }\\
+    % &= \lim_{x \to +\infty}
+    %     \frac{
+    %         x^{\ln(x) - 2} \ln(x)
+    %     }{
+    %         \qty(\ln(x))^x
+    %         \qty(
+    %             \ln(\ln(x) + \frac{1}{\ln(x)})
+    %         )
+    %     }\\
+    % &= \lim_{x \to +\infty}
+    %     \frac{
+    %         \dv{x} x^{\ln(x) - 2} \ln(x)
+    %     }{
+    %         \dv{x} \qty(\ln(x))^x
+    %         \qty(
+    %             \ln(\ln(x) + \frac{1}{\ln(x)})
+    %         )
+    %     }\\
+    % &= \lim_{x \to +\infty}
+    %     \cfrac{
+    %         x^{\ln(x) - 3}
+    %         \qty(
+    %             2 (\ln(x))^2 - 2 \ln(x) + 1
+    %         )
+    %     }{
+    %         x^{-1}
+    %         (\ln(x))^{x - 2}
+    %         \qty(
+    %             x 
+    %             + x (\ln(x))^2 (\ln(\ln(x)))^2
+    %             + 2 x \ln(x) \ln(\ln(x))
+    %             + \ln(x)
+    %             - 1
+    %         )
+    %     }\\
+    % &= \lim_{x \to +\infty}
+    %     \cfrac{
+    %         x^{\ln(x)}
+    %         (\ln(x))^2
+    %         \qty(
+    %             2 (\ln(x))^2 - 2 \ln(x) + 1
+    %         )
+    %     }{
+    %         x^4
+    %         (\ln(x))^{x}
+    %         \qty(
+    %             x 
+    %             + x (\ln(x))^2 (\ln(\ln(x)))^2
+    %             + 2 x \ln(x) \ln(\ln(x))
+    %             + \ln(x)
+    %             - 1
+    %         )
+    %     }
+\end{align*}
 
+After a lot of manipulation I am making the assumption that with
+$\lim_{x \to + \infty} \ln{x} = + \infty$
+and since for large enough $x$, 
+$x^{\ln(x)} > (\ln(x))^x$
+the resulting ratio will be unbounded and will tend to infinity.
 
+It is also true that
+$e^{\ln^2(x)} > \ln^x(x)$
+and ultimately the original hypothesis is supported as well.
 
-
-
-
-
-
-
-
+Therefore, 
+\[
+    \lim_{x \to + \infty} \frac{x^{\ln(x)}}{(\ln(x))^x} = + \infty
+\]
 
 % Problem 6
 \newpage
