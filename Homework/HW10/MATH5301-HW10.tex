@@ -527,10 +527,10 @@ By the Leibnitz Formula, the m-th derivative of $f(x) g(x)$ can be calculated as
             \qty(b^k (j)^{k} \cfrac{e^{j b x} + (-1)^{k} e^{- j b x}}{2})\\
         &= \sum_{k=0}^m \mqty(m \\ k) 
             a^{m - k} b^{k} (j)^{m - k - 1 + k}
-            \cfrac{e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}}{2}\\
+            \cfrac{e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}}{4}\\
     \Aboxed{
         \dv[m]{x} \qty(\sin(x) \cos(bx))
-            &= \frac{1}{2} \sum_{k=0}^m \mqty(m \\ k) 
+            &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
                 a^{m - k} b^{k} (j)^{m - k - 1 + k}
                 \qty[
                     e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}
@@ -540,11 +540,20 @@ By the Leibnitz Formula, the m-th derivative of $f(x) g(x)$ can be calculated as
 Which, using Euler's formula again, can be converted back into many different configurations of sinusoidal forms.
 Then by evaluating for $f^{(n)}(0)$,
 \begin{align*}
-    f^{(n)} (0)= \frac{1}{2} \sum_{k=0}^m \mqty(m \\ k) 
+    f^{(n)} (0) 
+    &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
         a^{m - k} b^{k} (j)^{m - k - 1 + k}
         \qty[
             e^{j a x} + (-1)^{m - k -1} e^{-j a x} + e^{j b x} + (-1)^{k} e^{-j b x}
-        ]
+        ]\\
+    &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
+        a^{m - k} b^{k} (j)^{m - k - 1 + k}
+        \qty(1 + (-1)^{m - k - 1} (1) + 1 + (-1)^{k} (1))\\
+    &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
+        a^{m - k} b^{k} (j)^{m - 1}
+        \qty(1 + (-1)^{m - k - 1} (1) + 1 + (-1)^{k} (1))\\
+    &= \frac{1}{4} \sum_{k=0}^m \mqty(m \\ k) 
+        a^{m - k} b^{k} (j)^{m - 1} \qty(2 + (-1)^{k} - (-1)^{m - k})
 \end{align*}
     
 
