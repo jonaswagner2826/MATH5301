@@ -1,0 +1,251 @@
+% Standard Article Definition
+\documentclass[]{article}
+
+% Page Formatting
+\usepackage[margin=1in]{geometry}
+\setlength\parindent{0pt}
+
+% Graphics
+\usepackage{graphicx}
+
+% Math Packages
+\usepackage{physics}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{mathtools}
+
+% Extra Packages
+\usepackage{listings}
+\usepackage{hyperref}
+
+% Section Heading Settings
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand*{\thesection}{Problem \arabic{section}}
+\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
+\newcommand{\divisible}{ \ \vdots \ }
+\newcommand{\st}{\ : \ }
+
+
+% Theorem Definition
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+
+
+%opening
+\title{MATH 5301 Elementary Analysis - Homework 10}
+\author{Jonas Wagner}
+\date{2021, November 12\textsuperscript{th}}
+
+\begin{document}
+
+\maketitle
+
+% Problem 1 ----------------------------------------------
+\section{}
+Prove that the closure and the interior of a convex set $A \subset \R^n$ are also convex.
+
+% Convex Set
+\begin{definition}
+    The set $A$ is called \emph{\underline{convex}} if
+    \[
+        \forall_{x, y \in A} \forall_{t \in [0, 1]}
+        \qty((t) x + (1 - t) y) \in A
+    \]
+\end{definition}
+
+% Interior and Closure
+\begin{definition}
+    For a given set $A \subseteq (S,d)$,
+    \begin{enumerate}
+        \item the \emph{\underline{interior}} of $A$ is defined as
+        \[
+            \text{int}(A) = \qty{
+                x \in A \st \exists_{\epsilon > 0} B_{\epsilon}(x) \subset A
+            }
+        \]
+        \item the \emph{\underline{closure}} of $A$ is defined as
+        \[
+            \bar{A} = \qty{
+                x \in S \st \forall_{\epsilon > 0} B_\epsilon \cap A \neq \emptyset
+            }
+        \]
+    \end{enumerate}
+\end{definition}
+
+
+
+% \begin{theorem}
+% \end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 2 ----------------------------------------------
+\newpage
+\section{}
+Prove that the intersection of an arbitrary collection of convex sets $\cap_{i \in 1} C_i$ is also convex.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 3 ----------------------------------------------
+\newpage
+\section{}
+Let $\{C_i\}_{i \in \N}$ be a sequence of nested convex sets in $\R^n$, i.e. $C_i \subset C_{i+1}$.
+Prove that $\cup_{i = 1}^\infty C_i$ is also convex.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 4 -----------------------------------------------
+\newpage
+\section{}
+
+% Convex Hull
+\begin{definition}
+    A \emph{\underline{convex hull}} is defined as
+    \[
+        Hull=
+    \]
+\end{definition}
+
+% Part a
+\subsection{}
+Show that the convex hull of any open sets in $\mathcal{R}^n$ is open.
+
+
+
+
+
+
+
+
+
+
+% Part b
+\subsection{}
+Provide an example of a closed set $A \subset \mathcal{R}^n$, such that its convex hull is not closed.
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 5 -----------------------------------------------
+\newpage
+\section{}
+Let $f : \R^n \to \R$ be a convex function and $A \subset \R^n$ be a bounded set.
+Prove that $f(A)$ is bounded in $\R$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+% Problem 6 -----------------------------------------------
+\newpage
+\section{}
+Show that the convex hull of a compact set $A \subset \R^n$ is compact.
+(\textit{Hint:} Caratheodory theorem)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
