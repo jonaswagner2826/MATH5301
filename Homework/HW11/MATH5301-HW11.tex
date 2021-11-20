@@ -82,63 +82,90 @@ Prove that the closure and the interior of a convex set $A \subset \R^n$ are als
         \]
         \item the \emph{\underline{closure}} of $A$ is defined as
         \[
-            \bar{A} = \qty{
-                x \in S \st \forall_{\epsilon > 0} B_\epsilon \cap A \neq \emptyset
+            \overline{A} = \qty{
+                x \in S \st \forall_{\epsilon > 0} B_\epsilon(x) \cap A \neq \emptyset
             }
         \]
     \end{enumerate}
 \end{definition}
 
-
-
-% \begin{theorem}
-% \end{theorem}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+% Problem 1 Theorem
+\begin{theorem}
+    If $A \subset \R^n$ is a convex set,
+    then the closure of $A$, $\overline{A}$, is also convex.
+    \begin{proof}
+        $A$ being convex means that\[
+            \forall_{x, y \in A} \forall_{t \in [0, 1]}
+            \qty((t) x + (1 - t) y) \in A
+        \]
+        $\overline{A}$ is defined by\[
+            \overline{A} = \qty{
+                x \in \R^n \st \forall_{\epsilon > 0} B_\epsilon(x) \cap A \neq \emptyset
+            }
+        \]
+        For $\overline{A}$ to be convex, the following would be true:\[
+            \forall_{x, y \in \overline{A}} \forall_{t \in [0,1]} 
+                \qty((t) x + (1 - t) y) \in \overline{A}
+        \]
+        Additionally, since $\overline{A} = A \cup \partial A$, $\overline{A}$ is convex if
+        \[
+            \qty(
+                \forall_{x \in A} \forall_{y \in \overline{A}} \forall_{t \in [0,1]} 
+                    \qty((t) x + (1 - t) y) \in \overline{A}
+            ) \land \qty(
+                \forall_{x \in \partial A} \forall_{y \in \overline{A}} \forall_{t \in [0,1]} 
+                    \qty((t) x + (1 - t) y) \in \overline{A}
+            )
+        \]
+        Since $A \subset \overline{A}$, by definition the first statement is true, \[
+            \forall_{x \in A} \forall_{y \in \overline{A}} \forall_{t \in [0,1]} 
+                \qty((t) x + (1 - t) y) \in \overline{A}
+        \]
+        Additionally, since the boundary of $A$, $\partial A$, is the collection of limit points of $A$ and the limit points all exist within the neighborhood of elements in $A$, \[
+            \forall_{x \in \partial A} \forall_{y \in \overline{A}} \forall_{t \in [0,1]} 
+                    \qty((t) x + (1 - t) y) \in \overline{A}
+        \]
+        Therefore,
+        \[
+            \forall_{x, y \in \overline{A}} \forall_{t \in [0,1]} 
+                \qty((t) x + (1 - t) y) \in \overline{A}
+        \]
+    \end{proof}
+\end{theorem}
 
 % Problem 2 ----------------------------------------------
 \newpage
 \section{}
-Prove that the intersection of an arbitrary collection of convex sets $\cap_{i \in 1} C_i$ is also convex.
+Prove that the intersection of an arbitrary collection of convex sets $\cap_{i \in I} C_i$ is also convex.
 
+% Problem 2 Theorem
+\begin{theorem}
+    If each of the sets within the collection $C_i \subset (S,d)$ are convex,
+    then the intersection of the collection, $\cap_{i \in I}$ is also convex.
+    \begin{proof}
+        For $\cap_{i \in I}$ to be convex, the following must be true: \[
+            \forall_{x, y \in \cap_{i \in I} C_i} 
+                \forall_{t \in [0,1]} (t) x + (1 - t) y \in \cap_{i \in I} C_i
+        \]
+        Which is the same as: \[
+            \forall_{x,y \in S} \st \forall_{i \in I} x,y \in C_i 
+                \implies \forall_{t \in [0,1]} \forall_{i \in I} (t) x + (1 - t) y \in C_i
+        \]
+        Since all the sets $C_i$ are convex, by definition: \[
+            \forall_{x, y \in C_i} \forall_{t \in [0,1]} 
+                (t) x + (1 - t) y \in C_i
+        \]
+        Therefore this is true $\forall_{i \in I}$: \[
+            \land_{i \in I} \forall_{x,y \in C_i}
+                \implies \forall_{t \in [0,1]} (t) x + (1 - t) y \in C_i
+        \]
+        Which is equivalent to: \[
+            \forall_{x, y \in \cap_{i \in I} C_i} 
+                \forall_{t \in [0,1]} (t) x + (1 - t) y \in \cap_{i \in I} C_i
+        \]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    \end{proof}
+\end{theorem}
 
 % Problem 3 ----------------------------------------------
 \newpage
@@ -146,25 +173,35 @@ Prove that the intersection of an arbitrary collection of convex sets $\cap_{i \
 Let $\{C_i\}_{i \in \N}$ be a sequence of nested convex sets in $\R^n$, i.e. $C_i \subset C_{i+1}$.
 Prove that $\cup_{i = 1}^\infty C_i$ is also convex.
 
+% Problem 3 Theorem
+\begin{theorem}
+    For the sequence of nested convex sets in $\R^n$, $\qty{C_i}_{i \in \N}$, a union of all the elements, $\cup_{i = 1}^\infty C_i$, is also convex.
+    \begin{proof}
+        Proof by induction.
+        
+        For $n = 1$, the set $\cup_{i = 1}^n C_i = C_1$ is convex.
+        
+        For $n = 2$, the set $\cup_{i = 1}^n C_i = C_1 \cup C_2$ is convex.
+        \begin{proof}
+            Since $C_1 \subset C_2$, $C_1 \cup C_2 = C_2$ and $C_2$ is convex.
+        \end{proof}
 
+        Assuming for $n = k$, $\cup_{i = 1}^k C_i = C_k$ is convex, 
+        then for $n = k+1$, $\cup_{i = 1}^{k + 1} C_i = C_{k + 1}$ is convex.
+        \begin{proof}
+            Since $C_k \subset C_{k+1}$, \[
+                \cup_{i = 1}^{k + 1} C_i = \cup_{i = 1}^{k} C_i \cup C_{k + 1} = C_{k + 1}
+            \]
+            which is convex.
+        \end{proof}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Therefore, by induction, \[
+            \forall_{n \in \N} \cup_{i = i}^n C_i
+        \]
+        is convex.
+        This implies $\cup_{i = 1}^\infty C_i$.
+    \end{proof}
+\end{theorem}
 
 % Problem 4 -----------------------------------------------
 \newpage
