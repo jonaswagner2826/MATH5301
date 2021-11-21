@@ -46,6 +46,7 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{proposition}{Proposition}
+\newtheorem{example}{Example}
 
 
 %opening
@@ -209,39 +210,72 @@ Prove that $\cup_{i = 1}^\infty C_i$ is also convex.
 
 % Convex Hull
 \begin{definition}
-    A \emph{\underline{convex hull}} is defined as
-    \[
-        Hull=
+    The \emph{\underline{convex hull}} for set $A \in (S,d)$ is defined as \[
+        \textnormal{conv}(A) = \cap_{C \supseteq A \st C \textnormal{ convex}}
     \]
+    Additionally, for $A \subset \R^n$, \[
+        \textnormal{cov}(A) = \cup_{m = 1}^{\infty} C_m
+    \]\[
+        C_m = \qty{
+            x \in \R^n \st
+            x = \alpha_1 a_1 + \cdot + \alpha_m a_m, \
+            a_1, \dots, a_m \in A, \
+            \alpha_i \geq 0, \
+            \sum_{i} \alpha_i = 1
+        }
+    \]
+\end{definition}
+% Open Set
+\begin{definition}
+    The set $A \subset V$ is called \underline{open} if \[ 
+        \forall_{x\in A} \exists_{\epsilon>0} : B_\epsilon(x)\subset A
+    \]
+    or equivalently, \[
+        \forall_{x \in A} \exists_{\epsilon>0} : \forall_{y \in V}\norm{x - y} < \epsilon \implies y \in A
+    \]
+\end{definition}
+% Closed Set
+\begin{definition}
+    The set $A \subset V$ is called \underline{closed} if $A^c$ is open.
 \end{definition}
 
 % Part a
 \subsection{}
 Show that the convex hull of any open sets in $\mathcal{R}^n$ is open.
 
-
-
-
-
-
-
-
-
+% Problem 4a Theorem
+\begin{theorem}
+    For any open set $A \subset \R^n$,
+    then the convex hull, $\textnormal{conv}(A)$,
+    is open.
+    \begin{proof}
+        By definition, $A$ will satisfy the open condition:\[
+            \forall_{x \in A} \exists_{\epsilon>0} : \forall_{y \in \R^n}\norm{x - y} < \epsilon \implies y \in A
+        \]
+        The convex hull of $A$, $\textnormal{conv}(A)$, is the intersection of all convex sets that contain $A$.
+        This means that the smallest convex set containing $A$ will share a portion of the boundary of $A$.
+        Then the open condition will be true along the portion of the boundary in which $A$ and $\textnormal{conv}(A)$ share will be open.
+        The smallest convex set that shares this boundary will then also be open since the open $\textnormal{int}(C)$ is contained by any closed set with the same boundary.
+        Therefore, the convex hull would be open.
+    \end{proof}
+\end{theorem}
 
 % Part b
 \subsection{}
 Provide an example of a closed set $A \subset \mathcal{R}^n$, such that its convex hull is not closed.
 
-
-
-
-
-
-
-
-
-
-
+\begin{example}
+    Let closed set $A \subset \R^2$ be defined as\[
+        A := \qty{
+            (x,y) \in \R^2 \st y \geq e^{-x^2}
+        }
+    \]
+    Clearly, $A$ is closed, however the convex hull of $A$ is actually open due to the asymptote that occurs on the $x$-axis:\[
+        \textnormal{conv}(A) := \qty{
+            (x,y) \in \R^2 \st y > 0
+        }
+    \]
+\end{example}
 
 % Problem 5 -----------------------------------------------
 \newpage
@@ -249,17 +283,37 @@ Provide an example of a closed set $A \subset \mathcal{R}^n$, such that its conv
 Let $f : \R^n \to \R$ be a convex function and $A \subset \R^n$ be a bounded set.
 Prove that $f(A)$ is bounded in $\R$.
 
+% Convex Function
+\begin{definition}
+    Function $f : [a,b] \to \R$ is considered a \emph{\underline{convex function}} if\[
+        \forall_{x_1,x_2 \in [a,b]} \forall_{t \in [0,1]}
+        f((t) x_1 + (1 - t) x_2) \leq (t) f(x_1) + (1 - t) f(x_2)
+    \]
+\end{definition}
 
-
-
-
-
-
-
-
-
-
-
+% Problem 5 Theorem
+\begin{theorem}
+    If the function $f : \R^n \to \R$ is a convex function,
+    then for a bounded set $A \subset \R^n$, the image $f(A)$ is bounded in $\R$.
+    \begin{proof}
+        $f$ being convex means that\[
+            \forall_{\va{x},\va{y} \in \R^n} \forall_{t \in [0,1]}
+                f((t) \va{x} + (1 - t) \va{y}) \leq (t) f(\va{x}) + (1 - t) f(\va{y})
+        \]
+        $A$ being bounded means\[
+            \exists_{N} \st \forall_{\va{x} \in A}  \norm{\va{x}} \leq N
+        \]
+        It is known that the a convex function with a non-constant output cannot obtain its maximum within $\textnormal{int}(A)$;
+        therefore, $\arg \max_{\va{x} \in A} f(x) \in \partial A$.
+        Since $A$ is bounded, \[
+            \exists_N \st \forall_{x \in \partial A} \norm{x} < N
+        \]
+        Therefore, \[
+            \exists_N \st \forall_{\va{x} \in A} f(x) < \max_{\va{x} \in \partial A} f(x) < N
+        \]
+        Which means $f(A)$ is bounded.
+    \end{proof}
+\end{theorem}
 
 % Problem 6 -----------------------------------------------
 \newpage
