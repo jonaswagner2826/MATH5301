@@ -1,0 +1,308 @@
+% Standard Article Definition
+\documentclass[]{article}
+
+% Page Formatting
+\usepackage[margin=1in]{geometry}
+\setlength\parindent{0pt}
+
+% Graphics
+\usepackage{graphicx}
+
+% Math Packages
+\usepackage{physics}
+\usepackage{amsmath, amsfonts, amssymb, amsthm}
+\usepackage{mathtools}
+
+% Extra Packages
+\usepackage{listings}
+\usepackage{hyperref}
+
+% Section Heading Settings
+\usepackage{enumitem}
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand*{\thesection}{Problem \arabic{section}}
+\renewcommand*{\thesubsection}{\alph{subsection})}
+\renewcommand*{\thesubsubsection}{\quad \quad \roman{subsubsection})}
+
+%Custom Commands
+\newcommand{\Rel}{\mathcal{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\toI}{\xrightarrow{\textsf{\tiny I}}}
+\newcommand{\toS}{\xrightarrow{\textsf{\tiny S}}}
+\newcommand{\toB}{\xrightarrow{\textsf{\tiny B}}}
+
+\newcommand{\divisible}{ \ \vdots \ }
+\newcommand{\st}{\ : \ }
+
+
+% Theorem Definition
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{example}{Example}
+
+
+%opening
+\title{MATH 5301 Elementary Analysis - Final Exam}
+\author{Jonas Wagner}
+\date{2021, December 7\textsuperscript{th}}
+
+\begin{document}
+
+\maketitle
+
+% Problem 1 ----------------------------------------------
+\section{}
+For each $n \in \N$ define the set
+\[
+    Q_n := \qty{
+        \frac{1}{pq} \st 0 < p < q \leq n; \ p + q > n; \ \textnormal{gcd}(p,q) = 1
+    }
+\]
+Let $f(n)$ be the sum of all elements of $Q_n$.
+
+Find $\inf_n f(n)$.
+
+\begin{definition}\label{def:pblm1_Qn}
+    Let the set $Q_n$ be defined for all $n \in \N$ as
+    \[
+        Q_n := \qty{
+            \frac{1}{pq} \st 0 < p < q \leq n; \ p + q > n; \ \gcd(p,q) = 1
+        }
+    \]
+\end{definition}
+
+\begin{definition}\label{def:pblm1_fn}
+    Let $f(n)$ be the sum of all elements within $Q_n$.
+\end{definition}
+
+\begin{definition}\label{def:infimum}
+    A lower bound of subset $A$ in the partially ordered set $(S,\leq)$ is defined by
+    \[
+        a \in S \st a \leq x \forall_{x \in A}
+    \]
+    A lower bound of $a$ is called an \emph{\underline{infimum}} of set $A \in (S,\leq)$,
+    denoted as $a = \inf A$, is the greatest lower bound. i.e.
+    \[
+        \forall_{y \in S : a \leq x \forall_{x \in A}} y \leq a
+    \]
+\end{definition}
+
+\begin{definition}
+    The \underline{\emph{Greatest Common Divisor}} of two nonzero integers $a,b \in \Z \neq 0$, $\gcd(a,b)$, 
+    is defined as the largest positive integer, $d \in \Z_+$, so that $d$ is a divisor of both $a$ and $b$.
+    i.e:
+    \[
+        \gcd(a,b) := d \in \Z_+ \st (a \divisible d) \land (b \divisible d) 
+                    \land (\forall_{x \in \Z_+ \st a,b \divisible x} d \geq x)
+    \]
+    Additionally, $a$ and $b$ are considered \emph{\underline{coprime}} if $\gcd(a,b) = 1$.
+\end{definition}
+
+\begin{assumption}
+    For this problem it is assumed that $\gcd$ is only defined within $\Z_+$, 
+    although I believe this can also be expanded to other less-strict ordered sets in the same way.
+\end{assumption}
+
+\begin{assumption}
+    It is assumed that the sum of all elements in the empty set is 0, i.e. $\sum_{i} \emptyset = 0$.
+\end{assumption}
+
+\newpage
+\begin{theorem}
+    \[
+        \inf_{n \in \N} f(n) = 0
+    \]
+
+    \begin{proof}
+        Proof by induction.
+
+        For $n = 1$, 
+            $\lnot \exists_{p,q \in \Z \st 0<p<q\leq 1}$ meaning that $Q_1 = \emptyset$.
+            
+            This implies that $f(1) = \sum_{i} \emptyset = 0$ and that $f(1) \geq 0$.
+
+        For $n = 2$, 
+        \[
+            (p,q) \in \qty{(p,q) \st 0 < p < q \leq 2; \ p + q > n; \ \gcd(p,q) = 1} = \qty{(1,2)}
+        \]    
+        The set $Q_2$ is then defined as
+        \[
+            Q_2 = \qty{\frac{1}{pq} \st (p,q) \in \qty{(1,2)}}
+                = \qty{\frac{1}{(1)(2)}}
+                = \qty{\frac{1}{2}}
+        \]
+        Therefore,
+        \[
+            f(2) = \sum_{i} \qty{\frac{1}{2}} = \frac{1}{2}
+        \]
+        It is clear that $f(2) = \frac{1}{2} \geq 0$.
+
+        For $n = 3$,
+        \[
+            (p,q) \in \qty{(p,q) \st 0 < p < q \leq 3; \ p + q > n; \ \gcd(p,q) = 1} 
+                = \qty{(1,3),(2,3)}
+        \]
+        The set $Q_3$ is then defined as
+        \[
+            Q_3 = \qty{\frac{1}{pq} \st (p,q) \in \qty{(1,3),(2,3)}}
+                = \qty{\frac{1}{(1)(3)}, \frac{1}{(2)(3)}}
+                = \qty{\frac{1}{3}, \frac{1}{6}}
+        \]
+        Therefore,
+        \[
+            f(3) = \sum_{i} \qty{\frac{1}{3}, \frac{1}{6}} 
+                = \frac{1}{3} + \frac{1}{6} 
+                = \frac{2 + 1}{6}
+                = \frac{3}{6}
+                = \frac{1}{2}
+        \]
+        It is clear that $f(3) = \frac{1}{2} \geq 0$.
+
+        For $n = 4$,
+        \[
+            (p,q) \in \qty{(p,q) \st 0 < p < q \leq 4; \ p + q > n; \ \gcd(p,q) = 1} 
+                = \qty{(1,4),(2,3),(3,4)}
+        \]
+        The set $Q_4$ is then defined as
+        \[
+            Q_4 = \qty{\frac{1}{pq} \st (p,q) \in \qty{(2,3),(3,4)}}
+                = \qty{\frac{1}{(1)(4)}, \frac{1}{(2)(3)}, \frac{1}{(3)(4)}}
+                = \qty{\frac{1}{4},\frac{1}{6}, \frac{1}{12}}
+        \]
+        Therefore,
+        \[
+            f(4) = \sum_{i} \qty{\frac{1}{6}, \frac{1}{12}}
+                = \frac{1}{4} + \frac{1}{6} + \frac{1}{12}
+                = \frac{3 + 2 + 1}{12}
+                = \frac{6}{12}
+                = \frac{1}{2}
+        \]
+        It is clear that $f(4) = \frac{1}{2} \geq 0$.
+
+        % For $n = 5$,
+        % \[
+        %     (p,q) \in \qty{(p,q) \st 0 < p < q \leq 5; \ p + q > n; \ \gcd(p,q) = 1} 
+        %         = \qty{(1,5),(2,5),(3,4),(3,5),(4,5)}
+        % \]
+        % The set $Q_5$ is then defined as
+        % \[
+        %     Q_5 = \qty{\frac{1}{pq} \st (p,q) \in \qty{(1,5),(2,5),(3,4),(3,5),(4,5)}}
+        %         = \qty{\frac{1}{(1)(5)}, \frac{1}{(2)(5)}, \frac{1}{(3)(4)}, \frac{1}{(3)(5)}, \frac{1}{(4)(5)}}
+        %         = \qty{\frac{1}{5}, \frac{1}{10}, \frac{1}{12}, \frac{1}{15}, \frac{1}{20}}
+        % \]
+        % Therefore,
+        % \[
+        %     f(5) = \sum_{i} \qty{\frac{1}{5}, \frac{1}{10}, 
+        %                         \frac{1}{12}, \frac{1}{15}, \frac{1}{20}}
+        %         = \frac{1}{5} + \frac{1}{10} + \frac{1}{12} + \frac{1}{15} + \frac{1}{20}
+        %         = \frac{1}{2}
+        % \]
+        % It is clear that $f(5) = \frac{1}{2} \geq 0$
+
+
+        For and arbritrary $n \in \N$,
+        \begin{align*}
+            (p,q) \in \qty{(p,q) \st 0 < p < q \leq n; \ p + q > n; \ \gcd(p,q) = 1}\\
+                &= \qty{(1,n), (2,n - \star), (3, n - \star) \dots, (n-2, n-1), (n-1, n)}
+        \end{align*}
+        \begin{align*}
+            Q_n &= \qty{\frac{1}{pq} \st (p,q) \in \qty{(1,n), (2,n-\star), \dots, (n-2, n-1), (n-1, n)}}\\
+                &= \qty{\frac{1}{(1)(n)}, \frac{1}{(2)(n-1)}, \dots, \frac{1}{(n-2)(n-1)}, \frac{1}{(n-1)(n)}}\\
+                &= \qty{\frac{1}{n}, \frac{1}{2(n-\star)}, \dots, \frac{1}{(n-2)(n-1)}, \frac{1}{n(n-1)}}
+        \end{align*}
+
+        where $\star$ is dependent for on divisibility properties between $n$ and 2, 3, 4, etc.
+        It is important to note that each increase of $n$ will cause every term to decrease in magnitude individually but additional elements are added that result to adding up to $\frac{1}{2}$ again.
+
+        However, eventually this will reach a point where a lack of prime numbers in a region makes it so that the only coprime numbers satisfying the conditions are adjacent to one another, which leads to the following:
+        \begin{align*}
+            f(n)    &= \sum_{i} Q_n = \frac{1}{n} + \dots + \frac{1}{(\frac{n}{2}) (\frac{n}{2}+1)} + \dots + \frac{1}{n (n-1)}\\
+            f(n+1)  &= \qty(\sum_{i} Q_n) \qty(\frac{n!}{(n+1)!}) + \frac{1}{(n+1)}\\
+                    &= \frac{1}{n} \frac{n!}{(n+1)!} + \dots + \frac{1}{(\frac{n}{2}) (\frac{n}{2}+1)} \frac{n!}{(n+1)!} + \dots + \frac{1}{n (n-1)} \frac{n!}{(n+1)!} + \frac{1}{n+1}\\
+                    &= \frac{n!}{n(n+1)n!} + \dots + \frac{n!}{\frac{n}{2}(\frac{n}{2}-1)(n+1)n!} + \dots + \frac{n!}{n (n-1) (n+1) n!} + \frac{1}{n+1}\\
+                    &= \sum_{i} Q_{n+1} = \frac{1}{n+1} + \dots + \frac{1}{(\frac{n+1}{2}) (\frac{n+1}{2}+1)} + \dots + \frac{1}{n (n+1)}
+        \end{align*}
+        essentially every $(p,q)$ becomes $(q,q+1)$ and the new $\frac{1}{(n+1)}$ is added.
+
+
+        Anyway, the point is that $\forall_{n\in\N \st n>1} f(n) \geq \frac{1}{2}$; 
+        however, because $f(n)$ is included, $\frac{1}{2} \leq f(n) \forall_{n \in N}$ since $Q_1 = \emptyset \implies f(1) = 0$.
+
+        Therefore,
+        \[
+            \inf_n f(n) = 0
+        \]
+
+        % Therefore,
+        % \begin{align*}
+        %     f_{even}(n) &= \sum_{i} \qty{\frac{1}{n}, \frac{1}{2(n-1)}, \dots, \frac{1}{(n-2)(n-1)}, \frac{1}{n(n-1)}}\\
+        %         &= \frac{1}{n} + \frac{1}{2(n-1)} + \dots + \frac{1}{(n-2)(n-1)} \frac{1}{n(n-1)}\\
+        %         &= \frac{
+        %                 (n-1)(n-2)\cdots(3)(2) + (n)(n-2)\cdots(3)(1) + \dots + (n-2)(n-3)\cdots(2)(1)
+        %             }{
+        %                 n(n-1)(n-2)\cdots(3)(2)(1)
+        %             }\\
+        %         &= \frac{
+        %                 \sum_{i=1}^n \frac{n!}{(i)(n-i)}
+        %             }{
+        %                 n!
+        %             }
+        % \end{align*}
+
+        % Something similar is true for $n \in \N \st n + 1 \divisible 2$,
+        % but in reality it isn't important for the proof,
+        % \begin{align*}
+        %     f_{odd}(n) &= \sum_{i} \qty{\frac{1}{n}, \frac{1}{2(n)}, \dots, \frac{1}{(n-2)(n-1)}, \frac{1}{n(n-1)}}\\
+        %         &= \frac{1}{n} + \frac{1}{2(n)} + \dots + \frac{1}{(n-2)(n-1)} \frac{1}{n(n-1)}\\
+        %         &= \frac{
+        %             \sum_{i=1}^n \frac{n!}{(n)(n-i)}
+        %         }{n!}
+        % \end{align*}
+        
+        
+        % When it is known that $f(n) = \frac{1}{2}$,
+        % \begin{align*}
+        %     f(n)_{even} = \frac{1}{2}
+        %         &= \frac{1}{n} + \frac{1}{2(n-1)} + \dots + \frac{1}{(n-2)(n-1)} \frac{1}{n(n-1)}
+        % \end{align*}
+        
+        % Then this is also true for $f(n+1)$ as shown 
+        % (with not much algebraic detail since the answer itself remains trivial...)
+        % \begin{align*}
+        %     f_{odd}(n+1) &= \frac{1}{n+1} + \frac{2(n+1)} + \dots + \frac{(n-2)(n-1)} + frac{(n+1)(n + 1 - 1)}\\
+        %                 &= 
+        % \end{align*}
+
+        
+
+
+        % Since it is known that the set with the least number of elements is $\emptyset$
+        %     and that $f(n) = 0 \forall_{n} \st Q_n = \emptyset$, and that 
+    \end{proof}
+\end{theorem}
+
+
+
+
+% Problem 2 ----------------------------------------------
+\newpage
+\section{}
+Let 
+
+
+
+
+
+
+
+
+
+\end{document}
