@@ -295,10 +295,55 @@ Find $\inf_n f(n)$.
 % Problem 2 ----------------------------------------------
 \newpage
 \section{}
-Let 
+Let $(X,d)$ be a metric space.
+Let $B_r(a)$ denote the open ball of radius $r$ centered at $a$.
+i.e.
+Can it happen that $B_{r_1}(a) \subset B_{r_2}(a)$ but $r_1 > r_2$?
+
+\begin{definition}\label{def:open_ball}
+    Within the metric space $(X,d)$, 
+    the open ball of radius $r \in X$ centered at $a \in X$, 
+    denoted as $B_r(a)$, is defined as:
+    \[
+        B_r(a) := \qty{x \in X \st d(a,x) < r}
+    \]
+\end{definition}
+
+\begin{assumption}
+    First it will be assumed that $(X,d)$ is a normed vector space in which the triangle inequality holds. i.e.\[
+        \forall_{x,y,z \in X} d(x,z) \leq d(x,y) + d(y,z)
+    \]
+    This can also be denoted as $(X,\norm{\cdot})$ to distinguish between them.
+\end{assumption}
+
+\begin{theorem}
+    For  $r_1 > r_2$ then it is not possible for $B_{r_1}(a) \subset B_{r_2}(b)$ within $(X, \norm{\cdot})$:
+    \begin{proof}
+        Proof by contradiction.
+        
+        Let \[
+            B_{r_1}(a), B_{r_2}(b) \subset X
+        \]
+        with $0 < r_2 < r_1$
+        and $a \in B_{r_2}(b)$.
+
+        To minimize the amount of the set existing outside of the set,
+        we need to set $a = b$.
+        Next, let $c$ be a point within the punctured open ball $B_{r_2}(b)$.
+        i.e.\[
+            c \in B_{r_2}(b) \backslash \{b\}
+        \]
+        $c$ can then be used to construct a point that is contained in $B_{r_2}(b)$ but not in $B_{r_1}(a)$:
+        \[
+            p + \frac{r_1 + r_2}{2} \frac{a c}{\norm{a c}} \in B_{r_1}(a) \backslash B_{r_2}(b)
+        \]
+    \end{proof}
+\end{theorem}
 
 
-
+\begin{assumption}
+    Now relax the metric so that $(X,d)$ is not a restricted by the triangle ineaquality.
+\end{assumption}
 
 
 
