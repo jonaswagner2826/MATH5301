@@ -535,37 +535,44 @@ Such metric is often called a bounded metric...
 \end{definition}
 
 \begin{theorem}
-    There does not exist a metric space $(X,d)$ 
+    There does exist a metric space $(X,d)$ 
     containing the sequence of nested bounded closed sets 
     $F_1 \supset F_2 \supset \cdots \supset F_n \supset \cdots$
     such that \[
         \bigcap_{n \in \N} F_n = \emptyset
     \]
     \begin{proof}
-        The basic plan is to prove that 
+        Let the metric space $(X,d)$ be defined with\[
+            X := \R \backslash \{0\}
+        \]
+        and endowed with the Euclidean metric $d : \R \cross \R$ defined by:\[
+            d(x,y) := \sqrt{(x-y)^2}
+        \]
         
-        Let the metric space $(X,d)$ be endowed with metric $d : X \cross X \to \R$ defined by $d(x,y) = \sqrt{(x - y)^2}$.
-        
+        Let $F_1 \subset X$ be defined for:\[
+            F_1 := B_{r_1}(0) = \qty{
+                x \in X \st d(0,x) \leq r_1
+            }
+        \]
+        where $r_1$ is initialized arbitrarily large.
 
-        Let $d_1 = \frac{d(x,y)}{1+d(x,y)}$ be a new metric defined on 
-    
+        For $n = 2, 3, \dots$, 
+        $F_n \supset \cdots \supset F_2 \subset F_1 \subset X$ is defined by:
+        \[
+           F_n := B_{r_n}(0) = \qty{
+               x \in X \st d(0,x) \leq r_n
+           }
+        \]
+        where $r_{n+1} = \frac{r_n}{1+r_n}$.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Finally, the solution is very obvious that the origin is the only limit point of the intersection.\[
+            \lim_{N \to \infty} \cap_{n < N} F_n = \{0\}
+        \] 
+        However, within this particular metric space, where $X = \R \backslash \{0\}$, this limit is not within the sets themselves.
+        Therefore,
+        \[
+            \cap_{n \in \N} F_n = 0
+        \]
     \end{proof}
 \end{theorem}
 
@@ -600,9 +607,6 @@ satisfying the equation
         Now we take $T(f(x)) = f(x)$ and make the claim $f(x)$ is not unique.
         This would mean that $T(g(x)) = g(x)$ is another solution.
         If there are multiple solutions, then the following would be true:
-        % \[
-        %     T(f(x)) - f(x) = T(g(x)) - g(x)
-        % \]
         \begin{align*}
             T(f(x)) - f(x) 
                 &= T(g(x)) - g(x)\\
@@ -613,15 +617,14 @@ satisfying the equation
                 - \int_{0}^{1} \sin(x^2 + y^2) g(y) \dd{y}\\
             f(x) - g(x)
                 &= \int_{0}^{1} \sin(x^2 + y^2) (f(y) - g(y)) \dd{y}
-            \intertext{Since $\abs{\sin{x}}\leq 1$,}
-                &\leq \int_{0}^{1} (f(y) - g(y)) \dd{y} \leq
+            \intertext{Since $\abs{\sin{x}}\leq 1 \implies \int_0^1 \sin(x) \dd{x} < 1$,}
+                &< \int_{0}^{1} (f(y) - g(y)) \dd{y} \leq
             \intertext{Since we can look at the integral over the region as less then the maximum value times the width:}
-                &\leq (1-0) \sup_{y \in [0,1]} (f(y) - g(y)) =\\
+                &\leq (1-0) \sup_{y \in [0,1]} (f(y) - g(y))\\
             f(x) - g(x)
-                & = \sup_{y \in [0,1]} (f(y) - g(y))%\\
-                %&= f(x) - g(x)
+                & < \sup_{y \in [0,1]} (f(y) - g(y))
         \end{align*}
-        This demonstrated that they do in fact need to be the same function to be correct.
+        Which is not possible, leading to the claim that two solutions exist to be false.
     \end{proof}
 \end{theorem}
 
