@@ -1,6 +1,9 @@
 {
     "latex-workshop.view.pdf.invert": 1,
     "cSpell.words": [
-        "Furstenberg"
+        "bijective",
+        "Furstenberg",
+        "injective",
+        "surjective"
     ]
 }

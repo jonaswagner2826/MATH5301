@@ -428,11 +428,21 @@ one can shown that $\frac{d(x,y)}{1 + d(x,y)}$ is also a metric.
 Such metric is often called a bounded metric...
 
 \begin{definition}
-    \emph{\underline{closed}}
+    The set $A$ in metric space $(X,d)$ is considered \emph{\underline{open}} if 
+    \[
+        \forall_{x \in A} \exists_{\epsilon > 0} \st \forall_{y \in X} d(x,y)<\epsilon
+    \]
 \end{definition}
 
 \begin{definition}
-    \emph{\underline{bounded}} (i.e.) has bounded metric?
+    The set $A$ in metric space $(X,d)$ is considered \emph{\underline{closed}} if the set $A^c$ is open.
+\end{definition}
+
+\begin{definition}
+    The set $A$ in metric space $(X,d)$ is called \emph{\underline{bounded}} if
+    \[
+        \forall_{x \in A} \exists_{R>0} \st \forall_{y\in A} d(x,y) < R
+    \]
 \end{definition}
 
 \begin{theorem}
@@ -444,6 +454,23 @@ Such metric is often called a bounded metric...
     \]
     \begin{proof}
         Let the metric space $(X,d)$ be defined with field $X$ ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     \end{proof}
 \end{theorem}
 
@@ -479,6 +506,70 @@ satisfying the equation
     \begin{proof}
         A unique function that satisfies the
     \end{proof}
+\end{theorem}
+
+
+
+
+
+
+
+
+% Problem 6 ----------------------------------------------
+\newpage
+\section{}
+Let $V$ be a complete metric space without isolated points.
+Show that $V$ is uncountable $(\abs{V} > \abs{\N})$.
+
+\begin{definition}
+    A metric space $(X,d)$ is considered \emph{\underline{complete}} if:
+
+\end{definition}
+
+\begin{definition}
+    A point within metric space $(X,d)$ is considered \emph{\underline{isolated}} if 
+\end{definition}
+
+
+\begin{definition}
+    \begin{itemize}
+        \item The \emph{\underline{Cardinality}} of set $A$,
+        denoted as $\abs{A}$,
+        is the number of unique elements contained within $A$.
+        
+        \item A function $f : \N \to A$ is said to be \underline{\emph{surjective}} if\[
+            \exists_{f : \N \toS A} \iff 
+            \exists_{f : \N \to A} \st \forall_{x \in \N} \exists f(x) \in A
+        \]
+
+        \item A function $f : \N \to A$ is said to be \underline{\emph{injective}} if\[
+            \exists_{f : \N \toI A} \iff 
+            \exists_{f : \N \to A} \st \forall_{f(x) \in A} \exists_{x \in \N}
+        \]
+
+        \item A function $f : \N \to A$ is said to be \underline{\emph{bijective}} 
+        if $f$ is both surjective and injective.
+        i.e.\[
+            \exists_{f : \N \toB A} \iff 
+            \exists_{f : \N \to A} \st 
+                \qty(\forall{x \in \N} \exists_{f(x) \in A}) \land
+                \qty(\forall{y \in A} \exists_{f^{-1}(y) \in \N})
+        \]
+        A bijective function is also known as a \emph{\underline{one to one correspondance}}.
+
+        \item A set $A$ is considered \emph{\underline{Countable}} if $\abs{A} \leq \abs{\N}$. 
+        This is also said to be true if a surjective function exists mapping $\N$ to $A$.
+        
+        \item If $A$ is an infinite set, then $A$ is \emph{\underline{countably infinite}},
+        $\abs{A} = \aleph = \abs{\N}$, 
+        if there exists a one to one correspondence from $\N$ to $A$.
+    \end{itemize}
+\end{definition}
+
+
+\begin{theorem}
+    A complete 
+
 \end{theorem}
 
 

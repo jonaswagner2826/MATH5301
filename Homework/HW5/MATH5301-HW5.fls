@@ -1,8 +1,8 @@
-PWD c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Homework/HW5
+PWD c:/Users/Jonas/OneDrive_UTD/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Homework/HW5
 INPUT c:/texlive/2021/texmf.cnf
 INPUT c:/texlive/2021/texmf-dist/web2c/texmf.cnf
 INPUT c:/texlive/2021/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT c:/Users/Jonas/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Homework/HW5/MATH5301-HW5.tex
+INPUT c:/Users/Jonas/OneDrive_UTD/OneDrive - The University of Texas at Dallas/2021_Fall/MATH5301/Homework/HW5/MATH5301-HW5.tex
 OUTPUT MATH5301-HW5.log
 INPUT c:/texlive/2021/texmf-dist/tex/latex/base/article.cls
 INPUT c:/texlive/2021/texmf-dist/tex/latex/base/article.cls
