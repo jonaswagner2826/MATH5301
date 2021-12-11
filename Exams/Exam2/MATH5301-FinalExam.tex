@@ -310,9 +310,8 @@ Can it happen that $B_{r_1}(a) \subset B_{r_2}(a)$ but $r_1 > r_2$?
 \end{definition}
 
 \begin{assumption}\label{ass:normed_metric}
-    First it will be assumed that $(X,d)$ is a normed vector space in which the triangle inequality holds. i.e.\[
-        \forall_{x,y,z \in X} d(x,z) \leq d(x,y) + d(y,z)
-    \]
+    First it will be assumed that $(X,d)$ is a normed vector space.
+    This restricts the metric and metric space into a normed space.
     This can also be denoted as $(X,\norm{\cdot})$ to distinguish between them.
     It is also assumed that $X$ is complete.
 \end{assumption}
@@ -343,7 +342,7 @@ Can it happen that $B_{r_1}(a) \subset B_{r_2}(a)$ but $r_1 > r_2$?
 \end{theorem}
 
 \begin{assumption}
-    The previous assumption, Assumption \ref{ass:normed_metric}, is now relax the metric so that $d$ is not restricted by completeness or 
+    The previous assumption, Assumption \ref{ass:normed_metric}, is now relax the metric so that $d$ is not restricted to be a norm (i.e. may not be linear).
 \end{assumption}
 
 \begin{theorem}
@@ -386,32 +385,123 @@ Let $M$ be the set of all bounded sequences
 \]
 Define $\rho(\{a_n\},\{b_n\}) = \max_{n \in \N} \abs{a_n - b_n}$
 
+\begin{definition}\label{def:metric}
+    Function $d : X \cross X \to \R$ is considered a \underline{\emph{metric}} 
+    if it satisfies all of the following:
+    \begin{enumerate}
+        \item Non-negativity:
+            \[d(a,b) \geq 0\]
+        \item Symmetry:
+            \[d(a,b) = d(b,a)\]
+        \item Triangle Inequality:
+            \[d(a,c) \leq d(a,b) + d(b,c)\]
+    \end{enumerate}
+\end{definition}
 
 \subsection{Show that $(M,\rho)$ is a metric space.}
 
+\begin{theorem}
+    Let $M$ be defined as the set of all bounded sequences:\[
+        M = \qty{\{a_j\}_{j=1}^{\infty} \st \abs{a_j} < \infty}
+    \]
+    Let the metric $\rho$ be defined on $M$ such that\[
+        \rho(\{a_n\},\{b_n\}) = \max_{n\in\N} \abs{a_n - b_n}
+    \]
+    The metric space $(M, \rho)$ is in fact a metric space.
+    \begin{proof}
+        From Definition \ref{def:metric}, $\rho$ is a metric if 
+        $\forall_{\{a_n\},\{b_n\},\{c_n\}} \in M$ 
+        these three conditions are all satisfied: 
+            (i) non-negativity, 
+            (ii) Symmetry, and 
+            (iii) Triangle Inequality.
+        \begin{enumerate}
+            \item Non-negativity:
+            \begin{align*}
+                d(a,b) &\geq 0\\
+                \rho(\{a_n\},\{b_n\}) = \max_{n \in \N} \abs{a_n - b_n} &\geq 0\\
+            \end{align*}
+            \item Symmetry:
+            \begin{align*}
+                d(a,b) &= d(b,a)\\
+                \rho(\{a_n\},\{b_n\}) = \max_{n \in \N} \abs{a_n - b_n} 
+                    &= \max_{n \in \N} \abs{b_n - a_n} = \rho(\{a_n\},\{b_n\})
+            \end{align*}
+            \item Triangle Inequality:
+            \begin{align*}
+                d(a,c) &\leq d(a,b) + d(b,c)\\
+                \rho(\{a_n\},\{c_n\}) 
+                    &\leq \rho(\{a_n\},\{b_n\}) + \rho(\{b_n\},\{c_n\})\\
+                \max_{n \in \N} \abs{a_n - c_n} 
+                    \leq \max{n \in \N} \abs{a_n - b_n} + \abs{b_n - c_n}    
+                    &\leq \max_{n \in \N} \abs{a_n - b_n} 
+                        + \max_{n \in \N} \abs{b_n - c_n}
+            \end{align*}
+        \end{enumerate}
+    \end{proof}
+\end{theorem}
 
 
+\newpage
+\subsection{Show that $M$ does not contain a dense countable subset.}
 
+% (Hint: recall the very first example of uncountable set...)
 
+\begin{definition}\label{def:closure}
+    The \underline{\emph{Closure}}, $\overline{A}$, of $A \subset X$ is defined as
+    \[
+        \overline{A} = A \cup \qty{
+            \lim_{n\to\infty} a_n \st a_n \in A \forall_{n \in \N}
+        }
+    \]
+\end{definition}
 
+\begin{definition}\label{def:dense}
+    A set $A \subset X$ is considered \underline{\emph{Dense}} in $X$ if $\overline{A} = X$.
+\end{definition}
 
+\begin{theorem}\label{thm:cantor}
+    For the power set, $\mathcal{P}(A)$, 
+    defined as the collections of all sets constructed from the elements of $A$, 
+    then the cardinality of $\mathcal{P}(A)$ will always be strictly greater then that of $A$.
+    i.e.\[
+        \abs{2^{A}} > \abs{A}
+    \]
+    \begin{itemize}
+        \item This is also applicable to infinite sets with whether it is countable or not.
+        i.e\[
+            \abs{2^\N} = \aleph_1 > \abs{\N} = \aleph_0
+        \]
+        \item The theorem itself is that any mapping from $A$ to $\mathcal{P}(A)$ is not surjective which is then proven false.
+        It then follows that $f : A \toI \mathcal{P}(A)$ is injective, 
+        which is equivalent to saying that $\abs{A} < \abs{\mathcal{P}(A)}$.
+    \end{itemize}
+\end{theorem}
 
-\subsection{Show that $M$ does not contain a dense}
+\begin{theorem}
+    $M$ does not contain any dense countable subsets.
+    \begin{proof}
+        Proof by contradiction inspired by Cantor's Theorem (\ref{thm:cantor}).
 
+        Let $A_N \subset M$ be defined as 
+        \[
+            A_N := \{\{a_j\}_{j=1}^{\infty} \st \abs{a_j} < N\}
+        \]
 
+        Similarly to Cantor's theorem, even when restricting $a_j$ from a finely sized set,
+        the only mapping that exists from a countable set into $A_n$ are strictly injective. 
+        
+        Next, taking $A = \lim_{N \to \infty} A_N$, 
+        we will prove that in order for $A$ to be dense, $A$ would no longer be countable.
 
-
-
-
-
-
-
-
-
-
-
-
-
+        From Definition \ref{def:closure} and Definition \ref{def:dense}, 
+        it is known that in order for $A$ to be dense within $M$, 
+        $\overline{A} = M$. 
+        Since $M$ itself is an infinite set, 
+        even if for sequences of a finite set of numbers,
+        $A$ would become infinite and ultimately uncountable with $\abs{A} \leq \abs{M}$.
+    \end{proof}
+\end{theorem}
 
 % Problem 4 ----------------------------------------------
 \newpage
@@ -489,7 +579,7 @@ satisfying the equation
 
 
 \begin{definition}
-    \emph{\underline{continuous}} function
+    A function \emph{\underline{continuous}} functio
 \end{definition}
 
 \begin{definition}
@@ -505,8 +595,24 @@ satisfying the equation
     \end{equation}
     \begin{proof}
         A unique function that satisfies the
+
+
+        \begin{align*}
+            f(x) &= \int_{0}^{1} \sin(x^2 + y^2) f(y) \dd y\\
+            \intertext{Let $u(x) = $}
+        \end{align*}
+
+
     \end{proof}
 \end{theorem}
+
+
+
+
+
+
+
+
 
 
 
@@ -521,22 +627,41 @@ satisfying the equation
 Let $V$ be a complete metric space without isolated points.
 Show that $V$ is uncountable $(\abs{V} > \abs{\N})$.
 
-\begin{definition}
-    A metric space $(X,d)$ is considered \emph{\underline{complete}} if:
-
-\end{definition}
-
-\begin{definition}
-    A point within metric space $(X,d)$ is considered \emph{\underline{isolated}} if 
-\end{definition}
-
-
-\begin{definition}
+\begin{definition}\label{def:complete_cauchy_limit}
+    A metric space $(X,d)$ is considered \emph{\underline{Complete}} 
+    if every Cauchy sequence of points in $X$ has a limit within $X$.
     \begin{itemize}
-        \item The \emph{\underline{Cardinality}} of set $A$,
-        denoted as $\abs{A}$,
-        is the number of unique elements contained within $A$.
-        
+        \item A sequence $x_1, x_2, \dots$ in metric space $(X,d)$ 
+        is considered \emph{\underline{Cauchy}} if
+        \[
+            \forall_{r > 0} \exists_N \st \forall_{m,n > N} d(x_m,x_n) < r
+        \]
+        \item $x$ is the \underline{\emph{limit}} of sequence ($x_n$), 
+        $\lim_{n \to \infty} x_n$, if
+        \[
+            \forall_{\epsilon>0} \exists_{N \in \N} \st \forall_{n\geq N} \abs{x_n - x} < \epsilon
+        \]
+    \end{itemize}
+\end{definition}
+
+\begin{definition}\label{def:isolated_points}
+    A point within metric space $(X,d)$ is considered an 
+    \emph{\underline{isolated point}} of set $A \subset X$ 
+    in which no other points are within the neighborhood of $x$.
+    i.e.\[
+        \exists_{\epsilon>0} \st \forall_{y \in X} 
+            \st d(x,y) < \epsilon y \implies \not \in A
+    \]
+    \begin{itemize}
+        \item A complete set $A$ that contains no isolated points is called 
+            \emph{\underline{dense-in-itself}}.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}\label{def:sur/in/bijective_funcs}
+    A \emph{\underline{one to one correspondance}} is also known as a 
+    bijective function that maps $\N \to X$.
+    \begin{itemize}
         \item A function $f : \N \to A$ is said to be \underline{\emph{surjective}} if\[
             \exists_{f : \N \toS A} \iff 
             \exists_{f : \N \to A} \st \forall_{x \in \N} \exists f(x) \in A
@@ -547,34 +672,57 @@ Show that $V$ is uncountable $(\abs{V} > \abs{\N})$.
             \exists_{f : \N \to A} \st \forall_{f(x) \in A} \exists_{x \in \N}
         \]
 
-        \item A function $f : \N \to A$ is said to be \underline{\emph{bijective}} 
+        \item A function $f : A \to B$ is said to be \underline{\emph{bijective}} 
         if $f$ is both surjective and injective.
         i.e.\[
-            \exists_{f : \N \toB A} \iff 
-            \exists_{f : \N \to A} \st 
-                \qty(\forall{x \in \N} \exists_{f(x) \in A}) \land
-                \qty(\forall{y \in A} \exists_{f^{-1}(y) \in \N})
+            \exists_{f : A \toB B} \iff 
+            \exists_{f : A \to B} \st 
+                \qty(\forall{x \in A} \exists_{f(x) \in B}) \land
+                \qty(\forall{y \in B} \exists_{f^{-1}(y) \in A})
         \]
-        A bijective function is also known as a \emph{\underline{one to one correspondance}}.
-
-        \item A set $A$ is considered \emph{\underline{Countable}} if $\abs{A} \leq \abs{\N}$. 
-        This is also said to be true if a surjective function exists mapping $\N$ to $A$.
-        
-        \item If $A$ is an infinite set, then $A$ is \emph{\underline{countably infinite}},
-        $\abs{A} = \aleph = \abs{\N}$, 
-        if there exists a one to one correspondence from $\N$ to $A$.
     \end{itemize}
 \end{definition}
 
+\begin{definition}\label{def:cardinalityAndCountable}
+    The \emph{\underline{Cardinality}} of set $A$,
+        denoted as $\abs{A}$,
+        is the number of unique elements contained within $A$.
+    \begin{itemize}
+        \item A set $A$ is considered \emph{\underline{Countable}} if $\abs{A} \leq \abs{\N}$. 
+        This is also said to be true if a surjective function exists mapping $\N$ to $A$.
+        
+        \item Set $A$ and $B$ within metric space $(X,d)$ are said be of the same cardinality,
+        $\abs{A}=\abs{B}$, 
+        if there exists a bijective mapping between $A$ and $B$, $f : A \toB B$.
+
+        \item If $A$ is an infinite set, then $A$ is \emph{\underline{Countably Infinite}},
+        $\abs{A} = \aleph_0 = \abs{\N}$, 
+        if there exists a one to one correspondence from $\N$ to $A$.
+        
+        \item For $A$ A set $A$ is considered \emph{\underline{uncountable}} if it is not countable.
+        i.e. $\abs{A} > \abs{\N}$. 
+        This is also said to be true if an injective function exists mapping $\N$ to $A$, 
+        but that no surjective mappings exist.
+    \end{itemize}
+\end{definition}
 
 \begin{theorem}
-    A complete 
+    A complete metric space, $(V,d)$, that contains no isolated point is uncountable.
+    \begin{proof}
+        From Definition \ref{def:complete_cauchy_limit}, 
+        we have that all cauchy sequences in the complete metric space $(X,d)$ must have a limit in $X$.
+        
+        From Definition \ref{def:cardinalityAndCountable}, 
+        it is known that within all countable sets there exists a one-to-one correspondence between $\N$ and the set $A$.
+        
+        For $A$ to be uncountable, an injective function mapping $\N$ to $A$, there exists, $f : \N \toI A$. 
 
+        From Definition \ref{def:sur/in/bijective_funcs}, this means that 
+        $\forall_{f(x) \in A} \exists_{x \in \N}$,
+        however, since $\N$ is not a complete set, it is not possible for a one-to-one correspondence to exist.
+        Therefore, the set is not countable and therefore uncountable.
+    \end{proof}
 \end{theorem}
-
-
-
-
 
 
 
